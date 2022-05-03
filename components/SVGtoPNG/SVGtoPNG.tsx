@@ -7,19 +7,9 @@ type Props = {
   svgString: string;
 };
 export default function SVGtoPNG({ svgString }: Props) {
-  const svg = svgString;
+  const svg: string = svgString;
 
-  function svgToPng(svg, callback) {
-    const url = getSvgUrl(svg);
-    svgUrlToPng(url, (imgData) => {
-      callback(imgData);
-      URL.revokeObjectURL(url);
-    });
-  }
-  function getSvgUrl(svg) {
-    return URL.createObjectURL(new Blob([svg], { type: "image/svg+xml" }));
-  }
-  function svgUrlToPng(svgUrl, callback) {
+  const svgUrlToPng = (svgUrl: string, callback) => {
     const svgImage = document.createElement("img");
 
     document.body.appendChild(svgImage);
@@ -33,8 +23,17 @@ export default function SVGtoPNG({ svgString }: Props) {
       callback(imgData);
     };
     svgImage.src = svgUrl;
-  }
-
+  };
+  const getSvgUrl = (svg: string) => {
+    return URL.createObjectURL(new Blob([svg], { type: "image/svg+xml" }));
+  };
+  const svgToPng = () => {
+    const url: string = getSvgUrl(svg);
+    svgUrlToPng(url, (imgData) => {
+      callback(imgData);
+      URL.revokeObjectURL(url);
+    });
+  };
   return (
     <Button
       onClick={() =>

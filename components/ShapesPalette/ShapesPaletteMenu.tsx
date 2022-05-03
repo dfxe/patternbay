@@ -20,6 +20,7 @@ import Triangle from "../../images/GeometricShapes/Triangle";
 //@ts-ignore
 import { keyframes } from "@emotion/react";
 import { nanoid } from "nanoid";
+import Diamond from "../../images/GeometricShapes/Diamond";
 
 type Props = {
   selectedShapeIndex: number[];
@@ -33,19 +34,20 @@ const ShapesPaletteMenu = ({
 }: Props) => {
   //Todo change to some enum with the shape names, then call the shape name from the enum
   const allShapes = [
-    <HalfRect key={nanoid()} color={"#6550a3"}></HalfRect>,
-    <Cloud key={nanoid()} color={"#6550a3"}></Cloud>,
-    <Circle key={nanoid()} color={"#6550a3"}></Circle>,
-    <CurveLine key={nanoid()} color={"#6550a3"}></CurveLine>,
-    <Flower key={nanoid()} color={"#6550a3"}></Flower>,
-    <SemiCircle key={nanoid()} color={"#6550a3"}></SemiCircle>,
-    <Heart key={nanoid()} color={"#6550a3"}></Heart>,
-    <Oval key={nanoid()} color={"#6550a3"}></Oval>,
-    <PieChart key={nanoid()} color={"#6550a3"}></PieChart>,
-    <RoundedSquare key={nanoid()} color={"#6550a3"}></RoundedSquare>,
-    <SpeechBubbleOne key={nanoid()} color={"#6550a3"}></SpeechBubbleOne>,
-    <Square key={nanoid()} color={"#6550a3"}></Square>,
-    <Triangle key={nanoid()} color={"#6550a3"}></Triangle>,
+    <HalfRect key={nanoid()} color={"#6068d2"}></HalfRect>,
+    <Cloud key={nanoid()} color={"#6068d2"}></Cloud>,
+    <Circle key={nanoid()} color={"#6068d2"}></Circle>,
+    <CurveLine key={nanoid()} color={"#6068d2"}></CurveLine>,
+    <Flower key={nanoid()} color={"#6068d2"}></Flower>,
+    <SemiCircle key={nanoid()} color={"#6068d2"}></SemiCircle>,
+    <Heart key={nanoid()} color={"#6068d2"}></Heart>,
+    <Oval key={nanoid()} color={"#6068d2"}></Oval>,
+    <PieChart key={nanoid()} color={"#6068d2"}></PieChart>,
+    <RoundedSquare key={nanoid()} color={"#6068d2"}></RoundedSquare>,
+    <SpeechBubbleOne key={nanoid()} color={"#6068d2"}></SpeechBubbleOne>,
+    <Square key={nanoid()} color={"#6068d2"}></Square>,
+    <Triangle key={nanoid()} color={"#6068d2"}></Triangle>,
+    <Diamond key={nanoid()} color={"#6068d2"}></Diamond>,
   ];
 
   return (
@@ -56,7 +58,7 @@ const ShapesPaletteMenu = ({
         gridTemplateColumns: `repeat(${4}, 1fr)`,
         gridTemplateRows: "auto",
         gridGap: "4px",
-
+        width: "100%",
         overflowY: "scroll",
         height: "20vh",
       }}
@@ -73,7 +75,7 @@ const ShapesPaletteMenu = ({
           }
           sx={{
             backgroundColor: selectedShapeIndex.includes(i)
-              ? "#f7c8b6"
+              ? "#b6b5e5"
               : "#eeeeee00",
             paddingLeft: "0",
             paddingRight: "0",
@@ -86,8 +88,9 @@ const ShapesPaletteMenu = ({
             sx={{
               display: "flex",
               justifyContent: "center",
-              width: "12px",
-              height: "12px",
+
+              width: "20px",
+              height: "20px",
               paddingLeft: "0",
               paddingRight: "0",
               marginLeft: "0",
