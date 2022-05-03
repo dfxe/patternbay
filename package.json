@@ -1,0 +1,43 @@
+{
+  "name": "patternbay",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev -p 8001",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "cy:open": "cypress open",
+    "test:e2e": "start-server-and-test develop http://localhost:8001 cy:open",
+    "cy:run": "cypress run",
+    "test:e2e:ci": "start-server-and-test develop http://localhost:8001 cy:run"
+  },
+  "dependencies": {
+    "@emotion/react": "^11.9.0",
+    "@emotion/styled": "^11.8.1",
+    "@fontsource/roboto": "^4.5.5",
+    "@mui/icons-material": "^5.6.2",
+    "@mui/material": "^5.6.3",
+    "cypress": "^9.6.0",
+    "cypress-axe": "^0.14.0",
+    "nanoid": "^3.3.3",
+    "next": "12.1.5",
+    "pretty-format": "^28.0.2",
+    "react": "18.1.0",
+    "react-dom": "18.1.0",
+    "react-obfuscate": "^3.6.8",
+    "rooks": "^5.11.0"
+  },
+  "devDependencies": {
+    "@types/node": "17.0.29",
+    "@types/react": "18.0.8",
+    "@types/react-dom": "18.0.2",
+    "autoprefixer": "^10.4.5",
+    "eslint": "8.14.0",
+    "eslint-config-next": "12.1.5",
+    "postcss": "^8.4.12",
+    "start-server-and-test": "^1.14.0",
+    "tailwindcss": "^3.0.24",
+    "typescript": "4.6.3"
+  }
+}
