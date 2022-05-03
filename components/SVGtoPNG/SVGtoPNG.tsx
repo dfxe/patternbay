@@ -4,10 +4,10 @@ import Button from "@mui/material/Button";
 import React from "react";
 
 type Props = {
-  svgString: string;
+  svgString: string[];
 };
 export default function SVGtoPNG({ svgString }: Props) {
-  const svg: string = svgString;
+  const svg: string = svgString[0];
 
   const svgUrlToPng = (svgUrl: string, callback) => {
     const svgImage = document.createElement("img");
@@ -27,6 +27,8 @@ export default function SVGtoPNG({ svgString }: Props) {
   const getSvgUrl = (svg: string) => {
     return URL.createObjectURL(new Blob([svg], { type: "image/svg+xml" }));
   };
+
+  //FIXME: for this to work, need to add an id to the parent element and access it's child list.
   const svgToPng = () => {
     const url: string = getSvgUrl(svg);
     svgUrlToPng(url, (imgData) => {

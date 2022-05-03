@@ -33,6 +33,7 @@ import { useTabSupervisor } from "../Providers/TabSupervisorProvider";
 import ListItemButton from "@mui/material/ListItemButton";
 import BlobSVGMenuSidebar from "../../../images/MenuSidebarBlob";
 import Link from "next/link";
+import ExportToPng from "./ExportToPng";
 
 const drawerWidth = 73;
 
@@ -364,7 +365,12 @@ const MenuSidebar = () => {
 
       <DrawerHeader />
 
-      <ExportData open={exportOpen} setOpen={setExportOpen} />
+      <div hidden={!tabSupervisor.tabs.circlePatternsMenu.isHidden}>
+        <ExportData open={exportOpen} setOpen={setExportOpen} />
+      </div>
+      <div hidden={tabSupervisor.tabs.circlePatternsMenu.isHidden}>
+        <ExportToPng open={exportOpen} setOpen={setExportOpen} />
+      </div>
       <InfoModal open={helpOpen} setOpen={setHelpOpen} />
     </Box>
   );

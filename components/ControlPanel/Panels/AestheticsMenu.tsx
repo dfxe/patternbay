@@ -33,6 +33,7 @@ import ToggleButton from "@mui/material/ToggleButton";
 import Divider from "@mui/material/Divider";
 import ShapesPaletteMenu from "../../ShapesPalette/ShapesPaletteMenu";
 import MenuBackdrop from "./MenuBackdrop";
+import Diamond from "../../../images/GeometricShapes/Diamond";
 
 type ConstructableData = {
   index: number;
@@ -103,6 +104,8 @@ export default function GeometricPatterns() {
         return <Square key={nanoid()} {...stylez} />;
       case 12:
         return <Triangle key={nanoid()} {...stylez} />;
+      case 13:
+        return <Diamond key={nanoid()} {...stylez} />;
       default:
         return <Flower key={nanoid()} {...stylez} />;
     }
