@@ -50,7 +50,6 @@ export default function GeometricPatterns() {
   const [width, setWidth] = useState(defaultWidth);
   const [height, setHeight] = useState(defaultHeight);
   const [padding, setPadding] = useState(20);
-  const [isFocusingOnShapes, setIsFocusingOnShapes] = useState(false);
   const [gBackgroundColor, setGBackgroundColor] = useState("#180c23");
 
   const [colorsUsed, setColorsUsed] = useState<string[]>([
@@ -376,9 +375,6 @@ export default function GeometricPatterns() {
       <ColorPaletteMenu setPaletteUsed={setColorsUsed} />
 
       <Box sx={{ display: "flex", flexDirection: "row", alignItems: "center" }}>
-        <Typography className="text-bro-dark dark:text-ind-light">
-          Background Color
-        </Typography>
         <InputColor
           colorValue={gBackgroundColor}
           setColorValue={setGBackgroundColor}
@@ -386,11 +382,14 @@ export default function GeometricPatterns() {
         />
       </Box>
       <Box
-        sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
       >
         <ShapesPaletteMenu
-          isFocusingOnShapes={isFocusingOnShapes}
-          setIsFocusingOnShapes={setIsFocusingOnShapes}
           selectedShapeIndex={selectedShapeIndex}
           setSelectedShapeIndex={setSelectedShapeIndex}
         />

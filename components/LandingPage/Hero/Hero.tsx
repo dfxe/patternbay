@@ -4,15 +4,15 @@ import Image from "next/image";
 import Jungle from "../../../images/ptt.png";
 function Hero() {
   return (
-    <section className="text-white bg-gradient-to-b from-indigo-600 via-purple-50 to-green-300">
+    <section className="text-white bg-gradient-to-b from-gray-900 via-purple-50 to-sky-300">
       <div className="max-w-screen-xl px-4 py-32 mx-auto lg:h-screen lg:items-center lg:flex">
         <div className="max-w-3xl mx-auto text-center">
-          <h1 className="text-3xl font-extrabold text-transparent sm:text-5xl bg-clip-text bg-gradient-to-r from-green-300 via-blue-500 to-purple-600">
+          <h1 className="text-3xl font-extrabold text-transparent sm:text-5xl bg-clip-text bg-gradient-to-r from-gray-700 via-blue-500 to-purple-600">
             Understand User Flow.
             <span className="sm:block">Increase Conversion.</span>
           </h1>
 
-          <p className="max-w-xl mx-auto mt-4 sm:leading-relaxed sm:text-xl">
+          <p className="max-w-xl mx-auto mt-4 sm:leading-relaxed sm:text-xl text-black">
             Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nesciunt
             illo tenetur fuga ducimus numquam ea!
           </p>
