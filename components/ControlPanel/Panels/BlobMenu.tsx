@@ -13,7 +13,7 @@ import TextField from "@mui/material/TextField";
 import ColorPaletteMenu from "../../ColorPalette/ColorPaletteMenu";
 import MenuBackdrop from "./MenuBackdrop";
 const BlobMenu = () => {
-  const [opacity, setOpacity] = useState(0);
+  const [opacity, setOpacity] = useState(1);
 
   const [rotation, setRotation] = useState(Math.floor(Math.random() * 3200));
   const [dimensions, setDimensions] = useState({ width: 100, height: 100 });
@@ -43,12 +43,16 @@ const BlobMenu = () => {
   const [blobText, setBlobText] = useState("HEYO");
   const [color, setColor] = useState("#6550a3");
 
+  const [dPath, setDPath] = useState<string>(
+    `M 100 100 C ${dimensions.width} ${dimensions.height}, 40 20, 10 10`
+  );
+
   const nightMode = useNightMode();
   const generateBlob = () => {
     setRotation(Math.floor(Math.random() * 3200));
     setDimensions({
-      width: Math.floor(Math.random() * 200) + 101,
-      height: Math.floor(Math.random() * 200) + 101,
+      width: Math.floor(Math.random() * 200) + 10,
+      height: Math.floor(Math.random() * 200) + 10,
     });
     setBorderz({
       leftTopX: Math.floor(Math.random() * 200) + 200,
@@ -60,6 +64,9 @@ const BlobMenu = () => {
       rightBottomX: Math.floor(Math.random() * 200) + 200,
       rightBottomY: Math.floor(Math.random() * 200) + 200,
     });
+    setDPath(
+      `M 100 100 C ${dimensions.width} ${dimensions.height}, 40 20, 10 10`
+    );
   };
 
   const handleTextChange = (event: {
@@ -271,8 +278,21 @@ const BlobMenu = () => {
           inputLabel={"gradient"}
         />
       </Stack>
-
-      <Box
+      {/* svg blob */}
+      <svg
+        id="the-blob-itself"
+        style={{ position: "absolute", left: "50vw", top: "10vh" }}
+      >
+        <path
+          d={dPath}
+          stroke="black"
+          fill={color}
+          opacity={opacity}
+          viewBox="0 0 256 256"
+        />
+      </svg>
+      {/* <Box
+        id="the-blob-itself"
         sx={{
           width: `${dimensions.width}px`,
           height: `${dimensions.height}px`,
@@ -286,7 +306,7 @@ const BlobMenu = () => {
           borderBottomLeftRadius: `${borderz.leftBottomX}% ${borderz.leftBottomY}%`,
           opacity: { opacity },
           filter: "contrast(100%) brightness(100%)",
-          /* the alpha needs be var */
+          
           background: isCenterHidden
             ? "none"
             : `linear-gradient(349deg,  ${color} , ${gradientColor} )
@@ -295,7 +315,7 @@ const BlobMenu = () => {
                    ? ", url('data:image/svg+xml,%3Csvg viewBox='0 0 320 320' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='6' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E')"
                    : ""
                }`,
-          /* this is the blur */
+          
           boxShadow: isBlurred
             ? `${
                 isBlurInside ? "inset" : ""
@@ -322,7 +342,7 @@ const BlobMenu = () => {
         >
           {blobText}
         </Typography>
-      </Box>
+      </Box> */}
       <ColorPaletteMenu setPaletteUsed={setColorPalette} />
       <Divider sx={{ marginTop: "2em", marginBottom: "2em" }} />
       <Box

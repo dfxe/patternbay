@@ -63,6 +63,7 @@ const NoiseGradientMenu = () => {
         &nbsp; Gradients Bay
       </Typography>
       <Box
+        id="the-noise-gradient-itself"
         aria-label="Noise Gradient"
         sx={{
           width: dimensions.width,

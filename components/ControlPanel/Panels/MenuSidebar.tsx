@@ -16,6 +16,7 @@ import ConnectWithoutContactRoundedIcon from "@mui/icons-material/ConnectWithout
 
 import useMediaQuery from "@mui/material/useMediaQuery";
 import InterestsRoundedIcon from "@mui/icons-material/InterestsRounded";
+//@ts-ignore
 import WorkspacesRoundedIcon from "@mui/icons-material/WorkspacesRounded";
 
 import HelpIcon from "@mui/icons-material/Help";
@@ -125,10 +126,6 @@ const MenuSidebar = () => {
   const handleDrawerClose = () => {
     setOpen(false);
   };
-
-  useEffect(() => {
-    console.log(tabSupervisor.tabs.circlePatternsMenu.isHidden);
-  }, [tabSupervisor.tabs]);
 
   return (
     <Box sx={{ display: "flex", m: 0, p: 0 }}>
