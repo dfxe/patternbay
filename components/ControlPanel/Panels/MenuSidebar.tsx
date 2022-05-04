@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { styled, Theme, CSSObject } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import MuiDrawer from "@mui/material/Drawer";
@@ -126,6 +126,10 @@ const MenuSidebar = () => {
     setOpen(false);
   };
 
+  useEffect(() => {
+    console.log(tabSupervisor.tabs.circlePatternsMenu.isHidden);
+  }, [tabSupervisor.tabs]);
+
   return (
     <Box sx={{ display: "flex", m: 0, p: 0 }}>
       <CssBaseline />
@@ -195,13 +199,13 @@ const MenuSidebar = () => {
                 : "#eae3f1",
             }}
             onClick={() => {
-              tabSupervisor.setter({
+              tabSupervisor.setter(() => ({
                 circlePatternsMenu: { isHidden: false },
                 geometricPatternsMenu: { isHidden: true },
                 blobMenu: { isHidden: true },
                 noiseGradientMenu: { isHidden: true },
                 socialsExpoMenu: { isHidden: true },
-              });
+              }));
             }}
           >
             <ListItemIcon
@@ -229,13 +233,13 @@ const MenuSidebar = () => {
             <ListItemIcon
               sx={{ color: nightMode.getter ? "#eae3f1" : "#231f22" }}
               onClick={() => {
-                tabSupervisor.setter({
+                tabSupervisor.setter(() => ({
                   circlePatternsMenu: { isHidden: true },
                   geometricPatternsMenu: { isHidden: false },
                   blobMenu: { isHidden: true },
                   noiseGradientMenu: { isHidden: true },
                   socialsExpoMenu: { isHidden: true },
-                });
+                }));
               }}
             >
               {/* Aesthetic Shapes */}
@@ -260,13 +264,13 @@ const MenuSidebar = () => {
             <ListItemIcon
               sx={{ color: nightMode.getter ? "#eae3f1" : "#231f22" }}
               onClick={() => {
-                tabSupervisor.setter({
+                tabSupervisor.setter(() => ({
                   circlePatternsMenu: { isHidden: true },
                   geometricPatternsMenu: { isHidden: true },
                   blobMenu: { isHidden: false },
                   noiseGradientMenu: { isHidden: true },
                   socialsExpoMenu: { isHidden: true },
-                });
+                }));
               }}
             >
               {/* Blob Shapes */}
@@ -292,13 +296,13 @@ const MenuSidebar = () => {
             <ListItemIcon
               sx={{ color: nightMode.getter ? "#eae3f1" : "#231f22" }}
               onClick={() => {
-                tabSupervisor.setter({
+                tabSupervisor.setter(() => ({
                   circlePatternsMenu: { isHidden: true },
                   geometricPatternsMenu: { isHidden: true },
                   blobMenu: { isHidden: true },
                   noiseGradientMenu: { isHidden: false },
                   socialsExpoMenu: { isHidden: true },
-                });
+                }));
               }}
             >
               {/* Gradients */}
@@ -322,13 +326,13 @@ const MenuSidebar = () => {
             <ListItemIcon
               sx={{ color: nightMode.getter ? "#eae3f1" : "#231f22" }}
               onClick={() => {
-                tabSupervisor.setter({
+                tabSupervisor.setter(() => ({
                   circlePatternsMenu: { isHidden: true },
                   geometricPatternsMenu: { isHidden: true },
                   blobMenu: { isHidden: true },
                   noiseGradientMenu: { isHidden: true },
                   socialsExpoMenu: { isHidden: false },
-                });
+                }));
               }}
             >
               {/* Gradients */}
@@ -365,12 +369,18 @@ const MenuSidebar = () => {
 
       <DrawerHeader />
 
-      <div hidden={!tabSupervisor.tabs.circlePatternsMenu.isHidden}>
-        <ExportData open={exportOpen} setOpen={setExportOpen} />
-      </div>
-      <div hidden={tabSupervisor.tabs.circlePatternsMenu.isHidden}>
-        <ExportToPng open={exportOpen} setOpen={setExportOpen} />
-      </div>
+      <ExportData
+        canDisplay={!tabSupervisor.tabs.circlePatternsMenu.isHidden}
+        open={exportOpen}
+        setOpen={setExportOpen}
+      />
+
+      <ExportToPng
+        canDisplay={tabSupervisor.tabs.circlePatternsMenu.isHidden}
+        open={exportOpen}
+        setOpen={setExportOpen}
+      />
+
       <InfoModal open={helpOpen} setOpen={setHelpOpen} />
     </Box>
   );

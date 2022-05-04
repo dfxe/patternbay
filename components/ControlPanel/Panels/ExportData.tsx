@@ -16,6 +16,7 @@ import Slide from "@mui/material/Slide";
 import { TransitionProps } from "@mui/material/transitions";
 
 import prettyFormatThis from "pretty-format";
+import Box from "@mui/material/Box";
 
 const Alert = React.forwardRef<HTMLDivElement, AlertProps>((props, ref) => (
   <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />
@@ -75,10 +76,11 @@ const Transition = React.forwardRef(
 Transition.displayName = "Transition";
 
 type Props = {
+  canDisplay?: boolean;
   open: boolean;
   setOpen: (open: boolean) => void;
 };
-const ExportData = ({ open, setOpen }: Props) => {
+const ExportData = ({ canDisplay, open, setOpen }: Props) => {
   const [displayError, setDisplayError] = React.useState(false);
   const [exportToData, setExportTo] = React.useState({
     html: "",
@@ -270,7 +272,7 @@ const ExportData = ({ open, setOpen }: Props) => {
         onClose={handleClose}
         TransitionComponent={Transition}
         aria-labelledby="customized-dialog-title"
-        open={open}
+        open={open && canDisplay}
       >
         <BootstrapDialogTitle
           id="customized-dialog-title"
