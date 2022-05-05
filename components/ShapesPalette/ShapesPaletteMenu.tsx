@@ -17,6 +17,7 @@ import SemiCircle from "../../images/GeometricShapes/SemiCircle";
 import SpeechBubbleOne from "../../images/GeometricShapes/SpeechBubbleOne";
 import Square from "../../images/GeometricShapes/Square";
 import Triangle from "../../images/GeometricShapes/Triangle";
+import { useNightMode } from "../ControlPanel/Providers/NightModeProvider";
 //@ts-ignore
 import { keyframes } from "@emotion/react";
 import { nanoid } from "nanoid";
@@ -24,7 +25,6 @@ import Diamond from "../../images/GeometricShapes/Diamond";
 
 type Props = {
   selectedShapeIndex: number[];
-
   setSelectedShapeIndex: Dispatch<SetStateAction<number[]>>;
 };
 const ShapesPaletteMenu = ({
@@ -32,6 +32,7 @@ const ShapesPaletteMenu = ({
 
   setSelectedShapeIndex,
 }: Props) => {
+  const nightMode = useNightMode();
   //Todo change to some enum with the shape names, then call the shape name from the enum
   const allShapes = [
     <HalfRect key={nanoid()} color={"#6068d2"}></HalfRect>,
@@ -63,7 +64,7 @@ const ShapesPaletteMenu = ({
         overflowY: "scroll",
         height: "20vh",
         borderRadius: "20px",
-        border: "1px solid #eae3f1",
+        border: `1px solid ${nightMode.getter ? " #eae3f1" : "#383e4a"}`,
       }}
     >
       {allShapes.map((shape, i) => (
@@ -91,7 +92,6 @@ const ShapesPaletteMenu = ({
             sx={{
               display: "flex",
               justifyContent: "center",
-
               width: "20px",
               height: "20px",
               paddingLeft: "0",

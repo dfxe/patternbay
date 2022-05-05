@@ -50,21 +50,7 @@ export default function Controller() {
       }}
     >
       <MenuSidebar />
-      {tabSupervisor.tabs.circlePatternsMenu.isHidden ? (
-        <Box />
-      ) : (
-        <Box aria-label="Circlezs Menu Sliders" sx={{ zIndex: 4 }}>
-          {concentrics.getter.map(
-            (item, i) =>
-              concentrics.isHidden[i] && (
-                <CircleUnit
-                  key={item.dKey}
-                  concentricsNumber={item.concentricsNumber}
-                />
-              )
-          )}
-        </Box>
-      )}
+
       <Box
         sx={{
           width: mqMin1024 ? "100vw" : "80vw",
@@ -132,6 +118,21 @@ export default function Controller() {
           <TextInterfaceMenu />
         </Box>
       </Box>
+      {tabSupervisor.tabs.circlePatternsMenu.isHidden ? (
+        <Box />
+      ) : (
+        <Box aria-label="circle-menu-container" sx={{ zIndex: 100000 }}>
+          {concentrics.getter.map(
+            (item, i) =>
+              concentrics.isHidden[i] && (
+                <CircleUnit
+                  key={item.dKey}
+                  concentricsNumber={item.concentricsNumber}
+                />
+              )
+          )}
+        </Box>
+      )}
     </Box>
   );
 }

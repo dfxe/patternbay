@@ -20,18 +20,20 @@ const CircleUnit = ({ concentricsNumber }: Props) => {
   };
 
   return (
-    <>
+    <Box sx={{ display: "flex", flexDirection: "row" }}>
       <Box
-        aria-label="Circlez Menu"
+        aria-label="circle-unit-container"
         sx={{
-          position: mqMin1024 ? "fixed" : "fixed",
+          position: mqMin1024 ? "absolute" : "fixed",
           display: "flex",
+          width: "30%",
+          height: "30%",
           justifyContent: "center",
           alignItems: "center",
-          top: mqMin1024 ? "50vh" : "30vh",
-          left: mqMin1024 ? "45vw" : "15vw",
+          top: mqMin1024 ? "20vh" : "30vh",
+          left: mqMin1024 ? "0vw" : "15vw",
           backgroundColor: mqMin1024 ? "#00000000" : "#efefff",
-          zIndex: mqMin1024 ? "11" : "11",
+          zIndex: mqMin1024 ? "999999" : "11",
         }}
       >
         {/* These are the concentric circles */}
@@ -40,14 +42,21 @@ const CircleUnit = ({ concentricsNumber }: Props) => {
           concentricsNumber={concentricsNumber}
         />
       </Box>
+
       <Box
+        aria-label="circle-unit-slider"
         sx={{
+          position: mqMin1024 ? "absolute" : "fixed",
           display: "flex",
           flexDirection: mqMin1024 ? "row" : "column",
           borderRadius: 1,
-          zIndex: 4,
+          left: mqMin1024 ? "75vw" : "15vw",
+          top: mqMin1024 ? `${-10 + concentricsNumber * 10}vh` : "30vh",
+          width: "100%",
+          height: "50%",
+          overflowY: "scroll",
+          zIndex: 9999,
         }}
-        hidden={false}
       >
         <DefaultMarkedMUISlider
           sliderLabel="Concentrics"
@@ -66,7 +75,7 @@ const CircleUnit = ({ concentricsNumber }: Props) => {
           }}
         />
       </Box>
-    </>
+    </Box>
   );
 };
 
