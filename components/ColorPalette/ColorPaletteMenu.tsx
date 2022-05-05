@@ -76,7 +76,13 @@ export default function ColorPaletteMenu({ setPaletteUsed }: Props) {
   return (
     <Box>
       <List
-        sx={{ overflowY: "auto", height: "12vh" }}
+        sx={{
+          overflowY: "auto",
+          height: "12vh",
+          border: "1px solid #eae3f1",
+          borderRadius: "20px",
+          padding: "1em 1em 1em 1em",
+        }}
         className="grid grid-cols-4 gap-2"
       >
         {colorButtons.map((color) => color)}

@@ -207,25 +207,7 @@ export default function GeometricPatterns() {
         />
         &nbsp; Aesthetics Bay
       </Typography>
-      <Stack
-        spacing={1}
-        direction="row"
-        sx={{ mb: 1, position: "relative" }}
-        alignItems="center"
-      >
-        <DefaultMarkedMUISlider
-          sliderLabel="Height"
-          defaultValue={sizeParams.height.default}
-          step={sizeParams.height.step}
-          min={sizeParams.height.min}
-          max={sizeParams.height.max}
-          markPoints={null}
-          /* TODO need onInput instead of updates every frame w/ onChange */
-          onChangeMod={(e) => {
-            setHeight(+(e.target as HTMLInputElement).value);
-          }}
-        />
-      </Stack>
+      <br></br>
       <Stack
         spacing={1}
         direction="row"
@@ -417,6 +399,9 @@ export default function GeometricPatterns() {
           selectedShapeIndex={selectedShapeIndex}
           setSelectedShapeIndex={setSelectedShapeIndex}
         />
+        <br></br>
+        <br></br>
+        <br></br>
         <Button
           name="Generate"
           className="bg-ind-dark text-ind-light rounded-full p-6 hover:bg-ind-hover"

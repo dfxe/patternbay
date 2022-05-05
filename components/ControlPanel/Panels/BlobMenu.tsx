@@ -192,7 +192,7 @@ const BlobMenu = () => {
         <BlobSVGMenuSidebar color={nightMode.getter ? "#eae3f1" : "#231f22"} />{" "}
         &nbsp; Blobs Bay
       </Typography>
-
+      <br></br>
       <Stack
         spacing={1}
         direction="row"
@@ -368,7 +368,7 @@ const BlobMenu = () => {
             /* stroke="black" */
             fill={color}
             opacity={opacity}
-            viewBox="0 0 256 256"
+            viewBox="256 256 0 0"
           />
         </svg>
       </div>

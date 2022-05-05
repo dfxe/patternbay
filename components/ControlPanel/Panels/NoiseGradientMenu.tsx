@@ -62,6 +62,8 @@ const NoiseGradientMenu = () => {
         />
         &nbsp; Gradients Bay
       </Typography>
+      <br></br>
+      {/* transform this into a svg */}
       <Box
         id="the-noise-gradient-itself"
         aria-label="Noise Gradient"

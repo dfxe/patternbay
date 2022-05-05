@@ -22,7 +22,7 @@ export default function Controller() {
 
   const LOCAL_STORAGE_KEY: string = "css-circle-pattern-last-state";
 
-  useEffect(() => {
+  /* useEffect(() => {
     if (localStorage.getItem(LOCAL_STORAGE_KEY)) {
       // @ts-ignore
       const entityStorage = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY));
@@ -34,7 +34,7 @@ export default function Controller() {
 
   useEffect(() => {
     localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(concentrics.getter));
-  }, [concentrics.getter]);
+  }, [concentrics.getter]); */
 
   return (
     <Box
@@ -69,7 +69,7 @@ export default function Controller() {
           width: mqMin1024 ? "100vw" : "80vw",
           height: mqMin1024 ? "90vh" : "35vh",
           backgroundColor: mqMin1024 ? "#ffd7e422" : "#eae3f1",
-          borderRadius: "64px 0 0 64px",
+          borderRadius: "64px 0 0 84px",
           marginLeft: 0,
           paddingLeft: 0,
           top: mqMin1024 ? "8vh" : "14vh",

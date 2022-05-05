@@ -52,15 +52,18 @@ const ShapesPaletteMenu = ({
 
   return (
     <List
-      aria-label="ze-list"
+      aria-label="shapes-palette-list"
       sx={{
         display: "grid",
         gridTemplateColumns: `repeat(${4}, 1fr)`,
         gridTemplateRows: "auto",
         gridGap: "4px",
+        padding: "1em 1em 1em 1em",
         width: "100%",
         overflowY: "scroll",
         height: "20vh",
+        borderRadius: "20px",
+        border: "1px solid #eae3f1",
       }}
     >
       {allShapes.map((shape, i) => (

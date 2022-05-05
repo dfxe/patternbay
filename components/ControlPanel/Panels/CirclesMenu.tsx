@@ -98,33 +98,31 @@ function CirclePatternsMenu() {
     }
   };
 
+  useEffect(() => {
+    handleBuildOne();
+  }, []);
+
   return (
     <MenuBackdrop>
       <Typography
         sx={{
           positon: "absolute",
           display: "flex",
-
+          fontWeight: "bold",
           justifyContent: "center",
           alignItems: "center",
+          color: nightMode.getter ? "#eae3f1" : "#292d36",
         }}
-        variant="h6"
+        variant="h5"
         gutterBottom
         component="div"
       >
         <WorkspacesRoundedIcon
           sx={{ color: nightMode.getter ? "#eae3f1" : "#292d36" }}
         />
-        <span
-          style={{
-            fontWeight: "bold",
-            color: nightMode.getter ? "#eae3f1" : "#292d36",
-          }}
-        >
-          &nbsp; Circles Bay
-        </span>
+        &nbsp; Circles Bay
       </Typography>
-
+      <br></br>
       {/* TODO fix undo redo */}
       {/* <UndoRedo></UndoRedo> */}
       <InputColor
@@ -250,9 +248,9 @@ function CirclePatternsMenu() {
           }}
           variant="contained"
           onClick={() => {
-            if (concentrics.getter.length > 0) {
+            if (concentrics.getter.length > 1) {
               concentrics.setter(() =>
-                concentrics.getter.length > 0
+                concentrics.getter.length > 1
                   ? concentrics.getter.filter(
                       (_, i) => i !== concentrics.getter.length - 1
                     )
