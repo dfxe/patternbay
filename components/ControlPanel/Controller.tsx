@@ -14,6 +14,7 @@ import NoiseGradientMenu from "../ControlPanel/Panels/NoiseGradientMenu";
 import GeometricShapes from "./Panels/AestheticsMenu";
 import CirclePatternsMenu from "./Panels/CirclesMenu";
 import TextInterfaceMenu from "./Panels/SocialsMenu";
+import { nanoid } from "nanoid";
 export default function Controller() {
   const mqMin1024 = useMediaQuery("(min-width:1024px)");
   const concentrics = useConcentrics();

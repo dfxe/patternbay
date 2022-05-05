@@ -12,6 +12,8 @@ import InputColor from "./InputColor";
 import TextField from "@mui/material/TextField";
 import ColorPaletteMenu from "../../ColorPalette/ColorPaletteMenu";
 import MenuBackdrop from "./MenuBackdrop";
+//@ts-ignore
+import blobshape from "blobshape";
 const BlobMenu = () => {
   const [opacity, setOpacity] = useState(1);
 
@@ -42,34 +44,19 @@ const BlobMenu = () => {
   });
   const [blobText, setBlobText] = useState("HEYO");
   const [color, setColor] = useState("#6550a3");
-
-  const [dPath, setDPath] = useState<string>(
-    `M 100 100 C ${dimensions.width} ${dimensions.height}, 40 20, 10 10`
-  );
-
-  const nightMode = useNightMode();
-  const generateBlob = () => {
-    setRotation(Math.floor(Math.random() * 3200));
-    setDimensions({
-      width: Math.floor(Math.random() * 200) + 100,
-      height: Math.floor(Math.random() * 200) + 100,
-    });
-    setBorderz({
-      leftTopX: Math.floor(Math.random() * 200) + 200,
-      leftTopY: Math.floor(Math.random() * 200) + 200,
-      rightTopX: Math.floor(Math.random() * 200) + 200,
-      rightTopY: Math.floor(Math.random() * 200) + 200,
-      leftBottomX: Math.floor(Math.random() * 200) + 200,
-      leftBottomY: Math.floor(Math.random() * 200) + 200,
-      rightBottomX: Math.floor(Math.random() * 200) + 200,
-      rightBottomY: Math.floor(Math.random() * 200) + 200,
-    });
-
-    setDPath(
-      `M30.2,-54.5C35.6,-49.3,33.9,-33.9,32.8,-23.2C31.6,-12.4,31,-6.2,37.8,3.9C44.6,14.1,58.8,28.1,61.5,41.6C64.3,55.1,55.5,68,43.3,65.6C31.1,63.3,15.6,45.7,4,38.7C-7.5,31.7,-15.1,35.5,-26.8,37.6C-38.6,39.7,-54.5,40.2,-57.4,33.6C-60.3,27.1,-50.2,13.6,-46.7,2.1C-43.1,-9.4,-46.1,-18.9,-43.1,-25.4C-40.2,-31.9,-31.4,-35.5,-23.2,-39.1C-15,-42.8,-7.5,-46.5,2.5,-50.8C12.4,-55,24.9,-59.8,30.2,-54.5Z
-      `
-    );
+  type BlobShape = {
+    size: number;
+    grow: number;
+    edges: number;
+    seed: number | string;
   };
+  const [dPath, setDPath] = useState({
+    size: 300,
+    growth: 6,
+    edges: 6,
+    seed: "44",
+  });
+  const nightMode = useNightMode();
 
   const handleTextChange = (event: {
     target: { value: React.SetStateAction<string> };
@@ -101,73 +88,13 @@ const BlobMenu = () => {
     setIsGrainy(event.target.checked);
   };
 
-  const handleOctagonConcentrics = () => {
-    //coordinates of an octagon
-    const octagonCoordinates = [
-      { x: 0, y: 0 },
-      { x: 0, y: -100 },
-      { x: -100, y: -100 },
-      { x: -100, y: 0 },
-      { x: -100, y: 100 },
-      { x: 0, y: 100 },
-      { x: 100, y: 100 },
-      { x: 100, y: 0 },
-      { x: 100, y: -100 },
-    ];
-    //coordinates of the octagon concentrics
-    const octagonConcentrics = [
-      { x: 0, y: 0 },
-      { x: 0, y: -50 },
-      { x: -50, y: -50 },
-      { x: -50, y: 0 },
-      { x: -50, y: 50 },
-      { x: 0, y: 50 },
-      { x: 50, y: 50 },
-      { x: 50, y: 0 },
-      { x: 50, y: -50 },
-    ];
-    //coordinates of the octagon concentrics
-    const octagonConcentrics2 = [
-      { x: 0, y: 0 },
-      { x: 0, y: -25 },
-      { x: -25, y: -25 },
-      { x: -25, y: 0 },
-      { x: -25, y: 25 },
-      { x: 0, y: 25 },
-      { x: 25, y: 25 },
-      { x: 25, y: 0 },
-      { x: 25, y: -25 },
-    ];
-    //coordinates of the octagon concentrics
-    const octagonConcentrics3 = [
-      { x: 0, y: 0 },
-      { x: 0, y: -12.5 },
-      { x: -12.5, y: -12.5 },
-      { x: -12.5, y: 0 },
-      { x: -12.5, y: 12.5 },
-      { x: 0, y: 12.5 },
-      { x: 12.5, y: 12.5 },
-      { x: 12.5, y: 0 },
-      { x: 12.5, y: -12.5 },
-    ];
-    //coordinates of the octagon concentrics
-    const octagonConcentrics4 = [
-      { x: 0, y: 0 },
-      { x: 0, y: -6.25 },
-      { x: -6.25, y: -6.25 },
-      { x: -6.25, y: 0 },
-      { x: -6.25, y: 6.25 },
-      { x: 0, y: 6.25 },
-      { x: 6.25, y: 6.25 },
-      { x: 6.25, y: 0 },
-      { x: 6.25, y: -6.25 },
-    ];
-    //setDPath to the octagon concentrics
-    let dPath = `M${octagonCoordinates[0].x} ${octagonCoordinates[0].y} C${octagonConcentrics[0].x} ${octagonConcentrics[0].y}`;
-    for (let i = 0; i < octagonConcentrics.length; i++) {
-      dPath += `${octagonConcentrics[i].x} ${octagonConcentrics[i].y},`;
-    }
-    setDPath(dPath);
+  const handleGenerateBlob = () => {
+    setDPath({
+      size: 40,
+      growth: Math.floor(Math.random() * 8) + 2,
+      edges: Math.floor(Math.random() * 4) + 4,
+      seed: "123",
+    });
   };
 
   useEffect(() => {
@@ -349,81 +276,58 @@ const BlobMenu = () => {
           inputLabel={"gradient"}
         />
       </Stack>
-      {/* svg blob */}
       <div id="the-blob-itself">
-        <svg style={{ position: "absolute", left: "50vw", top: "10vh" }}>
-          <filter id="goo">
-            <feGaussianBlur in="SourceGraphic" stdDeviation="30" />
-            <feColorMatrix
-              in="blur"
-              values="1 0 0 0 0 
-                           0 1 0 0 0 
-                           0 0 1 0 0 
-                           0 0 0 30 -7
-                           "
-            />
-          </filter>
+        <svg
+          aria-label="blob-svg"
+          style={{
+            position: "absolute",
+            left: "50vw",
+            top: "10vh",
+          }}
+          viewBox="0 0 128 128"
+        >
+          <defs>
+            <linearGradient
+              id="a-linear-gradient-blob"
+              x1="0%"
+              y1="0%"
+              x2="100%"
+              y2="0%"
+            >
+              <stop
+                offset="0%"
+                style={{
+                  stopColor: "#ff0",
+                  stopOpacity: 1,
+                }}
+              />
+              <stop
+                offset="100%"
+                style={{
+                  stopColor: "red",
+                  stopOpacity: 1,
+                }}
+              />
+            </linearGradient>
+          </defs>
           <path
-            d={dPath}
+            d={blobshape(dPath).path}
             /* stroke="black" */
-            fill={color}
+            fill={`url(#a-linear-gradient-blob)`}
+            nnn
             opacity={opacity}
-            viewBox="256 256 0 0"
           />
+          <text
+            x="0"
+            y="15"
+            fill="red"
+            transform={`rotate(${textRotation}deg)`}
+          >
+            {blobText}
+          </text>
         </svg>
       </div>
-      {/* <Box
-        id="the-blob-itself"
-        sx={{
-          width: `${dimensions.width}px`,
-          height: `${dimensions.height}px`,
-          position: "absolute",
-          top: "20vw",
-          left: "60vw",
-          transform: `rotate(${rotation}deg)`,
-          borderTopLeftRadius: `${borderz.leftTopX}% ${borderz.leftTopY}%`,
-          borderTopRightRadius: `${borderz.rightTopX}% ${borderz.rightTopY}%`,
-          borderBottomRightRadius: `${borderz.rightBottomX}% ${borderz.rightBottomY}%`,
-          borderBottomLeftRadius: `${borderz.leftBottomX}% ${borderz.leftBottomY}%`,
-          opacity: { opacity },
-          filter: "contrast(100%) brightness(100%)",
-          
-          background: isCenterHidden
-            ? "none"
-            : `linear-gradient(349deg,  ${color} , ${gradientColor} )
-               ${
-                 isGrainy
-                   ? ", url('data:image/svg+xml,%3Csvg viewBox='0 0 320 320' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='6' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E')"
-                   : ""
-               }`,
-          
-          boxShadow: isBlurred
-            ? `${
-                isBlurInside ? "inset" : ""
-              } 0px 0px ${blurPercent}px ${blurPercent}px ${blurColor}`
-            : "none",
-          zIndex: "1",
-        }}
-      >
-        <Typography
-          sx={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            fontSize: "1.5em",
-            fontWeight: "bold",
-            color: nightMode.getter ? "#eae3f1" : "#231f22",
-            marginTop: "1em",
-            marginBottom: "1em",
-            transform: `rotate(${textRotation}deg)`,
-          }}
-          variant="h5"
-          gutterBottom
-          component="div"
-        >
-          {blobText}
-        </Typography>
-      </Box> */}
+
       <ColorPaletteMenu setPaletteUsed={setColorPalette} />
       <Divider sx={{ marginTop: "2em", marginBottom: "2em" }} />
       <Box
@@ -431,7 +335,7 @@ const BlobMenu = () => {
       >
         <Button
           className="bg-ind-dark text-ind-light rounded-full p-6 hover:bg-ind-hover"
-          onClick={() => handleOctagonConcentrics()}
+          onClick={() => handleGenerateBlob()}
         >
           Generate
         </Button>

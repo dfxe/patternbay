@@ -44,13 +44,13 @@ const CircleUnit = ({ concentricsNumber }: Props) => {
         sx={{
           display: "flex",
           flexDirection: mqMin1024 ? "row" : "column",
-
           borderRadius: 1,
           zIndex: 4,
         }}
         hidden={false}
       >
         <DefaultMarkedMUISlider
+          sliderLabel="Concentrics"
           defaultValue={1}
           min={0}
           max={15}

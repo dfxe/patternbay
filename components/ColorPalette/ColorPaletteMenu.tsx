@@ -35,13 +35,16 @@ export default function ColorPaletteMenu({ setPaletteUsed }: Props) {
           aria-label="Circlezs Menu"
           sx={{
             display: "flex",
-            backgroundColor: "#22222244",
+
             borderRadius: "30px",
             flexDirection: "row",
             marginLeft: "0",
             marginRight: "0",
             paddingRight: "0",
             paddingLeft: "0",
+            "&: hover": {
+              backgroundColor: "rgba(0,0,0,0.2)",
+            },
           }}
           onClick={() => {
             //use the color palette
