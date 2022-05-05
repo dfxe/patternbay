@@ -46,10 +46,15 @@ type Patternz = {
 };
 export default function GeometricPatterns() {
   const [cols, setCols] = useState(4);
-  const defaultWidth = 500;
-  const defaultHeight = 500;
-  const [width, setWidth] = useState(defaultWidth);
-  const [height, setHeight] = useState(defaultHeight);
+
+  const sizeParams = {
+    width: { min: 30, max: 40, default: 30, step: 1 },
+    height: { min: 30, max: 50, default: 30, step: 1 },
+    gap: { min: 0, max: 4, default: 0, step: 1 },
+  };
+  const [width, setWidth] = useState(sizeParams.width.default);
+  const [height, setHeight] = useState(sizeParams.height.default);
+  const [gridGap, setGridGap] = useState(10);
   const [padding, setPadding] = useState(20);
   const [gBackgroundColor, setGBackgroundColor] = useState("#180c23");
 
@@ -69,7 +74,7 @@ export default function GeometricPatterns() {
   };
 
   const nightMode = useNightMode();
-  const gpSize = useGPSize();
+
   const NUMBER_OF_SHAPES = 13;
 
   const getSelectedShape = (constructable: ConstructableData): JSX.Element => {
@@ -210,16 +215,14 @@ export default function GeometricPatterns() {
       >
         <DefaultMarkedMUISlider
           sliderLabel="Height"
-          defaultValue={gpSize.params.default.height}
-          step={gpSize.params.step.height}
-          min={gpSize.params.minSize.height}
-          max={gpSize.params.maxSize.height}
+          defaultValue={sizeParams.height.default}
+          step={sizeParams.height.step}
+          min={sizeParams.height.min}
+          max={sizeParams.height.max}
           markPoints={null}
           /* TODO need onInput instead of updates every frame w/ onChange */
           onChangeMod={(e) => {
-            setHeight(
-              +(e.target as HTMLInputElement).value * 10 + defaultHeight
-            );
+            setHeight(+(e.target as HTMLInputElement).value);
           }}
         />
       </Stack>
@@ -231,13 +234,31 @@ export default function GeometricPatterns() {
       >
         <DefaultMarkedMUISlider
           sliderLabel="Width"
-          defaultValue={gpSize.params.default.width}
-          step={gpSize.params.step.width}
-          min={gpSize.params.minSize.width}
-          max={gpSize.params.maxSize.width}
+          defaultValue={sizeParams.width.default}
+          step={sizeParams.width.step}
+          min={sizeParams.width.min}
+          max={sizeParams.width.max}
           markPoints={null}
           onChangeMod={(e) => {
-            setWidth(+(e.target as HTMLInputElement).value * 10 + defaultWidth);
+            setWidth(+(e.target as HTMLInputElement).value);
+          }}
+        />
+      </Stack>
+      <Stack
+        spacing={1}
+        direction="row"
+        sx={{ mb: 1, position: "relative" }}
+        alignItems="center"
+      >
+        <DefaultMarkedMUISlider
+          sliderLabel="Gap"
+          defaultValue={sizeParams.gap.default}
+          step={sizeParams.gap.step}
+          min={sizeParams.gap.min}
+          max={sizeParams.gap.max}
+          markPoints={null}
+          onChangeMod={(e) => {
+            setGridGap(+(e.target as HTMLInputElement).value);
           }}
         />
       </Stack>
@@ -420,14 +441,14 @@ export default function GeometricPatterns() {
           display: "grid",
           gridTemplateColumns: `repeat(${cols}, 1fr)`,
           gridTemplateRows: "auto",
-          gridGap: "1em",
+          gridGap: `${gridGap}em`,
           position: "absolute",
-          top: "10vh",
+          top: "2vh",
           left: "40vw",
           padding: `${padding}px`,
           borderRadius: "30px",
-          width: `${width}px`,
-          height: `${height}px`,
+          width: `${width}vw`,
+          height: `auto`,
           backgroundColor: gBackgroundColor,
           boxShadow:
             "rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px",

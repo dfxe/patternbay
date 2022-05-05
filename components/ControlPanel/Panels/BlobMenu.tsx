@@ -101,6 +101,75 @@ const BlobMenu = () => {
     setIsGrainy(event.target.checked);
   };
 
+  const handleOctagonConcentrics = () => {
+    //coordinates of an octagon
+    const octagonCoordinates = [
+      { x: 0, y: 0 },
+      { x: 0, y: -100 },
+      { x: -100, y: -100 },
+      { x: -100, y: 0 },
+      { x: -100, y: 100 },
+      { x: 0, y: 100 },
+      { x: 100, y: 100 },
+      { x: 100, y: 0 },
+      { x: 100, y: -100 },
+    ];
+    //coordinates of the octagon concentrics
+    const octagonConcentrics = [
+      { x: 0, y: 0 },
+      { x: 0, y: -50 },
+      { x: -50, y: -50 },
+      { x: -50, y: 0 },
+      { x: -50, y: 50 },
+      { x: 0, y: 50 },
+      { x: 50, y: 50 },
+      { x: 50, y: 0 },
+      { x: 50, y: -50 },
+    ];
+    //coordinates of the octagon concentrics
+    const octagonConcentrics2 = [
+      { x: 0, y: 0 },
+      { x: 0, y: -25 },
+      { x: -25, y: -25 },
+      { x: -25, y: 0 },
+      { x: -25, y: 25 },
+      { x: 0, y: 25 },
+      { x: 25, y: 25 },
+      { x: 25, y: 0 },
+      { x: 25, y: -25 },
+    ];
+    //coordinates of the octagon concentrics
+    const octagonConcentrics3 = [
+      { x: 0, y: 0 },
+      { x: 0, y: -12.5 },
+      { x: -12.5, y: -12.5 },
+      { x: -12.5, y: 0 },
+      { x: -12.5, y: 12.5 },
+      { x: 0, y: 12.5 },
+      { x: 12.5, y: 12.5 },
+      { x: 12.5, y: 0 },
+      { x: 12.5, y: -12.5 },
+    ];
+    //coordinates of the octagon concentrics
+    const octagonConcentrics4 = [
+      { x: 0, y: 0 },
+      { x: 0, y: -6.25 },
+      { x: -6.25, y: -6.25 },
+      { x: -6.25, y: 0 },
+      { x: -6.25, y: 6.25 },
+      { x: 0, y: 6.25 },
+      { x: 6.25, y: 6.25 },
+      { x: 6.25, y: 0 },
+      { x: 6.25, y: -6.25 },
+    ];
+    //setDPath to the octagon concentrics
+    let dPath = `M${octagonCoordinates[0].x} ${octagonCoordinates[0].y} C${octagonConcentrics[0].x} ${octagonConcentrics[0].y}`;
+    for (let i = 0; i < octagonConcentrics.length; i++) {
+      dPath += `${octagonConcentrics[i].x} ${octagonConcentrics[i].y},`;
+    }
+    setDPath(dPath);
+  };
+
   useEffect(() => {
     setColor(colorPalette[0]);
     setGradientColor(colorPalette[1]);
@@ -283,12 +352,23 @@ const BlobMenu = () => {
       {/* svg blob */}
       <div id="the-blob-itself">
         <svg style={{ position: "absolute", left: "50vw", top: "10vh" }}>
+          <filter id="goo">
+            <feGaussianBlur in="SourceGraphic" stdDeviation="30" />
+            <feColorMatrix
+              in="blur"
+              values="1 0 0 0 0 
+                           0 1 0 0 0 
+                           0 0 1 0 0 
+                           0 0 0 30 -7
+                           "
+            />
+          </filter>
           <path
             d={dPath}
             /* stroke="black" */
             fill={color}
             opacity={opacity}
-            viewBox="0 0 512 512"
+            viewBox="0 0 256 256"
           />
         </svg>
       </div>
@@ -351,7 +431,7 @@ const BlobMenu = () => {
       >
         <Button
           className="bg-ind-dark text-ind-light rounded-full p-6 hover:bg-ind-hover"
-          onClick={() => generateBlob()}
+          onClick={() => handleOctagonConcentrics()}
         >
           Generate
         </Button>
