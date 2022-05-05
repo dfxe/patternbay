@@ -255,7 +255,7 @@ const MenuSidebar = () => {
                   : "#f3edf7"
                 : nightMode.getter
                 ? "#230f22"
-                : "#eae3f1",
+                : "#e3ddea",
             }}
           >
             <ListItemIcon

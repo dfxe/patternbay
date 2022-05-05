@@ -64,7 +64,7 @@ const NoiseGradientMenu = () => {
       </Typography>
       <br></br>
       {/* transform this into a svg */}
-      <Box
+      {/* <Box
         id="the-noise-gradient-itself"
         aria-label="Noise Gradient"
         sx={{
@@ -85,7 +85,51 @@ const NoiseGradientMenu = () => {
               : `conic-gradient(from ${rotation}deg at 50% 50%, ${noiseGradientColor}, ${noiseGradientColor2}),
                   url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='${frequency}' numOctaves='${octaves}' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
         }}
-      />
+      /> */}
+      <svg
+        aria-label="blob-svg"
+        style={{
+          position: "absolute",
+          left: "50vw",
+          top: "10vh",
+        }}
+        viewBox="0 0 128 128"
+      >
+        <defs>
+          <linearGradient
+            id="a-linear-noise-gradient"
+            x1="0%"
+            y1="0%"
+            x2="100%"
+            y2="0%"
+          >
+            <stop
+              offset="0%"
+              style={{
+                stopColor: noiseGradientColor,
+                stopOpacity: 1,
+              }}
+            />
+            <stop
+              offset="100%"
+              style={{
+                stopColor: noiseGradientColor2,
+                stopOpacity: 1,
+              }}
+            />
+          </linearGradient>
+          <rect
+            rx="5%"
+            ry="5%"
+            width="100%"
+            height="100%"
+            filter="url(#a-linear-noise-gradient)"
+          />
+        </defs>
+
+        <use x="5" y="5" href="#myCircle" fill="url('#myGradient')" />
+      </svg>
+
       {/* <Stack
         spacing={1}
         direction="row"

@@ -29,7 +29,7 @@ const CircleUnit = ({ concentricsNumber }: Props) => {
 
           justifyContent: "center",
           alignItems: "center",
-          top: mqMin1024 ? "20vh" : "30vh",
+          top: mqMin1024 ? "40vh" : "30vh",
           left: mqMin1024 ? "20vw" : "15vw",
           backgroundColor: mqMin1024 ? "#00000000" : "#efefff",
           zIndex: mqMin1024 ? "999999" : "11",
@@ -54,6 +54,7 @@ const CircleUnit = ({ concentricsNumber }: Props) => {
           width: "100%",
           height: "50%",
           overflowY: "scroll",
+          padding: "1.5rem",
           zIndex: 9999,
         }}
       >
