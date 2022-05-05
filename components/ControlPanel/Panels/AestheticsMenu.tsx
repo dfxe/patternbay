@@ -54,7 +54,7 @@ export default function GeometricPatterns() {
   };
   const [width, setWidth] = useState(sizeParams.width.default);
   const [height, setHeight] = useState(sizeParams.height.default);
-  const [gridGap, setGridGap] = useState(10);
+  const [gridGap, setGridGap] = useState(sizeParams.gap.default);
   const [padding, setPadding] = useState(20);
   const [gBackgroundColor, setGBackgroundColor] = useState("#180c23");
 
