@@ -51,8 +51,8 @@ const BlobMenu = () => {
   const generateBlob = () => {
     setRotation(Math.floor(Math.random() * 3200));
     setDimensions({
-      width: Math.floor(Math.random() * 200) + 10,
-      height: Math.floor(Math.random() * 200) + 10,
+      width: Math.floor(Math.random() * 200) + 100,
+      height: Math.floor(Math.random() * 200) + 100,
     });
     setBorderz({
       leftTopX: Math.floor(Math.random() * 200) + 200,
@@ -64,8 +64,10 @@ const BlobMenu = () => {
       rightBottomX: Math.floor(Math.random() * 200) + 200,
       rightBottomY: Math.floor(Math.random() * 200) + 200,
     });
+
     setDPath(
-      `M 100 100 C ${dimensions.width} ${dimensions.height}, 40 20, 10 10`
+      `M30.2,-54.5C35.6,-49.3,33.9,-33.9,32.8,-23.2C31.6,-12.4,31,-6.2,37.8,3.9C44.6,14.1,58.8,28.1,61.5,41.6C64.3,55.1,55.5,68,43.3,65.6C31.1,63.3,15.6,45.7,4,38.7C-7.5,31.7,-15.1,35.5,-26.8,37.6C-38.6,39.7,-54.5,40.2,-57.4,33.6C-60.3,27.1,-50.2,13.6,-46.7,2.1C-43.1,-9.4,-46.1,-18.9,-43.1,-25.4C-40.2,-31.9,-31.4,-35.5,-23.2,-39.1C-15,-42.8,-7.5,-46.5,2.5,-50.8C12.4,-55,24.9,-59.8,30.2,-54.5Z
+      `
     );
   };
 
@@ -279,18 +281,17 @@ const BlobMenu = () => {
         />
       </Stack>
       {/* svg blob */}
-      <svg
-        id="the-blob-itself"
-        style={{ position: "absolute", left: "50vw", top: "10vh" }}
-      >
-        <path
-          d={dPath}
-          stroke="black"
-          fill={color}
-          opacity={opacity}
-          viewBox="0 0 256 256"
-        />
-      </svg>
+      <div id="the-blob-itself">
+        <svg style={{ position: "absolute", left: "50vw", top: "10vh" }}>
+          <path
+            d={dPath}
+            /* stroke="black" */
+            fill={color}
+            opacity={opacity}
+            viewBox="0 0 512 512"
+          />
+        </svg>
+      </div>
       {/* <Box
         id="the-blob-itself"
         sx={{

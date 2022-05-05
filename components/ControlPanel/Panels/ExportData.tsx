@@ -76,7 +76,7 @@ const Transition = React.forwardRef(
 Transition.displayName = "Transition";
 
 type Props = {
-  canDisplay?: boolean;
+  canDisplay: boolean;
   open: boolean;
   setOpen: (open: boolean) => void;
 };

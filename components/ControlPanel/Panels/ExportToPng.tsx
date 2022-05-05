@@ -42,9 +42,11 @@ export default function ExportToPng({ canDisplay, open, setOpen }: Props) {
     } else if (!tabSupervisor.tabs.noiseGradientMenu.isHidden) {
       getterId = "the-noise-gradient-itself";
     }
+
     const svgElements = document
       .getElementById(getterId)
       ?.querySelectorAll("svg");
+
     if (svgElements) {
       const svgStrings: string[] = [];
       svgElements.forEach((svg) => {
@@ -70,11 +72,7 @@ export default function ExportToPng({ canDisplay, open, setOpen }: Props) {
       <DialogTitle>{"Use Google's location service?"}</DialogTitle>
       <DialogContent>
         <DialogContentText id="alert-dialog-slide-description-svgs-here">
-          <SVGtoPNG
-            svgStrings={
-              svgStrings.length > 1 ? svgStrings.join() : svgStrings[0]
-            }
-          ></SVGtoPNG>
+          <SVGtoPNG svgStrings={svgStrings[0]}></SVGtoPNG>
         </DialogContentText>
       </DialogContent>
       <DialogActions>

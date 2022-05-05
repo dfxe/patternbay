@@ -261,13 +261,15 @@ const MenuSidebar = () => {
             <ListItemIcon
               sx={{ color: nightMode.getter ? "#eae3f1" : "#231f22" }}
               onClick={() => {
-                tabSupervisor.setter(() => ({
-                  circlePatternsMenu: { isHidden: true },
-                  geometricPatternsMenu: { isHidden: true },
-                  blobMenu: { isHidden: false },
-                  noiseGradientMenu: { isHidden: true },
-                  socialsExpoMenu: { isHidden: true },
-                }));
+                if (tabSupervisor.tabs.blobMenu.isHidden) {
+                  tabSupervisor.setter(() => ({
+                    circlePatternsMenu: { isHidden: true },
+                    geometricPatternsMenu: { isHidden: true },
+                    blobMenu: { isHidden: false },
+                    noiseGradientMenu: { isHidden: true },
+                    socialsExpoMenu: { isHidden: true },
+                  }));
+                }
               }}
             >
               {/* Blob Shapes */}
@@ -293,13 +295,15 @@ const MenuSidebar = () => {
             <ListItemIcon
               sx={{ color: nightMode.getter ? "#eae3f1" : "#231f22" }}
               onClick={() => {
-                tabSupervisor.setter(() => ({
-                  circlePatternsMenu: { isHidden: true },
-                  geometricPatternsMenu: { isHidden: true },
-                  blobMenu: { isHidden: true },
-                  noiseGradientMenu: { isHidden: false },
-                  socialsExpoMenu: { isHidden: true },
-                }));
+                if (tabSupervisor.tabs.noiseGradientMenu.isHidden) {
+                  tabSupervisor.setter(() => ({
+                    circlePatternsMenu: { isHidden: true },
+                    geometricPatternsMenu: { isHidden: true },
+                    blobMenu: { isHidden: true },
+                    noiseGradientMenu: { isHidden: false },
+                    socialsExpoMenu: { isHidden: true },
+                  }));
+                }
               }}
             >
               {/* Gradients */}
@@ -323,13 +327,15 @@ const MenuSidebar = () => {
             <ListItemIcon
               sx={{ color: nightMode.getter ? "#eae3f1" : "#231f22" }}
               onClick={() => {
-                tabSupervisor.setter(() => ({
-                  circlePatternsMenu: { isHidden: true },
-                  geometricPatternsMenu: { isHidden: true },
-                  blobMenu: { isHidden: true },
-                  noiseGradientMenu: { isHidden: true },
-                  socialsExpoMenu: { isHidden: false },
-                }));
+                if (tabSupervisor.tabs.socialsExpoMenu.isHidden) {
+                  tabSupervisor.setter(() => ({
+                    circlePatternsMenu: { isHidden: true },
+                    geometricPatternsMenu: { isHidden: true },
+                    blobMenu: { isHidden: true },
+                    noiseGradientMenu: { isHidden: true },
+                    socialsExpoMenu: { isHidden: false },
+                  }));
+                }
               }}
             >
               {/* Gradients */}

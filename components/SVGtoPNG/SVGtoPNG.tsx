@@ -6,7 +6,7 @@ type Props = {
 };
 export default function SVGtoPNG({ svgStrings }: Props) {
   const svg: string = svgStrings;
-
+  const canvas = document.createElement("canvas");
   const svgUrlToPng = (svgUrl: string) => {
     const svgImage = document.createElement("img");
 
@@ -14,7 +14,6 @@ export default function SVGtoPNG({ svgStrings }: Props) {
       .getElementById("alert-dialog-slide-description-svgs-here")!
       .appendChild(svgImage);
     svgImage.onload = function () {
-      const canvas = document.createElement("canvas");
       canvas.width = svgImage.clientWidth;
       canvas.height = svgImage.clientHeight;
       const canvasCtx = canvas.getContext("2d");
@@ -36,6 +35,7 @@ export default function SVGtoPNG({ svgStrings }: Props) {
   //FIXME: for this to work, need to add an id to the parent element and access it's child list.
   const svgToPng = (svgStringToPng: string) => {
     const url: string = getSvgUrl(svgStringToPng);
+
     svgUrlToPng(url);
   };
 
