@@ -314,7 +314,6 @@ const BlobMenu = () => {
             d={blobshape(dPath).path}
             /* stroke="black" */
             fill={`url(#a-linear-gradient-blob)`}
-            nnn
             opacity={opacity}
           />
           <text
