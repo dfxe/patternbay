@@ -50,7 +50,7 @@ export default function GeometricPatterns() {
   const sizeParams = {
     width: { min: 30, max: 40, default: 30, step: 1 },
     height: { min: 30, max: 50, default: 30, step: 1 },
-    gap: { min: 0, max: 4, default: 1, step: 1 },
+    gap: { min: 0, max: 4, default: 1, step: 0.2 },
   };
   const [width, setWidth] = useState(sizeParams.width.default);
   const [height, setHeight] = useState(sizeParams.height.default);

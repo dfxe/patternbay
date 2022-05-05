@@ -14,6 +14,9 @@ import ColorPaletteMenu from "../../ColorPalette/ColorPaletteMenu";
 import MenuBackdrop from "./MenuBackdrop";
 
 const NoiseGradientMenu = () => {
+  const sizeParams = {
+    borderRadius: { min: 0, max: 10, step: 1, default: 0 },
+  };
   const [dimensions, setDimensions] = useState({ width: 500, height: 300 });
   const [borderRadius, setBorderRadius] = useState(10);
   const [rotation, setRotation] = useState(0);
@@ -86,45 +89,32 @@ const NoiseGradientMenu = () => {
                   url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='${frequency}' numOctaves='${octaves}' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
         }}
       /> */}
+
       <svg
-        aria-label="blob-svg"
         style={{
           position: "absolute",
           left: "50vw",
           top: "10vh",
         }}
-        viewBox="0 0 128 128"
+        viewBox="0 0 100 100"
+        xmlns="http://www.w3.org/2000/svg"
       >
         <defs>
-          <linearGradient
-            id="a-linear-noise-gradient"
-            x1="0%"
-            y1="0%"
-            x2="100%"
-            y2="0%"
-          >
-            <stop
-              offset="0%"
-              style={{
-                stopColor: noiseGradientColor,
-                stopOpacity: 1,
-              }}
-            />
-            <stop
-              offset="100%"
-              style={{
-                stopColor: noiseGradientColor2,
-                stopOpacity: 1,
-              }}
-            />
-          </linearGradient>
           <rect
-            rx="5%"
-            ry="5%"
-            width="100%"
-            height="100%"
-            filter="url(#a-linear-noise-gradient)"
+            id="myCircle"
+            rx={borderRadius}
+            ry={borderRadius}
+            width="50"
+            height="50"
           />
+          {/* TODO find gradient filter for dis */}
+          <linearGradient
+            id="myGradient"
+            gradientTransform={`rotate(${rotation})`}
+          >
+            <stop offset="20%" stopColor={noiseGradientColor} />
+            <stop offset="90%" stopColor={noiseGradientColor2} />
+          </linearGradient>
         </defs>
 
         <use x="5" y="5" href="#myCircle" fill="url('#myGradient')" />
@@ -173,10 +163,10 @@ const NoiseGradientMenu = () => {
       >
         <DefaultMarkedMUISlider
           sliderLabel="Border Radius"
-          defaultValue={10}
-          step={2}
-          min={0}
-          max={64}
+          defaultValue={sizeParams.borderRadius.default}
+          step={sizeParams.borderRadius.step}
+          min={sizeParams.borderRadius.min}
+          max={sizeParams.borderRadius.max}
           markPoints={null}
           onChangeMod={(e) => {
             setBorderRadius(+(e.target as HTMLInputElement).value);

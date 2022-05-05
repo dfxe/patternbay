@@ -54,6 +54,7 @@ const CircleGenerator = ({ entityNumber, concentricsNumber }: Props) => {
           boxShadow: showShadow.getter
             ? "rgba(0, 0, 0, 0.16) 0px 1px 4px, rgb(51, 51, 51) 0px 0px 0px 3px"
             : "none",
+          transformOrigin: "top left",
           zIndex: 3,
 
           //v.y * concentricsNumber * 0.05 to rotate z axis, could be dynamic for an animation

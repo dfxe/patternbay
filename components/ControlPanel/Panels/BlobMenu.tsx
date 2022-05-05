@@ -34,6 +34,10 @@ const BlobMenu = () => {
   ]);
 
   const [textRotation, setTextRotation] = useState(0);
+
+  const [textColor, setTextColor] = useState("#ffffff");
+  const [textSize, setTextSize] = useState("");
+
   const [borderz, setBorderz] = useState({
     leftTopX: Math.floor(Math.random() * 200) + 200,
     leftTopY: Math.floor(Math.random() * 200) + 200,
@@ -185,25 +189,81 @@ const BlobMenu = () => {
           }}
         />
       </Stack>
-      <InputColor
-        colorValue={color}
-        setColorValue={setColor}
-        inputLabel={"main "}
-      />
-      <TextField
-        id="outlined-basic"
-        label="Blob Text"
-        variant="filled"
-        value={blobText}
-        onChange={handleTextChange}
-      />
-
-      <Box sx={{ display: "flex" }}>
+      <Stack
+        spacing={1}
+        direction="row"
+        sx={{ mb: 1, position: "relative" }}
+        alignItems="center"
+      >
+        <DefaultMarkedMUISlider
+          sliderLabel="Text Size"
+          defaultValue={1}
+          step={1}
+          min={1}
+          max={8}
+          markPoints={null}
+          onChangeMod={(e) => {
+            setDPath({
+              ...dPath,
+              growth: +(e.target as HTMLInputElement).value,
+            });
+          }}
+        />
+      </Stack>
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: "row",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <InputColor
+          colorValue={color}
+          setColorValue={setColor}
+          inputLabel={"main "}
+        />
+        &nbsp;&nbsp;&nbsp;
+        <InputColor
+          colorValue={gradientColor}
+          setColorValue={setGradientColor}
+          inputLabel={"gradient"}
+        />
+      </Box>
+      <br></br>
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: "row",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <TextField
+          label="Blob Text"
+          variant="filled"
+          sx={{
+            "> *": {
+              color: nightMode.getter ? "#eae3f1" : "#231f22",
+            },
+          }}
+          value={blobText}
+          onChange={handleTextChange}
+        />
+        &nbsp;&nbsp;&nbsp;
+        <InputColor
+          colorValue={textColor}
+          setColorValue={setTextColor}
+          inputLabel="text"
+        />
+      </Box>
+      <Box sx={{ display: "flex", flexWrap: "wrap" }}>
         <Typography
           sx={{
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
+
             fontSize: "1em",
 
             color: nightMode.getter ? "#eae3f1" : "#231f22",
@@ -221,6 +281,7 @@ const BlobMenu = () => {
         <Checkbox
           checked={isBlurred}
           onChange={handleIsBlurred}
+          sx={{ color: nightMode.getter ? "#eae3f1" : "#231f22" }}
           inputProps={{ "aria-label": "controlled" }}
         />
         <Typography
@@ -245,6 +306,7 @@ const BlobMenu = () => {
         <Checkbox
           checked={isGrainy}
           onChange={handleIsGrainy}
+          sx={{ color: nightMode.getter ? "#eae3f1" : "#231f22" }}
           inputProps={{ "aria-label": "controlled" }}
         />
         <Typography
@@ -267,6 +329,7 @@ const BlobMenu = () => {
         <Checkbox
           checked={isBlurInside}
           onChange={handleIsBlurInside}
+          sx={{ color: nightMode.getter ? "#eae3f1" : "#231f22" }}
           inputProps={{ "aria-label": "controlled" }}
         />
         <Typography
@@ -290,6 +353,7 @@ const BlobMenu = () => {
         <Checkbox
           checked={isCenterHidden}
           onChange={handleIsCenterHidden}
+          sx={{ color: nightMode.getter ? "#eae3f1" : "#231f22" }}
           inputProps={{ "aria-label": "controlled" }}
         />
       </Box>
@@ -315,11 +379,6 @@ const BlobMenu = () => {
           colorValue={blurColor}
           setColorValue={setBlurColor}
           inputLabel={"blur "}
-        />
-        <InputColor
-          colorValue={gradientColor}
-          setColorValue={setGradientColor}
-          inputLabel={"gradient"}
         />
       </Stack>
       <div id="the-blob-itself">
@@ -365,7 +424,8 @@ const BlobMenu = () => {
           <text
             x="0"
             y="15"
-            fill="red"
+            /* TODO verify textColor */
+            style={{ color: textColor }}
             transform={`rotate(${textRotation}deg)`}
           >
             {blobText}

@@ -29,8 +29,8 @@ const InputColor = ({ colorValue, setColorValue, inputLabel }: Props) => {
           color: nightMode.getter ? "#eae3f1" : "#3f383b",
         }}
       >
-        &nbsp;&nbsp;
-        {colorValue} <br />
+        {/* &nbsp;&nbsp;
+        {colorValue} <br /> */}
         &nbsp;&nbsp;
         {inputLabel}
       </Typography>
