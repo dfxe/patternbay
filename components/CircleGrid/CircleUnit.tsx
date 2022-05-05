@@ -26,12 +26,11 @@ const CircleUnit = ({ concentricsNumber }: Props) => {
         sx={{
           position: mqMin1024 ? "absolute" : "fixed",
           display: "flex",
-          width: "30%",
-          height: "30%",
+
           justifyContent: "center",
           alignItems: "center",
           top: mqMin1024 ? "20vh" : "30vh",
-          left: mqMin1024 ? "0vw" : "15vw",
+          left: mqMin1024 ? "20vw" : "15vw",
           backgroundColor: mqMin1024 ? "#00000000" : "#efefff",
           zIndex: mqMin1024 ? "999999" : "11",
         }}
