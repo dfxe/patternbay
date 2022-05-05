@@ -4,11 +4,13 @@ import Box from "@mui/material/Box";
 import List from "@mui/material/List";
 import ListItemButton from "@mui/material/ListItemButton";
 import { nanoid } from "nanoid";
+import { useNightMode } from "../ControlPanel/Providers/NightModeProvider";
 
 type Props = {
   setPaletteUsed: (colorsUsed: string[]) => void;
 };
 export default function ColorPaletteMenu({ setPaletteUsed }: Props) {
+  const nightMode = useNightMode();
   const getColors = (): JSX.Element[] => {
     const colors = [
       //LilacLotion & ShallowWater
@@ -82,7 +84,7 @@ export default function ColorPaletteMenu({ setPaletteUsed }: Props) {
         sx={{
           overflowY: "auto",
           height: "12vh",
-          border: "1px solid #eae3f1",
+          border: `1px solid ${nightMode.getter ? " #eae3f1" : "#383e4a"}`,
           borderRadius: "20px",
           padding: "1em 1em 1em 1em",
         }}

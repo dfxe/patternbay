@@ -133,7 +133,7 @@ export default function GeometricPatterns() {
               ]
             : Math.floor(Math.random() * NUMBER_OF_SHAPES),
         rotation: rotationDegree,
-        
+
         color: colorsUsed[Math.floor(Math.random() * colorsUsed.length)],
       });
 
@@ -209,24 +209,7 @@ export default function GeometricPatterns() {
         &nbsp; Aesthetics Bay
       </Typography>
       <br></br>
-      <Stack
-        spacing={1}
-        direction="row"
-        sx={{ mb: 1, position: "relative" }}
-        alignItems="center"
-      >
-        <DefaultMarkedMUISlider
-          sliderLabel="Width"
-          defaultValue={sizeParams.width.default}
-          step={sizeParams.width.step}
-          min={sizeParams.width.min}
-          max={sizeParams.width.max}
-          markPoints={null}
-          onChangeMod={(e) => {
-            setWidth(+(e.target as HTMLInputElement).value);
-          }}
-        />
-      </Stack>
+
       <Stack
         spacing={1}
         direction="row"
