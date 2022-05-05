@@ -19,12 +19,14 @@ const BlobMenu = () => {
 
   const [rotation, setRotation] = useState(Math.floor(Math.random() * 3200));
   const [dimensions, setDimensions] = useState({ width: 100, height: 100 });
+
   const [isBlurred, setIsBlurred] = useState(false);
   const [blurPercent, setBlurPercent] = useState(10);
   const [blurColor, setBlurColor] = useState("#6550a3");
   const [gradientColor, setGradientColor] = useState("#6550a3");
   const [isGrainy, setIsGrainy] = useState(false);
   const [isBlurInside, setIsBlurInside] = useState(false);
+
   const [isCenterHidden, setIsCenterHidden] = useState(false);
   const [colorPalette, setColorPalette] = useState<string[]>([
     "#6f5a5a",
@@ -91,9 +93,9 @@ const BlobMenu = () => {
   const handleGenerateBlob = () => {
     setDPath({
       size: 40,
-      growth: Math.floor(Math.random() * 8) + 2,
-      edges: Math.floor(Math.random() * 4) + 4,
-      seed: "123",
+      growth: dPath.growth,
+      edges: dPath.edges,
+      seed: Math.floor(Math.random() * 100).toString(),
     });
   };
 
@@ -138,6 +140,48 @@ const BlobMenu = () => {
           markPoints={null}
           onChangeMod={(e) => {
             setOpacity(+(e.target as HTMLInputElement).value);
+          }}
+        />
+      </Stack>
+      <Stack
+        spacing={1}
+        direction="row"
+        sx={{ mb: 1, position: "relative" }}
+        alignItems="center"
+      >
+        <DefaultMarkedMUISlider
+          sliderLabel="Edges"
+          defaultValue={3}
+          step={1}
+          min={3}
+          max={10}
+          markPoints={null}
+          onChangeMod={(e) => {
+            setDPath({
+              ...dPath,
+              edges: +(e.target as HTMLInputElement).value,
+            });
+          }}
+        />
+      </Stack>
+      <Stack
+        spacing={1}
+        direction="row"
+        sx={{ mb: 1, position: "relative" }}
+        alignItems="center"
+      >
+        <DefaultMarkedMUISlider
+          sliderLabel="Growth"
+          defaultValue={1}
+          step={1}
+          min={1}
+          max={8}
+          markPoints={null}
+          onChangeMod={(e) => {
+            setDPath({
+              ...dPath,
+              growth: +(e.target as HTMLInputElement).value,
+            });
           }}
         />
       </Stack>
@@ -209,7 +253,6 @@ const BlobMenu = () => {
             justifyContent: "center",
             alignItems: "center",
             fontSize: "1em",
-
             color: nightMode.getter ? "#eae3f1" : "#231f22",
             marginTop: "1em",
             marginBottom: "1em",

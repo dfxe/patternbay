@@ -383,13 +383,16 @@ export default function GeometricPatterns() {
           selectedShapeIndex={selectedShapeIndex}
           setSelectedShapeIndex={setSelectedShapeIndex}
         />
-        <br></br>
-        <br></br>
-        <br></br>
+
         <Button
+          sx={{
+            borderRadius: "64px",
+            padding: "1em 1em 1em 1em",
+            marginBlockStart: "1rem",
+          }}
           name="Generate"
-          className="bg-ind-dark text-ind-light rounded-full p-6 hover:bg-ind-hover"
           variant="contained"
+          color="primary"
           onClick={() => {
             setPatterns(
               generatePatternsRandomly(
@@ -416,7 +419,7 @@ export default function GeometricPatterns() {
           left: "40vw",
           padding: `${padding}px`,
           borderRadius: "30px",
-          width: `50vw`,
+          width: `30vw`,
           height: `auto`,
           backgroundColor: gBackgroundColor,
           boxShadow:
