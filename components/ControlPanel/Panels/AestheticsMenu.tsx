@@ -432,7 +432,7 @@ export default function GeometricPatterns() {
           left: "40vw",
           padding: `${padding}px`,
           borderRadius: "30px",
-          width: `${width}vw`,
+          width: `auto`,
           height: `auto`,
           backgroundColor: gBackgroundColor,
           boxShadow:
