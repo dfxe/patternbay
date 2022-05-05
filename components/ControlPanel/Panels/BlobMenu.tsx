@@ -98,6 +98,9 @@ const BlobMenu = () => {
   };
 
   useEffect(() => {
+    handleGenerateBlob();
+  }, []);
+  useEffect(() => {
     setColor(colorPalette[0]);
     setGradientColor(colorPalette[1]);
   }, [colorPalette]);
@@ -297,14 +300,14 @@ const BlobMenu = () => {
               <stop
                 offset="0%"
                 style={{
-                  stopColor: "#ff0",
+                  stopColor: color,
                   stopOpacity: 1,
                 }}
               />
               <stop
                 offset="100%"
                 style={{
-                  stopColor: "red",
+                  stopColor: gradientColor,
                   stopOpacity: 1,
                 }}
               />
