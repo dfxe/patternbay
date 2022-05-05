@@ -133,6 +133,7 @@ export default function GeometricPatterns() {
               ]
             : Math.floor(Math.random() * NUMBER_OF_SHAPES),
         rotation: rotationDegree,
+        
         color: colorsUsed[Math.floor(Math.random() * colorsUsed.length)],
       });
 

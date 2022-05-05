@@ -231,6 +231,12 @@ const NoiseGradientMenu = () => {
         />
       </Stack>
       <ToggleButtonGroup
+        sx={{
+          display: "flex",
+          flexDirection: "row",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
         color="primary"
         value={alignment}
         exclusive
