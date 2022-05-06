@@ -35,6 +35,7 @@ import ShapesPaletteMenu from "../../ShapesPalette/ShapesPaletteMenu";
 import MenuBackdrop from "./MenuBackdrop";
 import Diamond from "../../../images/GeometricShapes/Diamond";
 import ElementTooltip from "./ElementTooltip";
+import { useElementTooltip } from "../Providers/ElementTooltipProvider";
 
 type ConstructableData = {
   index: number;
@@ -47,7 +48,7 @@ type Patternz = {
 };
 export default function GeometricPatterns() {
   const [cols, setCols] = useState(4);
-
+  const elementTooltip = useElementTooltip();
   const sizeParams = {
     width: { min: 30, max: 40, default: 30, step: 1 },
     height: { min: 30, max: 50, default: 30, step: 1 },
@@ -188,6 +189,8 @@ export default function GeometricPatterns() {
       patterns: reconstructPatterns(indexes, +alignment, colorsUsed),
       constructables: patterns.constructables,
     });
+
+    elementTooltip.setColors(colorsUsed);
   }, [colorsUsed, alignment]);
 
   return (
