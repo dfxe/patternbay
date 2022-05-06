@@ -5,13 +5,29 @@ import List from "@mui/material/List";
 import ListItemButton from "@mui/material/ListItemButton";
 import { nanoid } from "nanoid";
 import { useNightMode } from "../ControlPanel/Providers/NightModeProvider";
-import Button from "@mui/material/Button";
+
 import InputColor from "../ControlPanel/Panels/InputColor";
+import { keyframes, styled } from "@mui/material/styles";
+
+const hoverAnim = keyframes`
+  0% {
+    transform: scale(1);
+  }
+
+  100% {
+    transform: scale(2,2);
+    z-index: 100;
+  }
+`;
 
 type Props = {
   setPaletteUsed: (colorsUsed: string[]) => void;
+  hasThirdColor: boolean;
 };
-export default function ColorPaletteMenu({ setPaletteUsed }: Props) {
+export default function ColorPaletteMenu({
+  setPaletteUsed,
+  hasThirdColor,
+}: Props) {
   const nightMode = useNightMode();
   const colors = [
     //LilacLotion & ShallowWater
@@ -30,8 +46,12 @@ export default function ColorPaletteMenu({ setPaletteUsed }: Props) {
     ["#f7cd1f", "#56c6ae"],
     ["#e77ac6", "#00e4d8"],
   ];
-  const [firstColor, setFirstColor] = React.useState(colors[0][0]);
-  const [secondColor, setSecondColor] = React.useState(colors[0][1]);
+
+  const [customColors, setCustomColors] = useState({
+    firstColor: colors[0][0],
+    secondColor: colors[0][1],
+    thirdColor: "",
+  });
 
   const getColors = (): JSX.Element[] => {
     let patterns: JSX.Element[] = [];
@@ -49,15 +69,18 @@ export default function ColorPaletteMenu({ setPaletteUsed }: Props) {
             padding: "0.5em",
             width: "2em",
             height: "1em",
-            "&: hover": {
-              backgroundColor: "rgba(0,0,0,0.2)",
+            "&:hover": {
+              animation: `${hoverAnim} 0.2s ease forwards`,
             },
           }}
           onClick={() => {
             //use the color palette
             setPaletteUsed([...colors[i]]);
-            setFirstColor(colors[i][0]);
-            setSecondColor(colors[i][1]);
+            setCustomColors({
+              firstColor: colors[i][0],
+              secondColor: colors[i][1],
+              thirdColor: hasThirdColor ? "gray" : "",
+            });
           }}
         >
           <Box
@@ -86,11 +109,9 @@ export default function ColorPaletteMenu({ setPaletteUsed }: Props) {
   );
 
   useEffect(() => {
-    setPaletteUsed([firstColor, secondColor]);
-  }, [firstColor, secondColor]);
+    setPaletteUsed([customColors.firstColor, customColors.secondColor]);
+  }, [customColors.firstColor, customColors.secondColor]);
 
-  //TODO add custom colors at the end of the list
-  //TODO add can change the color of an individual entity
   return (
     <Box
       aria-label="current-colors"
@@ -105,9 +126,10 @@ export default function ColorPaletteMenu({ setPaletteUsed }: Props) {
         left: "30vw",
         bottom: "1vh",
 
-        backgroundColor: "#383e4a",
+        backgroundColor: nightMode.getter ? "#383e4a" : " #eae3f1",
         borderRadius: "64px",
         padding: "1em",
+        boxShadow: "0px 0px 10px rgba(0,0,0,0.2)",
       }}
     >
       <List
@@ -123,15 +145,29 @@ export default function ColorPaletteMenu({ setPaletteUsed }: Props) {
       </List>
       &nbsp;&nbsp;
       <InputColor
-        colorValue={firstColor}
-        setColorValue={setFirstColor}
+        colorValue={customColors.firstColor}
+        setColorValue={(color) =>
+          setCustomColors({ ...customColors, firstColor: color })
+        }
         inputLabel={""}
-      ></InputColor>
+      />
       <InputColor
-        colorValue={secondColor}
-        setColorValue={setSecondColor}
+        colorValue={customColors.secondColor}
+        setColorValue={(color) =>
+          setCustomColors({ ...customColors, secondColor: color })
+        }
         inputLabel={""}
-      ></InputColor>
+      />
+      {/* TODO third has to be available in aesthetics baym */}
+      {hasThirdColor && (
+        <InputColor
+          colorValue={customColors.thirdColor}
+          setColorValue={(color) =>
+            setCustomColors({ ...customColors, thirdColor: color })
+          }
+          inputLabel={""}
+        />
+      )}
     </Box>
   );
 }

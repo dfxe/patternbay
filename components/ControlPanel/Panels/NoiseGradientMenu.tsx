@@ -173,7 +173,7 @@ const NoiseGradientMenu = () => {
           }}
         />
       </Stack>
-      <ColorPaletteMenu setPaletteUsed={setColorsUsed} />
+      <ColorPaletteMenu setPaletteUsed={setColorsUsed} hasThirdColor={false} />
       <Stack
         spacing={1}
         direction="row"

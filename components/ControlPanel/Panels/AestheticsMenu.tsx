@@ -1,7 +1,6 @@
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import { useNightMode } from "../Providers/NightModeProvider";
-import { useGPSize } from "../Providers/GPSizeProvider";
 import React, { useEffect, useState } from "react";
 import Button from "@mui/material/Button";
 
@@ -36,6 +35,7 @@ import MenuBackdrop from "./MenuBackdrop";
 import Diamond from "../../../images/GeometricShapes/Diamond";
 import ElementTooltip from "./ElementTooltip";
 import { useElementTooltip } from "../Providers/ElementTooltipProvider";
+import { keyframes, styled } from "@mui/material/styles";
 
 type ConstructableData = {
   index: number;
@@ -46,6 +46,25 @@ type Patternz = {
   patterns: JSX.Element[];
   constructables: ConstructableData[];
 };
+const hoverAnim = keyframes`
+  0% {
+    
+    transform: scale(1);
+  }
+
+  100% {
+
+    transform: scale(1.01);
+
+  }
+`;
+const AestheticsGrid = styled(Box)({
+  color: "#6068d2",
+  "&:hover": {
+    animation: `${hoverAnim} 0.2s ease forwards`,
+  },
+});
+
 export default function GeometricPatterns() {
   const [cols, setCols] = useState(4);
   const elementTooltip = useElementTooltip();
@@ -63,6 +82,7 @@ export default function GeometricPatterns() {
   const [colorsUsed, setColorsUsed] = useState<string[]>([
     "#6f5a5a",
     "#69a594",
+    "#a5a5a5",
   ]);
   const [selectedShapeIndex, setSelectedShapeIndex] = useState<number[]>([]);
   const [alignment, setAlignment] = useState("deg90");
@@ -184,13 +204,15 @@ export default function GeometricPatterns() {
     for (let i = 0; i < patterns.constructables.length; i++) {
       indexes.push(patterns.constructables[i].index);
     }
-    //TODO Need to keep same color shape
+    //TODO Need to keep same color shape, well good luck
     setPatterns({
       patterns: reconstructPatterns(indexes, +alignment, colorsUsed),
       constructables: patterns.constructables,
     });
 
     elementTooltip.setColors(colorsUsed);
+
+    setGBackgroundColor(colorsUsed[2]);
   }, [colorsUsed, alignment]);
 
   return (
@@ -367,15 +389,8 @@ export default function GeometricPatterns() {
         </ToggleButtonGroup>
       </Stack>
       <Divider />
-      <ColorPaletteMenu setPaletteUsed={setColorsUsed} />
+      <ColorPaletteMenu setPaletteUsed={setColorsUsed} hasThirdColor={true} />
 
-      <Box sx={{ display: "flex", flexDirection: "row", alignItems: "center" }}>
-        <InputColor
-          colorValue={gBackgroundColor}
-          setColorValue={setGBackgroundColor}
-          inputLabel={"background"}
-        />
-      </Box>
       <Box
         sx={{
           display: "flex",
@@ -411,7 +426,7 @@ export default function GeometricPatterns() {
           Generate
         </Button>
       </Box>
-      <Box
+      <AestheticsGrid
         id="u-all-aesthetic-patterns-parent"
         aria-label="Geometric Menu Sliders"
         sx={{
@@ -433,7 +448,7 @@ export default function GeometricPatterns() {
         }}
       >
         {patterns.patterns}
-      </Box>
+      </AestheticsGrid>
     </MenuBackdrop>
   );
 }

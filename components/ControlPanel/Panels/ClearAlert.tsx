@@ -1,15 +1,15 @@
-import React, { Dispatch, SetStateAction } from 'react';
-import Button from '@mui/material/Button';
-import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
-import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
-import DialogTitle from '@mui/material/DialogTitle';
+import React, { Dispatch, SetStateAction } from "react";
+import Button from "@mui/material/Button";
+import Dialog from "@mui/material/Dialog";
+import DialogActions from "@mui/material/DialogActions";
+import DialogContent from "@mui/material/DialogContent";
+import DialogContentText from "@mui/material/DialogContentText";
+import DialogTitle from "@mui/material/DialogTitle";
 
 type Props = {
-  open: boolean,
-  setOpen: Dispatch<SetStateAction<boolean>>,
-  confirmDelete: () => void,
+  open: boolean;
+  setOpen: Dispatch<SetStateAction<boolean>>;
+  confirmDelete: () => void;
 };
 
 export default function ClearAlert({ open, setOpen, confirmDelete }: Props) {
@@ -24,6 +24,7 @@ export default function ClearAlert({ open, setOpen, confirmDelete }: Props) {
         onClose={handleClose}
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
+        style={{ borderRadius: "64px" }}
       >
         <DialogTitle id="alert-dialog-title">Deletion attempt</DialogTitle>
         <DialogContent>

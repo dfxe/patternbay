@@ -18,8 +18,7 @@ import SpeechBubbleOne from "../../images/GeometricShapes/SpeechBubbleOne";
 import Square from "../../images/GeometricShapes/Square";
 import Triangle from "../../images/GeometricShapes/Triangle";
 import { useNightMode } from "../ControlPanel/Providers/NightModeProvider";
-//@ts-ignore
-import { keyframes } from "@emotion/react";
+
 import { nanoid } from "nanoid";
 import Diamond from "../../images/GeometricShapes/Diamond";
 
@@ -61,8 +60,7 @@ const ShapesPaletteMenu = ({
         gridGap: "4px",
         padding: "1em 1em 1em 1em",
         width: "100%",
-        overflowY: "scroll",
-        height: "20vh",
+
         borderRadius: "20px",
         border: `1px solid ${nightMode.getter ? " #eae3f1" : "#383e4a"}`,
       }}

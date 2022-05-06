@@ -36,7 +36,7 @@ const BlobMenu = () => {
   const [textRotation, setTextRotation] = useState(0);
 
   const [textColor, setTextColor] = useState("#ffffff");
-  const [textSize, setTextSize] = useState("");
+  const [textSize, setTextSize] = useState(4);
 
   const [borderz, setBorderz] = useState({
     leftTopX: Math.floor(Math.random() * 200) + 200,
@@ -48,7 +48,7 @@ const BlobMenu = () => {
     rightBottomX: Math.floor(Math.random() * 200) + 200,
     rightBottomY: Math.floor(Math.random() * 200) + 200,
   });
-  const [blobText, setBlobText] = useState("HEYO");
+  const [blobText, setBlobText] = useState("placeholder");
   const [color, setColor] = useState("#6550a3");
   type BlobShape = {
     size: number;
@@ -197,16 +197,13 @@ const BlobMenu = () => {
       >
         <DefaultMarkedMUISlider
           sliderLabel="Text Size"
-          defaultValue={1}
+          defaultValue={4}
           step={1}
-          min={1}
-          max={8}
+          min={4}
+          max={20}
           markPoints={null}
           onChangeMod={(e) => {
-            setDPath({
-              ...dPath,
-              growth: +(e.target as HTMLInputElement).value,
-            });
+            setTextSize(+(e.target as HTMLInputElement).value);
           }}
         />
       </Stack>
@@ -406,7 +403,8 @@ const BlobMenu = () => {
             x="0"
             y="15"
             /* TODO verify textColor */
-            style={{ color: textColor }}
+            style={{ fontSize: textSize, transformOrigin: "center" }}
+            color={textColor}
             transform={`rotate(${textRotation}deg)`}
           >
             {blobText}
@@ -414,7 +412,7 @@ const BlobMenu = () => {
         </svg>
       </div>
 
-      <ColorPaletteMenu setPaletteUsed={setColorPalette} />
+      <ColorPaletteMenu setPaletteUsed={setColorPalette} hasThirdColor={false}/>
       <Divider sx={{ marginTop: "2em", marginBottom: "2em" }} />
       <Box
         sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}
