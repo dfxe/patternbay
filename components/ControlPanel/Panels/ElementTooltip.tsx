@@ -7,13 +7,16 @@ const ElementTooltip = () => {
   const tooltip = useElementTooltip();
   const { x, y } = useMouse();
   const [mouseCoordinates, setMouseCoordinates] = useState({ x: x, y: y });
+  const [canDisplay, setCanDisplay] = useState(false);
   useEffect(() => {
     setMouseCoordinates({ x: x, y: y });
-  }, [tooltip.isShown]);
+    setCanDisplay(tooltip.isShown.isShown);
+  }, [tooltip.isShown.isShown]);
 
   return (
     <div
       style={{
+        display: canDisplay ? "block" : "none",
         position: "absolute",
         backgroundColor: "#222",
         borderRadius: "5px",
@@ -25,7 +28,6 @@ const ElementTooltip = () => {
         color: "#fff",
         zIndex: 100,
       }}
-      hidden={!tooltip.isShown.isShown}
     >
       <div style={{ display: "flex", flexDirection: "row" }}>
         <Button
