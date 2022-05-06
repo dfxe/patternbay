@@ -109,8 +109,16 @@ export default function ColorPaletteMenu({
   );
 
   useEffect(() => {
-    setPaletteUsed([customColors.firstColor, customColors.secondColor]);
-  }, [customColors.firstColor, customColors.secondColor]);
+    setPaletteUsed([
+      customColors.firstColor,
+      customColors.secondColor,
+      customColors.thirdColor,
+    ]);
+  }, [
+    customColors.firstColor,
+    customColors.secondColor,
+    customColors.thirdColor,
+  ]);
 
   return (
     <Box

@@ -212,6 +212,7 @@ export default function GeometricPatterns() {
 
     elementTooltip.setColors(colorsUsed);
 
+    console.log(colorsUsed[2]);
     setGBackgroundColor(colorsUsed[2]);
   }, [colorsUsed, alignment]);
 
