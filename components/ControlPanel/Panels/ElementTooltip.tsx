@@ -3,16 +3,40 @@ import { useElementTooltip } from "../Providers/ElementTooltipProvider";
 import { useMouse } from "rooks";
 import Button from "@mui/material/Button";
 import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
+import { keyframes, styled } from "@mui/material/styles";
+const hoverAnim = keyframes`
+  0% {
+    
+    transform: scale(1);
+  }
+
+  100% {
+
+    transform: scale(1.1);
+
+  }
+`;
+const BayButton = styled(Button)({
+  color: "#6068d2",
+  "&:hover": {
+    animation: `${hoverAnim} 0.2s ease forwards`,
+  },
+  "&:blur": {
+    animation: `${hoverAnim} 0.2s ease backwards`,
+  },
+});
+
 const ElementTooltip = () => {
   const tooltip = useElementTooltip();
   const { x, y } = useMouse();
   const [mouseCoordinates, setMouseCoordinates] = useState({ x: x, y: y });
   const [canDisplay, setCanDisplay] = useState(false);
+
   useEffect(() => {
     setMouseCoordinates({ x: x, y: y });
-    setCanDisplay(tooltip.isShown.isShown);
-  }, [tooltip.isShown.isShown]);
-
+    setCanDisplay(tooltip.elementToShow.isShown);
+  }, [tooltip.elementToShow.isShown]);
+  //TODO add hover animation on tooltip buttons
   return (
     <div
       style={{
@@ -30,32 +54,34 @@ const ElementTooltip = () => {
       }}
     >
       <div style={{ display: "flex", flexDirection: "row" }}>
-        <Button
+        <BayButton
           style={{
             width: "2em",
             height: "3em",
             backgroundColor: tooltip.colors[0],
             borderRadius: "64px 0 0 64px",
           }}
-          onClick={() => {}}
-        ></Button>
-        <Button
+          onClick={() => tooltip.setSelected(true)}
+        ></BayButton>
+        <BayButton
           style={{
             width: "2em",
             height: "3em",
             backgroundColor: tooltip.colors[1],
             borderRadius: "0 64px 64px 0",
           }}
-        ></Button>
+          onClick={() => tooltip.setSelected(false)}
+        ></BayButton>
         <Button
-          onClick={() =>
+          onClick={() => {
             tooltip.show({
-              ...tooltip.isShown,
-              isShown: !tooltip.isShown.isShown,
-            })
-          }
+              ...tooltip.elementToShow,
+              isShown: !tooltip.elementToShow.isShown,
+            });
+            setCanDisplay(false);
+          }}
         >
-          <CloseRoundedIcon></CloseRoundedIcon>
+          <CloseRoundedIcon style={{ color: "#6068d2" }} />
         </Button>
       </div>
     </div>

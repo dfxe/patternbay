@@ -210,26 +210,7 @@ const BlobMenu = () => {
           }}
         />
       </Stack>
-      <Box
-        sx={{
-          display: "flex",
-          flexDirection: "row",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
-        <InputColor
-          colorValue={color}
-          setColorValue={setColor}
-          inputLabel={"main "}
-        />
-        &nbsp;&nbsp;&nbsp;
-        <InputColor
-          colorValue={gradientColor}
-          setColorValue={setGradientColor}
-          inputLabel={"gradient"}
-        />
-      </Box>
+
       <br></br>
       <Box
         sx={{

@@ -94,7 +94,7 @@ const NoiseGradientMenu = () => {
         style={{
           position: "absolute",
           left: "50vw",
-          top: "10vh",
+          top: "0vh",
         }}
         viewBox="0 0 100 100"
         xmlns="http://www.w3.org/2000/svg"
@@ -301,17 +301,6 @@ const NoiseGradientMenu = () => {
           conic
         </ToggleButton>
       </ToggleButtonGroup>
-
-      <InputColor
-        colorValue={noiseGradientColor}
-        setColorValue={setNoiseGradientColor}
-        inputLabel={"gradient one"}
-      />
-      <InputColor
-        colorValue={noiseGradientColor2}
-        setColorValue={setNoiseGradientColor2}
-        inputLabel={"gradient two"}
-      />
     </MenuBackdrop>
   );
 };

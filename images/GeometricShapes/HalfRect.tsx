@@ -1,14 +1,24 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { SVGProps } from "react";
 import { useElementTooltip } from "../../components/ControlPanel/Providers/ElementTooltipProvider";
 import { nanoid } from "nanoid";
 const HalfRect = (props: SVGProps<SVGSVGElement>) => {
   const elementTooltip = useElementTooltip();
-  const [isOver, setIsOver] = React.useState(false);
-  const [clicked, setClicked] = React.useState(true);
-  const [fillColor, setFillColor] = React.useState(props.color);
-  const thisID = nanoid();
-
+  const [isOver, setIsOver] = useState(false);
+  const [clicked, setClicked] = useState(false);
+  const [fillColor, setFillColor] = useState(props.color);
+  const [thisID, setThisID] = useState(nanoid());
+  useEffect(() => {
+    if (elementTooltip.elementToShow.elementId === thisID) {
+      setFillColor(() =>
+        elementTooltip.selected
+          ? elementTooltip.colors[0]
+          : elementTooltip.colors[1]
+      );
+    } else {
+      setClicked(false);
+    }
+  }, [elementTooltip.selected, elementTooltip.elementToShow.elementId]);
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -20,17 +30,18 @@ const HalfRect = (props: SVGProps<SVGSVGElement>) => {
         fillRule: "evenodd",
         clipRule: "evenodd",
         transform: `rotate(${props.rotate || 0}deg)`,
-        border: `1px dashed ${isOver || clicked ? "red" : "#22220000"}`,
+        border: `2px dashed ${clicked ? "#6068d2" : "#22220000"}`,
         cursor: "pointer",
       }}
       onMouseEnter={() => setIsOver(true)}
       onMouseLeave={() => setIsOver(false)}
       onClick={() => {
+        setClicked(!clicked);
         elementTooltip.show({
           elementId: thisID,
-          isShown: !elementTooltip.isShown.isShown,
+          isShown: !elementTooltip.elementToShow.isShown,
         });
-        setClicked(!clicked);
+        console.log(elementTooltip.elementToShow.elementId);
       }}
       viewBox="256 256.01 1536 1536"
     >
