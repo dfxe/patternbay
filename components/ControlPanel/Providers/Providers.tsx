@@ -1,18 +1,19 @@
-import React, { ReactNode } from 'react';
-import ColorProvider from './ColorProvider';
-import NumberProvider from './NumberProvider';
-import SizeProvider from './SizeProvider';
+import React, { ReactNode } from "react";
+import ColorProvider from "./ColorProvider";
+import NumberProvider from "./NumberProvider";
+import SizeProvider from "./SizeProvider";
 
-import ShadowProvider from './ShadowProvider';
-import RadiusProvider from './RadiusProvider';
-import RotationProvider from './RotationProvider';
-import ConcentricsProvider from './ConcentricsProvider';
-import ShapeProvider from './ShapeProvider';
-import NightModeProvider from './NightModeProvider';
-import TabsSupervisorProvider from './TabSupervisorProvider';
+import ShadowProvider from "./ShadowProvider";
+import RadiusProvider from "./RadiusProvider";
+import RotationProvider from "./RotationProvider";
+import ConcentricsProvider from "./ConcentricsProvider";
+import ShapeProvider from "./ShapeProvider";
+import NightModeProvider from "./NightModeProvider";
+import TabsSupervisorProvider from "./TabSupervisorProvider";
+import ElementTooltip from "./ElementTooltipProvider";
 
 type Props = {
-  children: ReactNode,
+  children: ReactNode;
 };
 const Providers = ({ children }: Props) => {
   return (
@@ -25,10 +26,9 @@ const Providers = ({ children }: Props) => {
                 <ShapeProvider>
                   <ConcentricsProvider>
                     <NightModeProvider>
-                      {' '}
+                      {" "}
                       <TabsSupervisorProvider>
-                        {' '}
-                        {children}{' '}
+                        <ElementTooltip> {children} </ElementTooltip>
                       </TabsSupervisorProvider>
                     </NightModeProvider>
                   </ConcentricsProvider>

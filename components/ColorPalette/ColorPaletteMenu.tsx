@@ -77,7 +77,9 @@ export default function ColorPaletteMenu({ setPaletteUsed }: Props) {
   const [colorButtons, setColorButtons] = React.useState<JSX.Element[]>(
     getColors()
   );
+
   //TODO add custom colors at the end of the list
+  //TODO add can change the color of an individual entity
   return (
     <Box>
       <List

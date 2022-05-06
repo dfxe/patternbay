@@ -18,8 +18,11 @@ function ActionsPanel() {
   const showShadow = useOutline();
 
   const handleClearAll = () => {
+    //TODO needs test coverage, concentrics generation behaves erratically
     concentrics.setIsHidden(concentrics.getter.map(() => false));
-    concentrics.setter([]);
+    // remove all but one element in the concentrics array
+    concentrics.setter(concentrics.getter.slice(0, 1));
+
     concentrics.setIsHidden(concentrics.getter.map(() => true));
   };
   const handleClearAlert = () => {

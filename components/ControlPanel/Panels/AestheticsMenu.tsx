@@ -34,6 +34,7 @@ import Divider from "@mui/material/Divider";
 import ShapesPaletteMenu from "../../ShapesPalette/ShapesPaletteMenu";
 import MenuBackdrop from "./MenuBackdrop";
 import Diamond from "../../../images/GeometricShapes/Diamond";
+import ElementTooltip from "./ElementTooltip";
 
 type ConstructableData = {
   index: number;
@@ -191,6 +192,7 @@ export default function GeometricPatterns() {
 
   return (
     <MenuBackdrop>
+      <ElementTooltip />
       <Typography
         sx={{
           display: "flex",

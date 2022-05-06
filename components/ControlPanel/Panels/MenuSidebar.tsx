@@ -25,6 +25,7 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import ExportData from "./ExportData";
 import InfoModal from "./InfoModal";
+import Tooltip from "@mui/material/Tooltip";
 
 import BrandLogo from "../../../images/BrandLogo";
 
@@ -184,166 +185,174 @@ const MenuSidebar = () => {
         />
 
         <List sx={{ marginLeft: 0, paddingLeft: 0 }}>
-          <ListItemButton
-            aria-label="Circlezs Menu"
-            sx={{
-              backgroundColor: tabSupervisor.tabs.circlePatternsMenu.isHidden
-                ? nightMode.getter
-                  ? "#231f22"
-                  : "#f3edf7"
-                : nightMode.getter
-                ? "#230f22"
-                : "#eae3f1",
-            }}
-            onClick={() => {
-              tabSupervisor.setter(() => ({
-                circlePatternsMenu: { isHidden: false },
-                geometricPatternsMenu: { isHidden: true },
-                blobMenu: { isHidden: true },
-                noiseGradientMenu: { isHidden: true },
-                socialsExpoMenu: { isHidden: true },
-              }));
-            }}
-          >
-            <ListItemIcon
-              sx={{ color: nightMode.getter ? "#eae3f1" : "#231f22" }}
-            >
-              {/* Circlez */}
-              <WorkspacesRoundedIcon />
-            </ListItemIcon>
-          </ListItemButton>
-
-          <Divider />
-
-          <ListItemButton
-            aria-label="Aestheticz Menu"
-            sx={{
-              backgroundColor: tabSupervisor.tabs.geometricPatternsMenu.isHidden
-                ? nightMode.getter
-                  ? "#231f22"
-                  : "#f3edf7"
-                : nightMode.getter
-                ? "#230f22"
-                : "#eae3f1",
-            }}
-          >
-            <ListItemIcon
-              sx={{ color: nightMode.getter ? "#eae3f1" : "#231f22" }}
+          <Tooltip placement="right" title="Circle Patterns">
+            <ListItemButton
+              aria-label="Circlezs Menu"
+              sx={{
+                backgroundColor: tabSupervisor.tabs.circlePatternsMenu.isHidden
+                  ? nightMode.getter
+                    ? "#231f22"
+                    : "#f3edf7"
+                  : nightMode.getter
+                  ? "#230f22"
+                  : "#eae3f1",
+              }}
               onClick={() => {
                 tabSupervisor.setter(() => ({
-                  circlePatternsMenu: { isHidden: true },
-                  geometricPatternsMenu: { isHidden: false },
+                  circlePatternsMenu: { isHidden: false },
+                  geometricPatternsMenu: { isHidden: true },
                   blobMenu: { isHidden: true },
                   noiseGradientMenu: { isHidden: true },
                   socialsExpoMenu: { isHidden: true },
                 }));
               }}
             >
-              {/* Aesthetic Shapes */}
-              <InterestsRoundedIcon />
-            </ListItemIcon>
-          </ListItemButton>
+              <ListItemIcon
+                sx={{ color: nightMode.getter ? "#eae3f1" : "#231f22" }}
+              >
+                {/* Circlez */}
 
+                <WorkspacesRoundedIcon />
+              </ListItemIcon>
+            </ListItemButton>
+          </Tooltip>
           <Divider />
-
-          <ListItemButton
-            aria-label="Aestheticz Menu"
-            sx={{
-              backgroundColor: tabSupervisor.tabs.blobMenu.isHidden
-                ? nightMode.getter
-                  ? "#231f22"
-                  : "#f3edf7"
-                : nightMode.getter
-                ? "#230f22"
-                : "#e3ddea",
-            }}
-          >
-            <ListItemIcon
-              sx={{ color: nightMode.getter ? "#eae3f1" : "#231f22" }}
-              onClick={() => {
-                if (tabSupervisor.tabs.blobMenu.isHidden) {
+          <Tooltip placement="right" title="Shapes Patterns">
+            <ListItemButton
+              aria-label="Aestheticz Menu"
+              sx={{
+                backgroundColor: tabSupervisor.tabs.geometricPatternsMenu
+                  .isHidden
+                  ? nightMode.getter
+                    ? "#231f22"
+                    : "#f3edf7"
+                  : nightMode.getter
+                  ? "#230f22"
+                  : "#eae3f1",
+              }}
+            >
+              <ListItemIcon
+                sx={{ color: nightMode.getter ? "#eae3f1" : "#231f22" }}
+                onClick={() => {
                   tabSupervisor.setter(() => ({
                     circlePatternsMenu: { isHidden: true },
-                    geometricPatternsMenu: { isHidden: true },
-                    blobMenu: { isHidden: false },
+                    geometricPatternsMenu: { isHidden: false },
+                    blobMenu: { isHidden: true },
                     noiseGradientMenu: { isHidden: true },
                     socialsExpoMenu: { isHidden: true },
                   }));
-                }
-              }}
-            >
-              {/* Blob Shapes */}
-              <BlobSVGMenuSidebar
-                color={nightMode.getter ? "#eae3f1" : "#231f22"}
-              />
-            </ListItemIcon>
-          </ListItemButton>
+                }}
+              >
+                {/* Aesthetic Shapes */}
+                <InterestsRoundedIcon />
+              </ListItemIcon>
+            </ListItemButton>
+          </Tooltip>
           <Divider />
-
-          <ListItemButton
-            aria-label="Gradientz Menu"
-            sx={{
-              backgroundColor: tabSupervisor.tabs.noiseGradientMenu.isHidden
-                ? nightMode.getter
-                  ? "#231f22"
-                  : "#f3edf7"
-                : nightMode.getter
-                ? "#230f22"
-                : "#eae3f1",
-            }}
-          >
-            <ListItemIcon
-              sx={{ color: nightMode.getter ? "#eae3f1" : "#231f22" }}
-              onClick={() => {
-                if (tabSupervisor.tabs.noiseGradientMenu.isHidden) {
-                  tabSupervisor.setter(() => ({
-                    circlePatternsMenu: { isHidden: true },
-                    geometricPatternsMenu: { isHidden: true },
-                    blobMenu: { isHidden: true },
-                    noiseGradientMenu: { isHidden: false },
-                    socialsExpoMenu: { isHidden: true },
-                  }));
-                }
+          <Tooltip placement="right" title="Blobs">
+            <ListItemButton
+              aria-label="Aestheticz Menu"
+              sx={{
+                backgroundColor: tabSupervisor.tabs.blobMenu.isHidden
+                  ? nightMode.getter
+                    ? "#231f22"
+                    : "#f3edf7"
+                  : nightMode.getter
+                  ? "#230f22"
+                  : "#e3ddea",
               }}
             >
-              {/* Gradients */}
-              <GradientRoundedIcon
+              <ListItemIcon
                 sx={{ color: nightMode.getter ? "#eae3f1" : "#231f22" }}
-              />
-            </ListItemIcon>
-          </ListItemButton>
-          <ListItemButton
-            aria-label="Gradientz Menu"
-            sx={{
-              backgroundColor: tabSupervisor.tabs.socialsExpoMenu.isHidden
-                ? nightMode.getter
-                  ? "#231f22"
-                  : "#f3edf7"
-                : nightMode.getter
-                ? "#230f22"
-                : "#eae3f1",
-            }}
-          >
-            <ListItemIcon
-              sx={{ color: nightMode.getter ? "#eae3f1" : "#231f22" }}
-              onClick={() => {
-                if (tabSupervisor.tabs.socialsExpoMenu.isHidden) {
-                  tabSupervisor.setter(() => ({
-                    circlePatternsMenu: { isHidden: true },
-                    geometricPatternsMenu: { isHidden: true },
-                    blobMenu: { isHidden: true },
-                    noiseGradientMenu: { isHidden: true },
-                    socialsExpoMenu: { isHidden: false },
-                  }));
-                }
+                onClick={() => {
+                  if (tabSupervisor.tabs.blobMenu.isHidden) {
+                    tabSupervisor.setter(() => ({
+                      circlePatternsMenu: { isHidden: true },
+                      geometricPatternsMenu: { isHidden: true },
+                      blobMenu: { isHidden: false },
+                      noiseGradientMenu: { isHidden: true },
+                      socialsExpoMenu: { isHidden: true },
+                    }));
+                  }
+                }}
+              >
+                {/* Blob Shapes */}
+                <BlobSVGMenuSidebar
+                  color={nightMode.getter ? "#eae3f1" : "#231f22"}
+                />
+              </ListItemIcon>
+            </ListItemButton>
+          </Tooltip>
+          <Divider />
+          <Tooltip placement="right" title="Noise Gradients">
+            <ListItemButton
+              aria-label="Gradientz Menu"
+              sx={{
+                backgroundColor: tabSupervisor.tabs.noiseGradientMenu.isHidden
+                  ? nightMode.getter
+                    ? "#231f22"
+                    : "#f3edf7"
+                  : nightMode.getter
+                  ? "#230f22"
+                  : "#eae3f1",
               }}
             >
-              {/* Gradients */}
-              <ConnectWithoutContactRoundedIcon
+              <ListItemIcon
                 sx={{ color: nightMode.getter ? "#eae3f1" : "#231f22" }}
-              />
-            </ListItemIcon>
-          </ListItemButton>
+                onClick={() => {
+                  if (tabSupervisor.tabs.noiseGradientMenu.isHidden) {
+                    tabSupervisor.setter(() => ({
+                      circlePatternsMenu: { isHidden: true },
+                      geometricPatternsMenu: { isHidden: true },
+                      blobMenu: { isHidden: true },
+                      noiseGradientMenu: { isHidden: false },
+                      socialsExpoMenu: { isHidden: true },
+                    }));
+                  }
+                }}
+              >
+                {/* Gradients */}
+                <GradientRoundedIcon
+                  sx={{ color: nightMode.getter ? "#eae3f1" : "#231f22" }}
+                />
+              </ListItemIcon>
+            </ListItemButton>
+          </Tooltip>
+          <Divider />
+          <Tooltip placement="right" title="Social Media Graphics">
+            <ListItemButton
+              aria-label="Gradientz Menu"
+              sx={{
+                backgroundColor: tabSupervisor.tabs.socialsExpoMenu.isHidden
+                  ? nightMode.getter
+                    ? "#231f22"
+                    : "#f3edf7"
+                  : nightMode.getter
+                  ? "#230f22"
+                  : "#eae3f1",
+              }}
+            >
+              <ListItemIcon
+                sx={{ color: nightMode.getter ? "#eae3f1" : "#231f22" }}
+                onClick={() => {
+                  if (tabSupervisor.tabs.socialsExpoMenu.isHidden) {
+                    tabSupervisor.setter(() => ({
+                      circlePatternsMenu: { isHidden: true },
+                      geometricPatternsMenu: { isHidden: true },
+                      blobMenu: { isHidden: true },
+                      noiseGradientMenu: { isHidden: true },
+                      socialsExpoMenu: { isHidden: false },
+                    }));
+                  }
+                }}
+              >
+                {/* Gradients */}
+                <ConnectWithoutContactRoundedIcon
+                  sx={{ color: nightMode.getter ? "#eae3f1" : "#231f22" }}
+                />
+              </ListItemIcon>
+            </ListItemButton>
+          </Tooltip>
         </List>
         <Divider />
         <List>
