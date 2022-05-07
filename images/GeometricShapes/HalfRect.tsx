@@ -28,8 +28,8 @@ const HalfRect = (props: SVGProps<SVGSVGElement>) => {
         imageRendering: "auto",
         fillRule: "evenodd",
         clipRule: "evenodd",
-        width: "70%",
-        height: "70%",
+        width: "90%",
+        height: "90%",
         transform: `rotate(${props.rotate || 0}deg)`,
         border: `2px dashed ${clicked ? "#6068d2" : "#22220000"}`,
         cursor: "pointer",
@@ -43,7 +43,7 @@ const HalfRect = (props: SVGProps<SVGSVGElement>) => {
         console.log(elementTooltip.elementToShow.elementId);
       }}
       // min-x, min-y, width, height.
-      viewBox="256 256 256 256"
+      viewBox="256 256 1536 1536"
     >
       <defs>
         <style>{".fil1{fill:none}"}</style>
