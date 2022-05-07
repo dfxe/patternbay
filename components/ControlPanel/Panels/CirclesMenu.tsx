@@ -111,6 +111,7 @@ function CirclePatternsMenu() {
           fontWeight: "bold",
           justifyContent: "center",
           alignItems: "center",
+          whiteSpace: "nowrap",
           color: nightMode.getter ? "#eae3f1" : "#292d36",
         }}
         variant="h5"

@@ -119,6 +119,7 @@ const BlobMenu = () => {
           justifyContent: "center",
           alignItems: "center",
           fontWeight: "bold",
+          whiteSpace: "nowrap",
           color: nightMode.getter! ? "#eae3f1" : "#231f22",
         }}
         variant="h5"
