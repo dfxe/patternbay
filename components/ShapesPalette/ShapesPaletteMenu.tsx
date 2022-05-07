@@ -32,7 +32,7 @@ const ShapesPaletteMenu = ({
   setSelectedShapeIndex,
 }: Props) => {
   const nightMode = useNightMode();
-  //Todo change to some enum with the shape names, then call the shape name from the enum
+  //TODO change to some enum with the shape names, then call the shape name from the enum
   const allShapes = [
     <HalfRect key={nanoid()} color={"#6068d2"}></HalfRect>,
     <Cloud key={nanoid()} color={"#6068d2"}></Cloud>,
@@ -49,7 +49,7 @@ const ShapesPaletteMenu = ({
     <Triangle key={nanoid()} color={"#6068d2"}></Triangle>,
     <Diamond key={nanoid()} color={"#6068d2"}></Diamond>,
   ];
-
+  //TODO padding left is ugly
   return (
     <List
       aria-label="shapes-palette-list"
@@ -59,7 +59,6 @@ const ShapesPaletteMenu = ({
         gridTemplateRows: "auto",
         gridGap: "4px",
         padding: "1em 1em 1em 1em",
-        width: "100%",
 
         borderRadius: "20px",
         border: `1px solid ${nightMode.getter ? " #eae3f1" : "#383e4a"}`,
@@ -90,12 +89,10 @@ const ShapesPaletteMenu = ({
             sx={{
               display: "flex",
               justifyContent: "center",
+
               width: "20px",
               height: "20px",
-              paddingLeft: "0",
-              paddingRight: "0",
-              marginLeft: "0",
-              marginRight: "0",
+
               zIndex: "4",
             }}
           >

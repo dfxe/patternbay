@@ -172,10 +172,12 @@ const MenuSidebar = () => {
         }}
       >
         <DrawerHeader>
-          <IconButton onClick={handleDrawerClose}>
-            {/* Brand logo */}
-            <BrandLogo />
-          </IconButton>
+          <Link passHref href="/">
+            <IconButton onClick={handleDrawerClose}>
+              {/* Brand logo */}
+              <BrandLogo />
+            </IconButton>
+          </Link>
         </DrawerHeader>
 
         {/* The space between header and the buttons */}

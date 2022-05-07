@@ -27,8 +27,9 @@ function MenuBackdrop({ children }: Props) {
         border: `5px solid ${nightMode.getter ? "#292d3655" : "#eae3f1"}`,
         borderRadius: "64px",
         padding: "2em 2em 2em 2em",
+
         paddingBlockEnd: "6em",
-        marginBottom: "2vh",
+
         height: "89vh",
         overflowY: "auto",
         overflowX: "hidden",

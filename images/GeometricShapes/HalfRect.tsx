@@ -30,7 +30,7 @@ const HalfRect = (props: SVGProps<SVGSVGElement>) => {
         clipRule: "evenodd",
         width: "100%",
         height: "100%",
-
+        transformOrigin: "center",
         transform: `rotate(${props.rotate || 0}deg)`,
         border: `2px dashed ${clicked ? "#6068d2" : "#22220000"}`,
         cursor: "pointer",
