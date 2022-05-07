@@ -224,7 +224,7 @@ function CirclePatternsMenu() {
           }}
         />
       </Stack>
-      <ColorPaletteMenu setPaletteUsed={setPaletteUsed} />
+      
       <br></br>
       <Box className="grid grid-cols-2 gap-2">
         <Button
