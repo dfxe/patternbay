@@ -5,7 +5,7 @@ import List from "@mui/material/List";
 import ListItemButton from "@mui/material/ListItemButton";
 import { nanoid } from "nanoid";
 import { useNightMode } from "../ControlPanel/Providers/NightModeProvider";
-
+import useMediaQuery from "@mui/material/useMediaQuery";
 import InputColor from "../ControlPanel/Panels/InputColor";
 import { keyframes, styled } from "@mui/material/styles";
 
@@ -29,6 +29,7 @@ export default function ColorPaletteMenu({
   hasThirdColor,
 }: Props) {
   const nightMode = useNightMode();
+  const mqMin1024 = useMediaQuery("(min-width:1024px)");
   const colors = [
     //LilacLotion & ShallowWater
     ["#fc3d90", "#89ebf8"],
@@ -132,7 +133,7 @@ export default function ColorPaletteMenu({
         position: "absolute",
 
         left: "30vw",
-        bottom: "1vh",
+        bottom: mqMin1024 ? "1vh" : "4vh",
 
         backgroundColor: nightMode.getter ? "#383e4a" : " #eae3f1",
         borderRadius: "64px",
