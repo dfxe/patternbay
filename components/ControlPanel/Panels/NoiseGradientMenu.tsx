@@ -107,7 +107,7 @@ const NoiseGradientMenu = () => {
             id="myCircle"
             rx={borderRadius}
             ry={borderRadius}
-            width="50%"
+            width="80%"
             height="50%"
           />
           {/* TODO find gradient filter for dis */}
