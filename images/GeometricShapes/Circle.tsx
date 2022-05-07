@@ -12,6 +12,8 @@ const Circle = (props: SVGProps<SVGSVGElement>) => {
         imageRendering: "auto",
         fillRule: "evenodd",
         clipRule: "evenodd",
+        width: "100%",
+        height: "100%",
         transform: `rotate(${props.rotate}deg)`,
       }}
       viewBox="256 256 1536 1536"

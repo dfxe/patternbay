@@ -11,6 +11,8 @@ const Diamond = (props: SVGProps<SVGSVGElement>) => (
       imageRendering: "auto",
       fillRule: "evenodd",
       clipRule: "evenodd",
+      width: "100%",
+      height: "100%",
     }}
     viewBox="256 342.91 1536 1330.33"
     {...props}

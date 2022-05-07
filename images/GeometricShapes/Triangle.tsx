@@ -1,5 +1,5 @@
-import * as React from 'react';
-import { SVGProps } from 'react';
+import * as React from "react";
+import { SVGProps } from "react";
 
 const Triangle = (props: SVGProps<SVGSVGElement>) => {
   return (
@@ -7,24 +7,26 @@ const Triangle = (props: SVGProps<SVGSVGElement>) => {
       xmlns="http://www.w3.org/2000/svg"
       xmlSpace="preserve"
       style={{
-        shapeRendering: 'geometricPrecision',
-        textRendering: 'geometricPrecision',
-        imageRendering: 'auto',
-        fillRule: 'evenodd',
-        clipRule: 'evenodd',
+        shapeRendering: "geometricPrecision",
+        textRendering: "geometricPrecision",
+        imageRendering: "auto",
+        fillRule: "evenodd",
+        clipRule: "evenodd",
+        width: "100%",
+        height: "100%",
         transform: `rotate(${props.rotate || 0}deg)`,
       }}
       viewBox="256 342.91 1536 1330.33"
       {...props}
     >
       <defs>
-        <style>{'.fil1{fill:none}'}</style>
+        <style>{".fil1{fill:none}"}</style>
       </defs>
       <g id="Layer_x0020_1">
         <path
           style={{
             fill: props.color,
-            fillRule: 'nonzero',
+            fillRule: "nonzero",
           }}
           d="M1049.77 387.546 1407.99 1008v.12l358.23 620.46 25.78 44.66H255.999l25.785-44.66 358.222-620.46v-.12L998.23 387.546l25.77-44.635z"
         />
