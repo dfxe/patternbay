@@ -145,7 +145,8 @@ export default function GeometricPatterns() {
   ): Patternz => {
     let patterns: JSX.Element[] = [];
     let constructables: ConstructableData[] = [];
-
+    //colors without the last element
+    const colors = colorsUsed.slice(0, colorsUsed.length - 1);
     for (let i = 0; i < maxPatterns; i++) {
       constructables.push({
         index:
@@ -156,7 +157,7 @@ export default function GeometricPatterns() {
             : Math.floor(Math.random() * NUMBER_OF_SHAPES),
         rotation: rotationDegree,
 
-        color: colorsUsed[Math.floor(Math.random() * colorsUsed.length - 1)],
+        color: colorsUsed[Math.floor(Math.random() * colors.length - 1)],
       });
 
       patterns.push(
@@ -206,13 +207,16 @@ export default function GeometricPatterns() {
     }
     //TODO Need to keep same color shape, well good luck
     setPatterns({
-      patterns: reconstructPatterns(indexes, +alignment, colorsUsed),
+      patterns: reconstructPatterns(
+        indexes,
+        +alignment,
+        colorsUsed.slice(0, colorsUsed.length - 1)
+      ),
       constructables: patterns.constructables,
     });
 
-    elementTooltip.setColors(colorsUsed);
+    elementTooltip.setColors(colorsUsed.slice(0, colorsUsed.length - 1));
 
-    console.log(colorsUsed[2]);
     setGBackgroundColor(colorsUsed[2]);
   }, [colorsUsed, alignment]);
 
