@@ -79,11 +79,16 @@ export default function GeometricPatterns() {
   const [padding, setPadding] = useState(20);
   const [gBackgroundColor, setGBackgroundColor] = useState("#180c23");
 
-  const [colorsUsed, setColorsUsed] = useState<string[]>([
-    "#6f5a5a",
-    "#69a594",
-    "#a5a5a5",
-  ]);
+  type Colors = {
+    firstColor: string;
+    secondColor: string;
+    thirdColor: string;
+  };
+  const [colorsUsed, setColorsUsed] = useState<Colors>({
+    firstColor: "#6f5a5a",
+    secondColor: "#69a594",
+    thirdColor: "#a5a5a5",
+  });
   const [selectedShapeIndex, setSelectedShapeIndex] = useState<number[]>([]);
   const [alignment, setAlignment] = useState("deg90");
 
@@ -137,7 +142,7 @@ export default function GeometricPatterns() {
         return <Flower key={nanoid()} {...stylez} />;
     }
   };
-
+  //TODO colors not accessing right pointer
   const generatePatternsRandomly = (
     maxPatterns: number,
     selectedIndexes: number[],
@@ -145,8 +150,7 @@ export default function GeometricPatterns() {
   ): Patternz => {
     let patterns: JSX.Element[] = [];
     let constructables: ConstructableData[] = [];
-    //colors without the last element
-    const colors = colorsUsed.slice(0, colorsUsed.length - 1);
+
     for (let i = 0; i < maxPatterns; i++) {
       constructables.push({
         index:
@@ -156,8 +160,9 @@ export default function GeometricPatterns() {
               ]
             : Math.floor(Math.random() * NUMBER_OF_SHAPES),
         rotation: rotationDegree,
-
-        color: colorsUsed[Math.floor(Math.random() * colors.length - 1)],
+        // one of the colors
+        color:
+          Math.random() > 0.5 ? colorsUsed.firstColor : colorsUsed.secondColor,
       });
 
       patterns.push(
@@ -181,7 +186,7 @@ export default function GeometricPatterns() {
         getSelectedShape({
           index: indexes[i],
           rotation: rotationDegs,
-          color: colors[Math.floor(Math.random() * colors.length - 1)],
+          color: colors[i],
         })
       );
     }
@@ -207,17 +212,16 @@ export default function GeometricPatterns() {
     }
     //TODO Need to keep same color shape, well good luck
     setPatterns({
-      patterns: reconstructPatterns(
-        indexes,
-        +alignment,
-        colorsUsed.slice(0, colorsUsed.length - 1)
-      ),
+      patterns: reconstructPatterns(indexes, +alignment, [
+        colorsUsed.firstColor,
+        colorsUsed.secondColor,
+      ]),
       constructables: patterns.constructables,
     });
 
-    elementTooltip.setColors(colorsUsed.slice(0, colorsUsed.length - 1));
+    elementTooltip.setColors([colorsUsed.firstColor, colorsUsed.secondColor]);
 
-    setGBackgroundColor(colorsUsed[2]);
+    setGBackgroundColor(colorsUsed.thirdColor);
   }, [colorsUsed, alignment]);
 
   return (
@@ -395,7 +399,8 @@ export default function GeometricPatterns() {
         </ToggleButtonGroup>
       </Stack>
       <Divider />
-      <ColorPaletteMenu setPaletteUsed={setColorsUsed} hasThirdColor={true} />
+
+      <ColorPaletteMenu setPalette={setColorsUsed} hasThirdColor={true} />
 
       <Box
         sx={{

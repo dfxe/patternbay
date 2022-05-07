@@ -1,4 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, {
+  useState,
+  useEffect,
+  createContext,
+  Dispatch,
+  SetStateAction,
+  useContext,
+  ReactNode,
+} from "react";
 import Box from "@mui/material/Box";
 
 import List from "@mui/material/List";
@@ -20,14 +28,18 @@ const hoverAnim = keyframes`
   }
 `;
 
-type Props = {
-  setPaletteUsed: (colorsUsed: string[]) => void;
+interface Props {
+  //setpalette has 3 parameters: firstColor, secondColor, thirdColor
+  setPalette: Dispatch<
+    SetStateAction<{
+      firstColor: string;
+      secondColor: string;
+      thirdColor: string;
+    }>
+  >;
   hasThirdColor: boolean;
-};
-export default function ColorPaletteMenu({
-  setPaletteUsed,
-  hasThirdColor,
-}: Props) {
+}
+export default function ColorPaletteMenu({ setPalette, hasThirdColor }: Props) {
   const nightMode = useNightMode();
   const mqMin1256 = useMediaQuery("(min-width:1256px)");
   const colors = [
@@ -50,7 +62,7 @@ export default function ColorPaletteMenu({
   const [customColors, setCustomColors] = useState({
     firstColor: colors[0][0],
     secondColor: colors[0][1],
-    thirdColor: "",
+    thirdColor: "#8eb0ff",
   });
 
   const getColors = (): JSX.Element[] => {
@@ -75,8 +87,13 @@ export default function ColorPaletteMenu({
           }}
           onClick={() => {
             //use the color palette
-            setPaletteUsed([...colors[i]]);
+
             setCustomColors({
+              firstColor: colors[i][0],
+              secondColor: colors[i][1],
+              thirdColor: hasThirdColor ? "gray" : "",
+            });
+            setPalette({
               firstColor: colors[i][0],
               secondColor: colors[i][1],
               thirdColor: hasThirdColor ? "gray" : "",
@@ -109,16 +126,12 @@ export default function ColorPaletteMenu({
   );
 
   useEffect(() => {
-    setPaletteUsed([
-      customColors.firstColor,
-      customColors.secondColor,
-      customColors.thirdColor,
-    ]);
-  }, [
-    customColors.firstColor,
-    customColors.secondColor,
-    customColors.thirdColor,
-  ]);
+    setPalette({
+      firstColor: customColors.firstColor,
+      secondColor: customColors.secondColor,
+      thirdColor: customColors.thirdColor,
+    });
+  }, [customColors]);
 
   return (
     <Box
