@@ -132,7 +132,7 @@ export default function ColorPaletteMenu({
         position: "absolute",
 
         left: "30vw",
-        bottom: mqMin1256 ? "1vh" : "4vh",
+        bottom: mqMin1256 ? "1vh" : "6vh",
 
         backgroundColor: nightMode.getter ? "#383e4a" : " #eae3f1",
         borderRadius: "64px",
