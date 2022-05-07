@@ -29,9 +29,8 @@ export default function ColorPaletteMenu({
   hasThirdColor,
 }: Props) {
   const nightMode = useNightMode();
-  const mqMin1024 = useMediaQuery("(min-width:1024px)");
+  const mqMin1256 = useMediaQuery("(min-width:1256px)");
   const colors = [
-    //LilacLotion & ShallowWater
     ["#fc3d90", "#89ebf8"],
     ["#d9f9b8", "#e9f044"],
     ["#6f5a5a", "#69a594"],
@@ -133,7 +132,7 @@ export default function ColorPaletteMenu({
         position: "absolute",
 
         left: "30vw",
-        bottom: mqMin1024 ? "1vh" : "4vh",
+        bottom: mqMin1256 ? "1vh" : "4vh",
 
         backgroundColor: nightMode.getter ? "#383e4a" : " #eae3f1",
         borderRadius: "64px",
