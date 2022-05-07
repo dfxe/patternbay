@@ -4,7 +4,6 @@ import { useElementTooltip } from "../../components/ControlPanel/Providers/Eleme
 import { nanoid } from "nanoid";
 const HalfRect = (props: SVGProps<SVGSVGElement>) => {
   const elementTooltip = useElementTooltip();
-  const [isOver, setIsOver] = useState(false);
   const [clicked, setClicked] = useState(false);
   const [fillColor, setFillColor] = useState(props.color);
   const [thisID, setThisID] = useState(nanoid());
@@ -33,8 +32,6 @@ const HalfRect = (props: SVGProps<SVGSVGElement>) => {
         border: `2px dashed ${clicked ? "#6068d2" : "#22220000"}`,
         cursor: "pointer",
       }}
-      onMouseEnter={() => setIsOver(true)}
-      onMouseLeave={() => setIsOver(false)}
       onClick={() => {
         setClicked(!clicked);
         elementTooltip.show({
@@ -43,7 +40,8 @@ const HalfRect = (props: SVGProps<SVGSVGElement>) => {
         });
         console.log(elementTooltip.elementToShow.elementId);
       }}
-      viewBox="256 256.01 1536 1536"
+      // min-x, min-y, width, height.
+      viewBox="256 256 256 256"
     >
       <defs>
         <style>{".fil1{fill:none}"}</style>

@@ -156,7 +156,7 @@ export default function GeometricPatterns() {
             : Math.floor(Math.random() * NUMBER_OF_SHAPES),
         rotation: rotationDegree,
 
-        color: colorsUsed[Math.floor(Math.random() * colorsUsed.length)],
+        color: colorsUsed[Math.floor(Math.random() * colorsUsed.length - 1)],
       });
 
       patterns.push(
@@ -180,7 +180,7 @@ export default function GeometricPatterns() {
         getSelectedShape({
           index: indexes[i],
           rotation: rotationDegs,
-          color: colors[Math.floor(Math.random() * colors.length)],
+          color: colors[Math.floor(Math.random() * colors.length - 1)],
         })
       );
     }
