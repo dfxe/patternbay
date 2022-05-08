@@ -12,7 +12,11 @@ import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
 import ToggleButton from "@mui/material/ToggleButton";
 import ColorPaletteMenu from "../../ColorPalette/ColorPaletteMenu";
 import MenuBackdrop from "./MenuBackdrop";
-
+import BorderStyleRoundedIcon from "@mui/icons-material/BorderStyleRounded";
+import ScreenRotationAltRoundedIcon from "@mui/icons-material/ScreenRotationAltRounded";
+import ContrastRoundedIcon from "@mui/icons-material/ContrastRounded";
+import Brightness6RoundedIcon from "@mui/icons-material/Brightness6Rounded";
+import ThirtyFpsSelectRoundedIcon from "@mui/icons-material/ThirtyFpsSelectRounded";
 const NoiseGradientMenu = () => {
   const sizeParams = {
     borderRadius: { min: 0, max: 10, step: 1, default: 0 },
@@ -27,10 +31,16 @@ const NoiseGradientMenu = () => {
   const [noiseGradientColor, setNoiseGradientColor] = useState("#6650a4");
   const [noiseGradientColor2, setNoiseGradientColor2] = useState("#6650a4");
   const [alignment, setAlignment] = useState("deg90");
-  const [colorsUsed, setColorsUsed] = useState<string[]>([
-    "#6f5a5a",
-    "#69a594",
-  ]);
+  type Colors = {
+    firstColor: string;
+    secondColor: string;
+    thirdColor: string;
+  };
+  const [colorsUsed, setColorsUsed] = useState<Colors>({
+    firstColor: "#6650a4",
+    secondColor: "#6650a4",
+    thirdColor: "#6650a4",
+  });
   const nightMode = useNightMode();
 
   const handleChange = (
@@ -42,8 +52,8 @@ const NoiseGradientMenu = () => {
   };
 
   useEffect(() => {
-    setNoiseGradientColor(colorsUsed[0]);
-    setNoiseGradientColor2(colorsUsed[1]);
+    setNoiseGradientColor(colorsUsed.firstColor);
+    setNoiseGradientColor2(colorsUsed.secondColor);
   }, [colorsUsed]);
 
   return (
@@ -163,9 +173,14 @@ const NoiseGradientMenu = () => {
         direction="row"
         sx={{ mb: 1, position: "relative" }}
         alignItems="center"
+        justifyContent="center"
+        gap={1}
       >
+        <BorderStyleRoundedIcon
+          htmlColor={nightMode.getter ? "#eae3f1" : "#231f22"}
+        ></BorderStyleRoundedIcon>
+
         <DefaultMarkedMUISlider
-          sliderLabel="Border Radius"
           defaultValue={sizeParams.borderRadius.default}
           step={sizeParams.borderRadius.step}
           min={sizeParams.borderRadius.min}
@@ -176,15 +191,20 @@ const NoiseGradientMenu = () => {
           }}
         />
       </Stack>
-      <ColorPaletteMenu setPaletteUsed={setColorsUsed} hasThirdColor={false} />
+      <ColorPaletteMenu setPalette={setColorsUsed} hasThirdColor={false} />
       <Stack
         spacing={1}
         direction="row"
         sx={{ mb: 1, position: "relative" }}
         alignItems="center"
+        justifyContent="center"
+        gap={1}
       >
+        <ScreenRotationAltRoundedIcon
+          htmlColor={nightMode.getter ? "#eae3f1" : "#231f22"}
+        ></ScreenRotationAltRoundedIcon>
         <DefaultMarkedMUISlider
-          sliderLabel="Rotation"
+          sliderLabel=""
           defaultValue={0}
           step={5}
           min={0}
@@ -200,9 +220,14 @@ const NoiseGradientMenu = () => {
         direction="row"
         sx={{ mb: 1, position: "relative" }}
         alignItems="center"
+        justifyContent="center"
+        gap={1}
       >
+        <ContrastRoundedIcon
+          htmlColor={nightMode.getter ? "#eae3f1" : "#231f22"}
+        ></ContrastRoundedIcon>
         <DefaultMarkedMUISlider
-          sliderLabel="Contrast"
+          sliderLabel=""
           defaultValue={100}
           step={10}
           min={100}
@@ -218,9 +243,14 @@ const NoiseGradientMenu = () => {
         direction="row"
         sx={{ mb: 1, position: "relative" }}
         alignItems="center"
+        justifyContent="center"
+        gap={1}
       >
+        <Brightness6RoundedIcon
+          htmlColor={nightMode.getter ? "#eae3f1" : "#231f22"}
+        ></Brightness6RoundedIcon>
         <DefaultMarkedMUISlider
-          sliderLabel="Brightness"
+          sliderLabel=""
           defaultValue={100}
           step={10}
           min={100}
@@ -254,9 +284,14 @@ const NoiseGradientMenu = () => {
         direction="row"
         sx={{ mb: 1, position: "relative" }}
         alignItems="center"
+        justifyContent="center"
+        gap={1}
       >
+        <ThirtyFpsSelectRoundedIcon
+          htmlColor={nightMode.getter ? "#eae3f1" : "#231f22"}
+        ></ThirtyFpsSelectRoundedIcon>
         <DefaultMarkedMUISlider
-          sliderLabel="Frequency"
+          sliderLabel=""
           defaultValue={0.1}
           step={0.1}
           min={0.1}
@@ -286,13 +321,13 @@ const NoiseGradientMenu = () => {
           }}
           value="linear"
         >
-          linear
+          Linear
         </ToggleButton>
         <ToggleButton
           sx={{ color: nightMode.getter ? "#eae3f1" : "#231f22" }}
           value="radial"
         >
-          radial
+          Radial
         </ToggleButton>
         <ToggleButton
           sx={{
@@ -301,7 +336,7 @@ const NoiseGradientMenu = () => {
           }}
           value="conic"
         >
-          conic
+          Conic
         </ToggleButton>
       </ToggleButtonGroup>
     </MenuBackdrop>

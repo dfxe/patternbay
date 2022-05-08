@@ -12,8 +12,12 @@ import InputColor from "./InputColor";
 import TextField from "@mui/material/TextField";
 import ColorPaletteMenu from "../../ColorPalette/ColorPaletteMenu";
 import MenuBackdrop from "./MenuBackdrop";
+import FormatSizeRoundedIcon from "@mui/icons-material/FormatSizeRounded";
 //@ts-ignore
 import blobshape from "blobshape";
+import OpacityRoundedIcon from "@mui/icons-material/OpacityRounded";
+import DeblurRoundedIcon from "@mui/icons-material/DeblurRounded";
+import Tooltip from "@mui/material/Tooltip";
 const BlobMenu = () => {
   const [opacity, setOpacity] = useState(1);
 
@@ -28,10 +32,16 @@ const BlobMenu = () => {
   const [isBlurInside, setIsBlurInside] = useState(false);
 
   const [isCenterHidden, setIsCenterHidden] = useState(false);
-  const [colorPalette, setColorPalette] = useState<string[]>([
-    "#6f5a5a",
-    "#69a594",
-  ]);
+  type Colors = {
+    firstColor: string;
+    secondColor: string;
+    thirdColor: string;
+  };
+  const [colorPalette, setColorPalette] = useState<Colors>({
+    firstColor: "#fc3d90",
+    secondColor: "#d9f9b8",
+    thirdColor: "#6f5a5a",
+  });
 
   const [textRotation, setTextRotation] = useState(0);
 
@@ -107,8 +117,8 @@ const BlobMenu = () => {
     handleGenerateBlob();
   }, []);
   useEffect(() => {
-    setColor(colorPalette[0]);
-    setGradientColor(colorPalette[1]);
+    setColor(colorPalette.firstColor);
+    setGradientColor(colorPalette.secondColor);
   }, [colorPalette]);
 
   return (
@@ -135,9 +145,16 @@ const BlobMenu = () => {
         direction="row"
         sx={{ mb: 1, position: "relative" }}
         alignItems="center"
+        justifyContent="center"
+        gap={1}
       >
+        <Tooltip placement="top" title="Opacity">
+          <OpacityRoundedIcon
+            htmlColor={nightMode.getter ? "#eae3f1" : "#231f22"}
+          ></OpacityRoundedIcon>
+        </Tooltip>
         <DefaultMarkedMUISlider
-          sliderLabel="Opacity"
+          sliderLabel=""
           defaultValue={1}
           step={0.1}
           min={0}
@@ -195,9 +212,16 @@ const BlobMenu = () => {
         direction="row"
         sx={{ mb: 1, position: "relative" }}
         alignItems="center"
+        justifyContent="center"
+        gap={1}
       >
+        <Tooltip placement="top" title="Text Size">
+          <FormatSizeRoundedIcon
+            htmlColor={nightMode.getter ? "#eae3f1" : "#231f22"}
+          ></FormatSizeRoundedIcon>
+        </Tooltip>
         <DefaultMarkedMUISlider
-          sliderLabel="Text Size"
+          sliderLabel=""
           defaultValue={4}
           step={1}
           min={4}
@@ -342,9 +366,16 @@ const BlobMenu = () => {
         direction="row"
         sx={{ mb: 1, position: "relative" }}
         alignItems="center"
+        justifyContent="center"
+        gap={1}
       >
+        <Tooltip placement="top" title="Blur">
+          <DeblurRoundedIcon
+            htmlColor={nightMode.getter ? "#eae3f1" : "#231f22"}
+          ></DeblurRoundedIcon>
+        </Tooltip>
         <DefaultMarkedMUISlider
-          sliderLabel="Blur Percentage"
+          sliderLabel=""
           defaultValue={10}
           step={10}
           min={10}
@@ -413,7 +444,7 @@ const BlobMenu = () => {
         </svg>
       </div>
 
-      <ColorPaletteMenu setPaletteUsed={setColorPalette} hasThirdColor={false}/>
+      <ColorPaletteMenu setPalette={setColorPalette} hasThirdColor={false} />
       <Divider sx={{ marginTop: "2em", marginBottom: "2em" }} />
       <Box
         sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}

@@ -16,6 +16,7 @@ import { useNightMode } from "../ControlPanel/Providers/NightModeProvider";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import InputColor from "../ControlPanel/Panels/InputColor";
 import { keyframes, styled } from "@mui/material/styles";
+import GradientRoundedIcon from "@mui/icons-material/GradientRounded";
 
 const hoverAnim = keyframes`
   0% {
@@ -165,20 +166,33 @@ export default function ColorPaletteMenu({ setPalette, hasThirdColor }: Props) {
         {colorButtons.map((color) => color)}
       </List>
       &nbsp;&nbsp;
-      <InputColor
-        colorValue={customColors.firstColor}
-        setColorValue={(color) =>
-          setCustomColors({ ...customColors, firstColor: color })
-        }
-        inputLabel={""}
-      />
-      <InputColor
-        colorValue={customColors.secondColor}
-        setColorValue={(color) =>
-          setCustomColors({ ...customColors, secondColor: color })
-        }
-        inputLabel={""}
-      />
+      <GradientRoundedIcon
+        htmlColor={nightMode.getter ? " #eae3f1" : "#383e4a"}
+      ></GradientRoundedIcon>
+      <Box
+        style={{
+          display: "flex",
+          flexDirection: "row",
+          padding: "1em 1em 1em 1em",
+          border: "2px solid red",
+          borderRadius: "20px",
+        }}
+      >
+        <InputColor
+          colorValue={customColors.firstColor}
+          setColorValue={(color) =>
+            setCustomColors({ ...customColors, firstColor: color })
+          }
+          inputLabel={""}
+        />
+        <InputColor
+          colorValue={customColors.secondColor}
+          setColorValue={(color) =>
+            setCustomColors({ ...customColors, secondColor: color })
+          }
+          inputLabel={""}
+        />
+      </Box>
       {/* TODO third has to be available in aesthetics baym */}
       {hasThirdColor && (
         <InputColor
