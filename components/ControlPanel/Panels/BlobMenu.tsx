@@ -172,11 +172,14 @@ const BlobMenu = () => {
         sx={{ mb: 1, position: "relative" }}
         alignItems="center"
         justifyContent="center"
-        gap={1}
+        gap={2}
       >
-        <VectorFourVertex
-          color={nightMode.getter ? "#eae3f1" : "#231f22"}
-        ></VectorFourVertex>
+        {/* TODO tooltip not displaying */}
+        <Tooltip placement="top" title="Edges">
+          <VectorFourVertex
+            color={nightMode.getter ? "#eae3f1" : "#231f22"}
+          ></VectorFourVertex>
+        </Tooltip>
         <DefaultMarkedMUISlider
           sliderLabel=""
           defaultValue={3}

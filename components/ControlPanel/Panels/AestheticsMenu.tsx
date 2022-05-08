@@ -398,7 +398,6 @@ export default function GeometricPatterns() {
           </ToggleButton>
         </ToggleButtonGroup>
       </Stack>
-      <Divider />
 
       <ColorPaletteMenu setPalette={setColorsUsed} hasThirdColor={true} />
 
