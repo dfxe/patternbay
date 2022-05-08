@@ -17,6 +17,10 @@ import ScreenRotationAltRoundedIcon from "@mui/icons-material/ScreenRotationAltR
 import ContrastRoundedIcon from "@mui/icons-material/ContrastRounded";
 import Brightness6RoundedIcon from "@mui/icons-material/Brightness6Rounded";
 import ThirtyFpsSelectRoundedIcon from "@mui/icons-material/ThirtyFpsSelectRounded";
+import Tooltip from "@mui/material/Tooltip";
+import LinearScaleRoundedIcon from "@mui/icons-material/LinearScaleRounded";
+import RadioButtonCheckedRoundedIcon from "@mui/icons-material/RadioButtonCheckedRounded";
+import RadarRoundedIcon from "@mui/icons-material/RadarRounded";
 const NoiseGradientMenu = () => {
   const sizeParams = {
     borderRadius: { min: 0, max: 10, step: 1, default: 0 },
@@ -176,10 +180,11 @@ const NoiseGradientMenu = () => {
         justifyContent="center"
         gap={1}
       >
-        <BorderStyleRoundedIcon
-          htmlColor={nightMode.getter ? "#eae3f1" : "#231f22"}
-        ></BorderStyleRoundedIcon>
-
+        <Tooltip placement="top" title="Border Style">
+          <BorderStyleRoundedIcon
+            htmlColor={nightMode.getter ? "#eae3f1" : "#231f22"}
+          ></BorderStyleRoundedIcon>
+        </Tooltip>
         <DefaultMarkedMUISlider
           defaultValue={sizeParams.borderRadius.default}
           step={sizeParams.borderRadius.step}
@@ -200,9 +205,11 @@ const NoiseGradientMenu = () => {
         justifyContent="center"
         gap={1}
       >
-        <ScreenRotationAltRoundedIcon
-          htmlColor={nightMode.getter ? "#eae3f1" : "#231f22"}
-        ></ScreenRotationAltRoundedIcon>
+        <Tooltip placement="top" title="Gradient Rotation">
+          <ScreenRotationAltRoundedIcon
+            htmlColor={nightMode.getter ? "#eae3f1" : "#231f22"}
+          ></ScreenRotationAltRoundedIcon>
+        </Tooltip>
         <DefaultMarkedMUISlider
           sliderLabel=""
           defaultValue={0}
@@ -223,9 +230,11 @@ const NoiseGradientMenu = () => {
         justifyContent="center"
         gap={1}
       >
-        <ContrastRoundedIcon
-          htmlColor={nightMode.getter ? "#eae3f1" : "#231f22"}
-        ></ContrastRoundedIcon>
+        <Tooltip placement="top" title="Contrast">
+          <ContrastRoundedIcon
+            htmlColor={nightMode.getter ? "#eae3f1" : "#231f22"}
+          ></ContrastRoundedIcon>
+        </Tooltip>
         <DefaultMarkedMUISlider
           sliderLabel=""
           defaultValue={100}
@@ -246,9 +255,11 @@ const NoiseGradientMenu = () => {
         justifyContent="center"
         gap={1}
       >
-        <Brightness6RoundedIcon
-          htmlColor={nightMode.getter ? "#eae3f1" : "#231f22"}
-        ></Brightness6RoundedIcon>
+        <Tooltip placement="top" title="Brightness">
+          <Brightness6RoundedIcon
+            htmlColor={nightMode.getter ? "#eae3f1" : "#231f22"}
+          ></Brightness6RoundedIcon>
+        </Tooltip>
         <DefaultMarkedMUISlider
           sliderLabel=""
           defaultValue={100}
@@ -287,9 +298,11 @@ const NoiseGradientMenu = () => {
         justifyContent="center"
         gap={1}
       >
-        <ThirtyFpsSelectRoundedIcon
-          htmlColor={nightMode.getter ? "#eae3f1" : "#231f22"}
-        ></ThirtyFpsSelectRoundedIcon>
+        <Tooltip placement="top" title="Frequency">
+          <ThirtyFpsSelectRoundedIcon
+            htmlColor={nightMode.getter ? "#eae3f1" : "#231f22"}
+          ></ThirtyFpsSelectRoundedIcon>
+        </Tooltip>
         <DefaultMarkedMUISlider
           sliderLabel=""
           defaultValue={0.1}
@@ -316,27 +329,27 @@ const NoiseGradientMenu = () => {
       >
         <ToggleButton
           sx={{
-            borderRadius: "30px 0 30px 0",
+            borderRadius: "30px 0 0 30px",
             color: nightMode.getter ? "#eae3f1" : "#231f22",
           }}
           value="linear"
         >
-          Linear
+          <LinearScaleRoundedIcon />
         </ToggleButton>
         <ToggleButton
           sx={{ color: nightMode.getter ? "#eae3f1" : "#231f22" }}
           value="radial"
         >
-          Radial
+          <RadioButtonCheckedRoundedIcon />
         </ToggleButton>
         <ToggleButton
           sx={{
-            borderRadius: "30px 30px 0 0",
+            borderRadius: "0 30px 30px 0",
             color: nightMode.getter ? "#eae3f1" : "#231f22",
           }}
           value="conic"
         >
-          Conic
+          <RadarRoundedIcon />
         </ToggleButton>
       </ToggleButtonGroup>
     </MenuBackdrop>

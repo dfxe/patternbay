@@ -82,9 +82,6 @@ export default function ColorPaletteMenu({ setPalette, hasThirdColor }: Props) {
             padding: "0.5em",
             width: "2em",
             height: "1em",
-            "&:hover": {
-              animation: `${hoverAnim} 0.2s ease forwards`,
-            },
           }}
           onClick={() => {
             //use the color palette
@@ -158,26 +155,27 @@ export default function ColorPaletteMenu({ setPalette, hasThirdColor }: Props) {
         sx={{
           display: "grid",
           gridTemplateColumns: "repeat(8, 1fr)",
-
-          border: `1px solid ${nightMode.getter ? " #eae3f1" : "#383e4a"}`,
+          gridGap: "0.5em",
+          border: `2px solid ${nightMode.getter ? " #eae3f1" : "#383e4a"}`,
           borderRadius: "20px",
         }}
       >
         {colorButtons.map((color) => color)}
       </List>
       &nbsp;&nbsp;
-      <GradientRoundedIcon
-        htmlColor={nightMode.getter ? " #eae3f1" : "#383e4a"}
-      ></GradientRoundedIcon>
       <Box
         style={{
           display: "flex",
           flexDirection: "row",
           padding: "1em 1em 1em 1em",
-          border: "2px solid red",
+          border: `2px solid  ${nightMode.getter ? " #eae3f1" : "#383e4a"}`,
           borderRadius: "20px",
         }}
       >
+        <GradientRoundedIcon
+          htmlColor={nightMode.getter ? " #eae3f1" : "#383e4a"}
+        ></GradientRoundedIcon>
+        &nbsp;&nbsp;
         <InputColor
           colorValue={customColors.firstColor}
           setColorValue={(color) =>
@@ -193,6 +191,7 @@ export default function ColorPaletteMenu({ setPalette, hasThirdColor }: Props) {
           inputLabel={""}
         />
       </Box>
+      &nbsp;&nbsp;
       {/* TODO third has to be available in aesthetics baym */}
       {hasThirdColor && (
         <InputColor
