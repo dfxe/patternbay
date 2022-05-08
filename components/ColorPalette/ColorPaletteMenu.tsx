@@ -58,6 +58,8 @@ export default function ColorPaletteMenu({ setPalette, hasThirdColor }: Props) {
     ["#9f452d", "#c0f3dc"],
     ["#f7cd1f", "#56c6ae"],
     ["#e77ac6", "#00e4d8"],
+    ["#362d38", "#ae3103"],
+    ["#70cf94", "#5f4874"],
   ];
 
   const [customColors, setCustomColors] = useState({

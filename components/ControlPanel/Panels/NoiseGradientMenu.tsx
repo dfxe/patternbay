@@ -23,10 +23,12 @@ import RadioButtonCheckedRoundedIcon from "@mui/icons-material/RadioButtonChecke
 import RadarRoundedIcon from "@mui/icons-material/RadarRounded";
 const NoiseGradientMenu = () => {
   const sizeParams = {
-    borderRadius: { min: 0, max: 10, step: 1, default: 0 },
+    borderRadius: { min: 0, max: 10, step: 1, default: 3 },
   };
   const [dimensions, setDimensions] = useState({ width: 500, height: 300 });
-  const [borderRadius, setBorderRadius] = useState(10);
+  const [borderRadius, setBorderRadius] = useState(
+    sizeParams.borderRadius.default
+  );
   const [rotation, setRotation] = useState(0);
   const [contrast, setContrast] = useState(100);
   const [octaves, setOctaves] = useState(1);

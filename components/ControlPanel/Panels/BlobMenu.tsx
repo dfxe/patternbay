@@ -18,6 +18,7 @@ import blobshape from "blobshape";
 import OpacityRoundedIcon from "@mui/icons-material/OpacityRounded";
 import DeblurRoundedIcon from "@mui/icons-material/DeblurRounded";
 import Tooltip from "@mui/material/Tooltip";
+import VectorFourVertex from "../../../images/SignifierIcons/VectorFourVertex";
 const BlobMenu = () => {
   const [opacity, setOpacity] = useState(1);
 
@@ -170,9 +171,14 @@ const BlobMenu = () => {
         direction="row"
         sx={{ mb: 1, position: "relative" }}
         alignItems="center"
+        justifyContent="center"
+        gap={1}
       >
+        <VectorFourVertex
+          color={nightMode.getter ? "#eae3f1" : "#231f22"}
+        ></VectorFourVertex>
         <DefaultMarkedMUISlider
-          sliderLabel="Edges"
+          sliderLabel=""
           defaultValue={3}
           step={1}
           min={3}
