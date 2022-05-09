@@ -36,6 +36,11 @@ import Diamond from "../../../images/GeometricShapes/Diamond";
 import ElementTooltip from "./ElementTooltip";
 import { useElementTooltip } from "../Providers/ElementTooltipProvider";
 import { keyframes, styled } from "@mui/material/styles";
+import ViewColumnRoundedIcon from "@mui/icons-material/ViewColumnRounded";
+import PaddingRoundedIcon from "@mui/icons-material/PaddingRounded";
+import Tooltip from "@mui/material/Tooltip";
+
+import ExpandRoundedIcon from "@mui/icons-material/ExpandRounded";
 
 type ConstructableData = {
   index: number;
@@ -252,9 +257,15 @@ export default function GeometricPatterns() {
         direction="row"
         sx={{ mb: 1, position: "relative" }}
         alignItems="center"
+        justifyContent="center"
+        gap={1}
       >
+        <Tooltip placement="top" title="Gap">
+          <ExpandRoundedIcon
+            htmlColor={nightMode.getter ? "#eae3f1" : "#231f22"}
+          ></ExpandRoundedIcon>
+        </Tooltip>
         <DefaultMarkedMUISlider
-          sliderLabel="Gap"
           defaultValue={sizeParams.gap.default}
           step={sizeParams.gap.step}
           min={sizeParams.gap.min}
@@ -270,9 +281,15 @@ export default function GeometricPatterns() {
         direction="row"
         sx={{ mb: 1, position: "relative" }}
         alignItems="center"
+        justifyContent="center"
+        gap={1}
       >
+        <Tooltip placement="top" title="Columns">
+          <ViewColumnRoundedIcon
+            htmlColor={nightMode.getter ? "#eae3f1" : "#231f22"}
+          ></ViewColumnRoundedIcon>
+        </Tooltip>
         <DefaultMarkedMUISlider
-          sliderLabel="Column Number"
           defaultValue={4}
           step={1}
           min={1}
@@ -288,9 +305,15 @@ export default function GeometricPatterns() {
         direction="row"
         sx={{ mb: 1, position: "relative" }}
         alignItems="center"
+        justifyContent="center"
+        gap={1}
       >
+        <Tooltip placement="top" title="Padding">
+          <PaddingRoundedIcon
+            htmlColor={nightMode.getter ? "#eae3f1" : "#231f22"}
+          ></PaddingRoundedIcon>
+        </Tooltip>
         <DefaultMarkedMUISlider
-          sliderLabel="Padding"
           defaultValue={2}
           step={1}
           min={2}
@@ -419,6 +442,12 @@ export default function GeometricPatterns() {
             borderRadius: "64px",
             padding: "1em 1em 1em 1em",
             marginBlockStart: "1rem",
+            "&:hover": {
+              backgroundColor: "#6f5caa",
+            },
+            "&:not(:hover)": {
+              backgroundColor: "#6068df",
+            },
           }}
           name="Generate"
           variant="contained"

@@ -32,10 +32,19 @@ function ActionsPanel() {
     <Box className="grid grid-cols-2 gap-2">
       <Button
         disabled
-        className="bg-ind-dark text-ind-light rounded-full disabled:bg-ind-disabled p-6 hover:bg-ind-hover"
         sx={{
+          backgroundColor: "#6068d2",
+          color: "#fff",
+          borderRadius: "64px",
+          padding: "1em",
           boxShadow:
             "rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset",
+          "&:hover": {
+            backgroundColor: "#6f5caa",
+          },
+          "&:not(:hover)": {
+            backgroundColor: "#6068df",
+          },
         }}
         variant="contained"
         onClick={() => {}}
@@ -43,10 +52,19 @@ function ActionsPanel() {
         Examples
       </Button>
       <Button
-        className="bg-ind-dark text-ind-light rounded-full p-6 hover:bg-ind-hover whitespace-nowrap"
         sx={{
+          backgroundColor: "#6068d2",
+          color: "#fff",
+          borderRadius: "64px",
+          padding: "1em",
           boxShadow:
             "rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset",
+          "&:hover": {
+            backgroundColor: "#6f5caa",
+          },
+          "&:not(:hover)": {
+            backgroundColor: "#6068df",
+          },
         }}
         variant="contained"
         onClick={() => showShadow.setter(!showShadow.getter)}
@@ -55,10 +73,19 @@ function ActionsPanel() {
       </Button>
 
       <Button
-        className="bg-ind-dark text-ind-light rounded-full p-6 hover:bg-ind-hover disabled:bg-ind-disabled whitespace-nowrap"
         sx={{
+          backgroundColor: "#6068d2",
+          color: "#fff",
+          borderRadius: "64px",
+          padding: "1em",
           boxShadow:
             "rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset",
+          "&:hover": {
+            backgroundColor: "#6f5caa",
+          },
+          "&:not(:hover)": {
+            backgroundColor: "#6068df",
+          },
         }}
         variant="contained"
         onClick={(e) => {
@@ -71,12 +98,20 @@ function ActionsPanel() {
 
       <Button
         disabled={concentrics.getter.length === 0}
-        className="bg-ind-dark text-ind-light rounded-full p-6 disabled:bg-ind-disabled hover:bg-ind-hover"
         sx={{
+          backgroundColor: "#6068d2",
+          color: "#fff",
+          borderRadius: "64px",
+          padding: "1em",
           boxShadow:
             "rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset",
+          "&:hover": {
+            backgroundColor: "#6f5caa",
+          },
+          "&:not(:hover)": {
+            backgroundColor: "#6068df",
+          },
         }}
-        variant="contained"
         onClick={() => {
           handleClearAlert();
         }}

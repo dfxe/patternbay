@@ -25,6 +25,15 @@ const BayButton = styled(Button)({
   },
 });
 
+const CloseButton = styled(Button)({
+  "&:hover": {
+    animation: `${borderAnim} 0.2s ease forwards`,
+  },
+  "&:blur": {
+    animation: `${borderAnim} 0.2s ease backwards`,
+  },
+});
+
 const ElementTooltip = () => {
   const tooltip = useElementTooltip();
   const { x, y } = useMouse();
@@ -71,7 +80,8 @@ const ElementTooltip = () => {
           }}
           onClick={() => tooltip.setSelected(false)}
         ></BayButton>
-        <Button
+        <CloseButton
+          sx={{ borderRadius: "20px" }}
           onClick={() => {
             tooltip.show({
               ...tooltip.elementToShow,
@@ -81,7 +91,7 @@ const ElementTooltip = () => {
           }}
         >
           <CloseRoundedIcon style={{ color: "#6068d2" }} />
-        </Button>
+        </CloseButton>
       </div>
     </div>
   );

@@ -12,13 +12,17 @@ import { useNightMode } from "../Providers/NightModeProvider";
 import { useConcentrics } from "../Providers/ConcentricsProvider";
 import { useShape } from "../Providers/ShapeProvider";
 import InputColor from "./InputColor";
-
 import DefaultMarkedMUISlider from "../../DStyles/DefaultMarkedMUISlider";
 import WorkspacesRoundedIcon from "@mui/icons-material/WorkspacesRounded";
 import ActionsPanel from "./ActionsPanel";
-import ColorPaletteMenu from "../../ColorPalette/ColorPaletteMenu";
 import { useColors } from "../Providers/ColorProvider";
 import MenuBackdrop from "./MenuBackdrop";
+import RoundedCornerIcon from "@mui/icons-material/RoundedCorner";
+import RoundedCornerSharpIcon from "@mui/icons-material/RoundedCornerSharp";
+import Tooltip from "@mui/material/Tooltip";
+import PhotoSizeSelectLargeRoundedIcon from "@mui/icons-material/PhotoSizeSelectLargeRounded";
+import ExpandRoundedIcon from "@mui/icons-material/ExpandRounded";
+import RotateRightRoundedIcon from "@mui/icons-material/RotateRightRounded";
 
 function CirclePatternsMenu() {
   const mqMin1024 = useMediaQuery("(min-width:1024px)");
@@ -32,6 +36,8 @@ function CirclePatternsMenu() {
 
   const [opacity, setOpacity] = useState<number>(0);
   const [palette, setPaletteUsed] = useState<string[]>(["#6f5a5a", "#69a594"]);
+
+  //TODO change tailwind button class
 
   const sizeParams = {
     default: 1,
@@ -121,24 +127,26 @@ function CirclePatternsMenu() {
         <WorkspacesRoundedIcon
           sx={{ color: nightMode.getter ? "#eae3f1" : "#292d36" }}
         />
-        &nbsp; Circles Bay
+        &nbsp; Concentrics Bay
       </Typography>
       <br></br>
       {/* TODO fix undo redo */}
       {/* <UndoRedo></UndoRedo> */}
-      <InputColor
-        colorValue={colors.getter}
-        setColorValue={colors.setter}
-        inputLabel={"shapes"}
-      />
+
       <Stack
         spacing={1}
         direction="row"
         sx={{ mb: 1, position: "relative" }}
         alignItems="center"
+        justifyContent="center"
+        gap={1}
       >
+        <Tooltip placement="top" title="Size">
+          <PhotoSizeSelectLargeRoundedIcon
+            htmlColor={nightMode.getter ? "#eae3f1" : "#231f22"}
+          ></PhotoSizeSelectLargeRoundedIcon>
+        </Tooltip>
         <DefaultMarkedMUISlider
-          sliderLabel="Size"
           defaultValue={sizeParams.default}
           step={sizeParams.step}
           min={sizeParams.minSize}
@@ -154,9 +162,14 @@ function CirclePatternsMenu() {
         direction="row"
         sx={{ mb: 1, position: "relative" }}
         alignItems="center"
+        gap={1}
       >
+        <Tooltip placement="top" title="Expand">
+          <ExpandRoundedIcon
+            htmlColor={nightMode.getter ? "#eae3f1" : "#231f22"}
+          ></ExpandRoundedIcon>
+        </Tooltip>
         <DefaultMarkedMUISlider
-          sliderLabel="Radius"
           defaultValue={radiusParams.default}
           step={radiusParams.step}
           min={radiusParams.minRadius}
@@ -173,9 +186,14 @@ function CirclePatternsMenu() {
         direction="row"
         sx={{ mb: 1, position: "relative" }}
         alignItems="center"
+        gap={1}
       >
+        <Tooltip placement="top" title="Sharp Corners">
+          <RoundedCornerSharpIcon
+            htmlColor={nightMode.getter ? "#eae3f1" : "#231f22"}
+          ></RoundedCornerSharpIcon>
+        </Tooltip>
         <DefaultMarkedMUISlider
-          sliderLabel="Roundness"
           defaultValue={shapeParams.default}
           step={shapeParams.step}
           min={shapeParams.min}
@@ -185,10 +203,25 @@ function CirclePatternsMenu() {
             entityShape.setter(+(e.target as HTMLInputElement).value);
           }}
         />
+        <Tooltip placement="top" title="Round Corners">
+          <RoundedCornerIcon
+            htmlColor={nightMode.getter ? "#eae3f1" : "#231f22"}
+          ></RoundedCornerIcon>
+        </Tooltip>
       </Stack>
-      <Stack spacing={1} direction="row" sx={{ mb: 1 }} alignItems="center">
+      <Stack
+        spacing={1}
+        direction="row"
+        sx={{ mb: 1 }}
+        alignItems="center"
+        gap={1}
+      >
+        <Tooltip placement="top" title="Rotate">
+          <RotateRightRoundedIcon
+            htmlColor={nightMode.getter ? "#eae3f1" : "#231f22"}
+          ></RotateRightRoundedIcon>
+        </Tooltip>
         <DefaultMarkedMUISlider
-          sliderLabel="Rotation"
           defaultValue={rotationParams.default}
           step={rotationParams.step}
           min={rotationParams.minRotation}
@@ -225,14 +258,27 @@ function CirclePatternsMenu() {
           }}
         />
       </Stack>
-      
+      <InputColor
+        colorValue={colors.getter}
+        setColorValue={colors.setter}
+        inputLabel={"shapes"}
+      />
       <br></br>
       <Box className="grid grid-cols-2 gap-2">
         <Button
-          className="bg-ind-dark text-ind-light rounded-full p-6 hover:bg-ind-hover"
           sx={{
+            backgroundColor: "#6068d2",
+            color: "#fff",
+            borderRadius: "64px",
+            padding: "1em",
             boxShadow:
               "rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset",
+            "&:hover": {
+              backgroundColor: "#6f5caa",
+            },
+            "&:not(:hover)": {
+              backgroundColor: "#6068df",
+            },
           }}
           variant="contained"
           onClick={() => {
@@ -242,10 +288,19 @@ function CirclePatternsMenu() {
           + Add
         </Button>
         <Button
-          className="bg-ind-dark text-ind-light rounded-full p-6 hover:bg-ind-hover"
           sx={{
+            backgroundColor: "#6068d2",
+            color: "#fff",
+            borderRadius: "64px",
+            padding: "1em",
             boxShadow:
               "rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset",
+            "&:hover": {
+              backgroundColor: "#6f5caa",
+            },
+            "&:not(:hover)": {
+              backgroundColor: "#6068df",
+            },
           }}
           variant="contained"
           onClick={() => {

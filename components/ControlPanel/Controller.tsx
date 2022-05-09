@@ -12,7 +12,7 @@ import MenuSidebar from "./Panels/MenuSidebar";
 import BlobMenu from "../ControlPanel/Panels/BlobMenu";
 import NoiseGradientMenu from "../ControlPanel/Panels/NoiseGradientMenu";
 import GeometricShapes from "./Panels/AestheticsMenu";
-import CirclePatternsMenu from "./Panels/CirclesMenu";
+import CirclePatternsMenu from "./Panels/ConcentricsMenu";
 import TextInterfaceMenu from "./Panels/SocialsMenu";
 import { nanoid } from "nanoid";
 export default function Controller() {
