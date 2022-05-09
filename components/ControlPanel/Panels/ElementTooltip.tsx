@@ -4,25 +4,24 @@ import { useMouse } from "rooks";
 import Button from "@mui/material/Button";
 import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
 import { keyframes, styled } from "@mui/material/styles";
-const hoverAnim = keyframes`
+const borderAnim = keyframes`
   0% {
     
-    transform: scale(1);
+    border: 2px #222 solid;
   }
 
   100% {
 
-    transform: scale(1.1);
+    border: 2px #6068d2 solid;
 
   }
 `;
 const BayButton = styled(Button)({
-  color: "#6068d2",
   "&:hover": {
-    animation: `${hoverAnim} 0.2s ease forwards`,
+    animation: `${borderAnim} 0.2s ease forwards`,
   },
   "&:blur": {
-    animation: `${hoverAnim} 0.2s ease backwards`,
+    animation: `${borderAnim} 0.2s ease backwards`,
   },
 });
 

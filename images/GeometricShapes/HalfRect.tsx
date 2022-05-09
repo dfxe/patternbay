@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { SVGProps } from "react";
 import { useElementTooltip } from "../../components/ControlPanel/Providers/ElementTooltipProvider";
 import { nanoid } from "nanoid";
+
 const HalfRect = (props: SVGProps<SVGSVGElement>) => {
   const elementTooltip = useElementTooltip();
   const [clicked, setClicked] = useState(false);

@@ -150,7 +150,9 @@ export default function ColorPaletteMenu({ setPalette, hasThirdColor }: Props) {
         backgroundColor: nightMode.getter ? "#383e4a" : " #eae3f1",
         borderRadius: "64px",
         padding: "1em",
-        boxShadow: "0px 0px 10px rgba(0,0,0,0.2)",
+        border: `5px solid ${nightMode.getter ? "#292d3655" : "#eae3f1"}`,
+        boxShadow:
+          "rgba(50, 50, 93, 0.25) 0px 100px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset",
       }}
     >
       <List
