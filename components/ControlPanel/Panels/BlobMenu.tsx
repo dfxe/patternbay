@@ -20,6 +20,8 @@ import DeblurRoundedIcon from "@mui/icons-material/DeblurRounded";
 import Tooltip from "@mui/material/Tooltip";
 import VectorFourVertex from "../../../images/SignifierIcons/VectorFourVertex";
 import AllOutRoundedIcon from "@mui/icons-material/AllOutRounded";
+import { useMouse } from "rooks";
+import { nanoid } from "nanoid";
 const BlobMenu = () => {
   const [opacity, setOpacity] = useState(1);
 
@@ -47,8 +49,10 @@ const BlobMenu = () => {
 
   const [textRotation, setTextRotation] = useState(0);
 
-  const [textColor, setTextColor] = useState("#ffffff");
+  const [textColor, setTextColor] = useState<string>("#ffffff");
   const [textSize, setTextSize] = useState(4);
+  const [textPosition, setTextPosition] = useState("center");
+  const [numberOfBlobs, setNumberOfBlobs] = useState(1);
 
   const [borderz, setBorderz] = useState({
     leftTopX: Math.floor(Math.random() * 200) + 200,
@@ -63,17 +67,27 @@ const BlobMenu = () => {
   const [blobText, setBlobText] = useState("placeholder");
   const [color, setColor] = useState("#6550a3");
   type BlobShape = {
-    size: number;
-    grow: number;
-    edges: number;
-    seed: number | string;
+    d: {
+      size: number;
+      grow: number;
+      edges: number;
+      seed: string;
+    };
+    fill: string;
+    stroke: string;
+    strokeWidth: string;
+    strokeLinecap: string;
+    strokeLinejoin: string;
   };
-  const [dPath, setDPath] = useState({
-    size: 300,
-    growth: 6,
-    edges: 6,
-    seed: "44",
-  });
+
+  const [blobShapes, setBlobShapes] = useState<BlobShape[]>([
+    {
+      size: 300,
+      grow: 6,
+      edges: 6,
+      seed: "44",
+    },
+  ]);
   const nightMode = useNightMode();
 
   const handleTextChange = (event: {
@@ -106,18 +120,36 @@ const BlobMenu = () => {
     setIsGrainy(event.target.checked);
   };
 
-  const handleGenerateBlob = () => {
-    setDPath({
-      size: 40,
-      growth: dPath.growth,
-      edges: dPath.edges,
-      seed: Math.floor(Math.random() * 100).toString(),
-    });
+  const handleGenerateBlob = (numberOfBlobs: number): JSX.Element[] => {
+    let paths: JSX.Element[] = [];
+    for (let i = 0; i < numberOfBlobs; i++) {
+      if (blobShapes.length > numberOfBlobs) {
+        //filter
+        setBlobShapes(blobShapes.filter((_, index) => index !== i));
+      } else {
+        setBlobShapes([
+          ...blobShapes,
+          {
+            size: 40,
+            grow: blobShapes[i].grow,
+            edges: blobShapes[i].edges,
+            seed: Math.floor(Math.random() * 100).toString(),
+          },
+        ]);
+      }
+      paths.push(
+        <path
+          d={blobshape(blobShapes[i]).path}
+          /* stroke="black" */
+          fill={`url(#a-linear-gradient-blob)`}
+          opacity={opacity}
+        />
+      );
+    }
+
+    return paths;
   };
 
-  useEffect(() => {
-    handleGenerateBlob();
-  }, []);
   useEffect(() => {
     setColor(colorPalette.firstColor);
     setGradientColor(colorPalette.secondColor);
@@ -189,10 +221,13 @@ const BlobMenu = () => {
           max={10}
           markPoints={null}
           onChangeMod={(e) => {
-            setDPath({
-              ...dPath,
-              edges: +(e.target as HTMLInputElement).value,
-            });
+            //change each edges in dPaths
+            setBlobShapes(
+              blobShapes.map((dPath) => ({
+                ...dPath,
+                edges: +(e.target as HTMLInputElement).value,
+              }))
+            );
           }}
         />
       </Stack>
@@ -215,10 +250,12 @@ const BlobMenu = () => {
           max={8}
           markPoints={null}
           onChangeMod={(e) => {
-            setDPath({
-              ...dPath,
-              growth: +(e.target as HTMLInputElement).value,
-            });
+            setBlobShapes(
+              blobShapes.map((dPath) => ({
+                ...dPath,
+                grow: +(e.target as HTMLInputElement).value,
+              }))
+            );
           }}
         />
       </Stack>
@@ -406,6 +443,31 @@ const BlobMenu = () => {
           inputLabel={"blur "}
         />
       </Stack>
+      <Stack
+        spacing={1}
+        direction="row"
+        sx={{ mb: 1, position: "relative" }}
+        alignItems="center"
+        justifyContent="center"
+        gap={1}
+      >
+        <Tooltip placement="top" title="Blur">
+          <DeblurRoundedIcon
+            htmlColor={nightMode.getter ? "#eae3f1" : "#231f22"}
+          ></DeblurRoundedIcon>
+        </Tooltip>
+        <DefaultMarkedMUISlider
+          sliderLabel=""
+          defaultValue={10}
+          step={10}
+          min={10}
+          max={50}
+          markPoints={null}
+          onChangeMod={(e) => {
+            setBlurPercent(+(e.target as HTMLInputElement).value);
+          }}
+        />
+      </Stack>
       <div id="the-blob-itself">
         <svg
           aria-label="blob-svg"
@@ -440,18 +502,30 @@ const BlobMenu = () => {
               />
             </linearGradient>
           </defs>
-          <path
-            d={blobshape(dPath).path}
-            /* stroke="black" */
-            fill={`url(#a-linear-gradient-blob)`}
-            opacity={opacity}
-          />
+          {handleGenerateBlob(1).map((blob) => {
+            return (
+              <g key={nanoid()}>
+                <path
+                  fill={blob.color}
+                  d={blob.path}
+                  stroke={blob.color}
+                  strokeWidth={blob.strokeWidth}
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </g>
+            );
+          })}
+
           <text
-            x="0"
+            x="5"
             y="15"
             /* TODO verify textColor */
-            style={{ fontSize: textSize, transformOrigin: "center" }}
-            color={textColor}
+            style={{
+              fontSize: textSize,
+              transformOrigin: "center",
+              color: textColor,
+            }}
             transform={`rotate(${textRotation}deg)`}
           >
             {blobText}
@@ -464,10 +538,7 @@ const BlobMenu = () => {
       <Box
         sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}
       >
-        <Button
-          className="bg-ind-dark text-ind-light rounded-full p-6 hover:bg-ind-hover"
-          onClick={() => handleGenerateBlob()}
-        >
+        <Button className="bg-ind-dark text-ind-light rounded-full p-6 hover:bg-ind-hover">
           Generate
         </Button>
       </Box>

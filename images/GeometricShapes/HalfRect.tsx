@@ -10,7 +10,7 @@ type Props = {
 const HalfRect = ({ props, canClick }: Props) => {
   const elementTooltip = useElementTooltip();
   const [clicked, setClicked] = useState(false);
-  const [fillColor, setFillColor] = useState(props.color);
+  const [fillColor, setFillColor] = useState(props.color || "#6068d2");
   const [thisID, setThisID] = useState(nanoid());
   const [isClickable, setIsClickable] = useState(canClick);
   useEffect(() => {

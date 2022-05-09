@@ -20,7 +20,7 @@ const InputColor = ({ colorValue, setColorValue, inputLabel }: Props) => {
         name="favcolor"
         id="input-primary-color"
         value={colorValue}
-        onChange={(e) => setColorValue(e.target.value)}
+        onChange={(e) => +(e.target as HTMLInputElement).value}
       />
       <Typography
         gutterBottom

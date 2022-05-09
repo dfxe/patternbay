@@ -107,7 +107,7 @@ export default function GeometricPatterns() {
 
   const nightMode = useNightMode();
 
-  const NUMBER_OF_SHAPES = 13;
+  const NUMBER_OF_SHAPES = 14;
 
   const getSelectedShape = (constructable: ConstructableData): JSX.Element => {
     const stylez = {
