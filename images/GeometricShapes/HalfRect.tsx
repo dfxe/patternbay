@@ -3,11 +3,16 @@ import { SVGProps } from "react";
 import { useElementTooltip } from "../../components/ControlPanel/Providers/ElementTooltipProvider";
 import { nanoid } from "nanoid";
 
-const HalfRect = (props: SVGProps<SVGSVGElement>) => {
+type Props = {
+  props: SVGProps<SVGSVGElement>;
+  canClick: boolean;
+};
+const HalfRect = ({ props, canClick }: Props) => {
   const elementTooltip = useElementTooltip();
   const [clicked, setClicked] = useState(false);
   const [fillColor, setFillColor] = useState(props.color);
   const [thisID, setThisID] = useState(nanoid());
+  const [isClickable, setIsClickable] = useState(canClick);
   useEffect(() => {
     if (elementTooltip.elementToShow.elementId === thisID) {
       setFillColor(() =>
@@ -37,14 +42,15 @@ const HalfRect = (props: SVGProps<SVGSVGElement>) => {
         cursor: "pointer",
       }}
       onClick={() => {
-        setClicked(!clicked);
-        elementTooltip.show({
-          elementId: thisID,
-          isShown: !elementTooltip.elementToShow.isShown,
-        });
-        console.log(elementTooltip.elementToShow.elementId);
+        if (isClickable) {
+          setClicked(!clicked);
+          elementTooltip.show({
+            elementId: thisID,
+            isShown: !elementTooltip.elementToShow.isShown,
+          });
+        }
       }}
-      // min-x, min-y, width, height.
+      // min-x, min-y, width, height
       viewBox="256 256 1536 1536"
     >
       <defs>

@@ -34,7 +34,13 @@ const ShapesPaletteMenu = ({
   const nightMode = useNightMode();
   //TODO change to some enum with the shape names, then call the shape name from the enum
   const allShapes = [
-    <HalfRect key={nanoid()} color={"#6068d2"}></HalfRect>,
+    <HalfRect
+      key={nanoid()}
+      props={{
+        color: "#fff",
+      }}
+      canClick={false}
+    ></HalfRect>,
     <Cloud key={nanoid()} color={"#6068d2"}></Cloud>,
     <Circle key={nanoid()} color={"#6068d2"}></Circle>,
     <CurveLine key={nanoid()} color={"#6068d2"}></CurveLine>,

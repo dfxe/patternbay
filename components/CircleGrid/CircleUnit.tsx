@@ -5,13 +5,16 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 import CircleGenerator from "./CircleGenerator";
 
 import DefaultMarkedMUISlider from "../DStyles/DefaultMarkedMUISlider";
-
+import AdjustRoundedIcon from "@mui/icons-material/AdjustRounded";
+import Tooltip from "@mui/material/Tooltip";
+import { useNightMode } from "../ControlPanel/Providers/NightModeProvider";
 type Props = {
   concentricsNumber: number;
 };
 const CircleUnit = ({ concentricsNumber }: Props) => {
   //This is just one of the concentric circles with the slider
   const [currentSliderNum, setCurrentSliderNum] = useState(1);
+  const nightMode = useNightMode();
   //TODO fix reseting numbers of concentrics
   const mqMin1024 = useMediaQuery("(min-width:1024px)");
 
@@ -48,6 +51,7 @@ const CircleUnit = ({ concentricsNumber }: Props) => {
           position: mqMin1024 ? "absolute" : "fixed",
           display: "flex",
           flexDirection: mqMin1024 ? "row" : "column",
+
           borderRadius: 1,
           left: mqMin1024 ? "75vw" : "15vw",
           top: mqMin1024 ? `${-10 + concentricsNumber * 10}vh` : "30vh",
@@ -57,9 +61,14 @@ const CircleUnit = ({ concentricsNumber }: Props) => {
           padding: "1.5rem",
           zIndex: 9999,
         }}
+        gap={1}
       >
+        <Tooltip placement="top" title="Concentric">
+          <AdjustRoundedIcon
+            htmlColor={nightMode.getter ? "#eae3f1" : "#231f22"}
+          ></AdjustRoundedIcon>
+        </Tooltip>
         <DefaultMarkedMUISlider
-          sliderLabel="Concentrics"
           defaultValue={1}
           min={0}
           max={15}

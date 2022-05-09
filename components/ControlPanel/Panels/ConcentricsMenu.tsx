@@ -23,6 +23,7 @@ import Tooltip from "@mui/material/Tooltip";
 import PhotoSizeSelectLargeRoundedIcon from "@mui/icons-material/PhotoSizeSelectLargeRounded";
 import ExpandRoundedIcon from "@mui/icons-material/ExpandRounded";
 import RotateRightRoundedIcon from "@mui/icons-material/RotateRightRounded";
+import AdjustRoundedIcon from "@mui/icons-material/AdjustRounded";
 
 function CirclePatternsMenu() {
   const mqMin1024 = useMediaQuery("(min-width:1024px)");

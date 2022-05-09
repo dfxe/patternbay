@@ -19,6 +19,7 @@ import OpacityRoundedIcon from "@mui/icons-material/OpacityRounded";
 import DeblurRoundedIcon from "@mui/icons-material/DeblurRounded";
 import Tooltip from "@mui/material/Tooltip";
 import VectorFourVertex from "../../../images/SignifierIcons/VectorFourVertex";
+import AllOutRoundedIcon from "@mui/icons-material/AllOutRounded";
 const BlobMenu = () => {
   const [opacity, setOpacity] = useState(1);
 
@@ -200,9 +201,14 @@ const BlobMenu = () => {
         direction="row"
         sx={{ mb: 1, position: "relative" }}
         alignItems="center"
+        gap={1}
       >
+        <Tooltip placement="top" title="Growth">
+          <AllOutRoundedIcon
+            htmlColor={nightMode.getter ? "#eae3f1" : "#231f22"}
+          ></AllOutRoundedIcon>
+        </Tooltip>
         <DefaultMarkedMUISlider
-          sliderLabel="Growth"
           defaultValue={1}
           step={1}
           min={1}

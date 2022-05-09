@@ -44,8 +44,8 @@ import ExpandRoundedIcon from "@mui/icons-material/ExpandRounded";
 
 type ConstructableData = {
   index: number;
-  rotation: number;
-  color: string;
+  props: { rotation: number; color: string };
+  canClick: boolean;
 };
 type Patternz = {
   patterns: JSX.Element[];
@@ -97,7 +97,7 @@ export default function GeometricPatterns() {
   const [selectedShapeIndex, setSelectedShapeIndex] = useState<number[]>([]);
   const [alignment, setAlignment] = useState("deg90");
 
-  const handleChange = (
+  const handleRotation = (
     //@ts-ignore
     event: React.MouseEvent<HTMLElement>,
     newAlignment: string
@@ -111,8 +111,8 @@ export default function GeometricPatterns() {
 
   const getSelectedShape = (constructable: ConstructableData): JSX.Element => {
     const stylez = {
-      rotate: constructable.rotation,
-      color: constructable.color,
+      props: constructable.props,
+      canClick: constructable.canClick,
     };
     switch (constructable.index) {
       case 0:
@@ -164,10 +164,15 @@ export default function GeometricPatterns() {
                 Math.floor(Math.random() * selectedIndexes.length)
               ]
             : Math.floor(Math.random() * NUMBER_OF_SHAPES),
-        rotation: rotationDegree,
-        // one of the colors
-        color:
-          Math.random() > 0.5 ? colorsUsed.firstColor : colorsUsed.secondColor,
+        props: {
+          rotation: rotationDegree,
+          // one of the colors
+          color:
+            Math.random() > 0.5
+              ? colorsUsed.firstColor
+              : colorsUsed.secondColor,
+        },
+        canClick: true,
       });
 
       patterns.push(
@@ -190,8 +195,11 @@ export default function GeometricPatterns() {
       patterns.push(
         getSelectedShape({
           index: indexes[i],
-          rotation: rotationDegs,
-          color: colors[i],
+          props: {
+            rotation: rotationDegs,
+            color: colors[i],
+          },
+          canClick: true,
         })
       );
     }
@@ -335,7 +343,7 @@ export default function GeometricPatterns() {
           color="primary"
           value={alignment}
           exclusive
-          onChange={handleChange}
+          onChange={handleRotation}
         >
           <ToggleButton
             sx={{
