@@ -24,6 +24,7 @@ import PhotoSizeSelectLargeRoundedIcon from "@mui/icons-material/PhotoSizeSelect
 import ExpandRoundedIcon from "@mui/icons-material/ExpandRounded";
 import RotateRightRoundedIcon from "@mui/icons-material/RotateRightRounded";
 import AdjustRoundedIcon from "@mui/icons-material/AdjustRounded";
+import Divider from "@mui/material/Divider";
 
 function CirclePatternsMenu() {
   const mqMin1024 = useMediaQuery("(min-width:1024px)");
@@ -264,6 +265,8 @@ function CirclePatternsMenu() {
         setColorValue={colors.setter}
         inputLabel={"shapes"}
       />
+      <br></br>
+      <Divider />
       <br></br>
       <Box className="grid grid-cols-2 gap-2">
         <Button

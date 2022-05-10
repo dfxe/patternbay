@@ -21,7 +21,7 @@ const CircleUnit = ({ concentricsNumber }: Props) => {
   const handleThisNumber = (eventNo: number) => {
     setCurrentSliderNum(eventNo);
   };
-
+  //TODO fix value label zindex, div scroll issue
   return (
     <Box sx={{ display: "flex", flexDirection: "row" }}>
       <Box
@@ -61,6 +61,7 @@ const CircleUnit = ({ concentricsNumber }: Props) => {
           padding: "1.5rem",
           zIndex: 9999,
         }}
+        //fix position of concentric icon
         gap={1}
       >
         <Tooltip placement="top" title="Concentric">

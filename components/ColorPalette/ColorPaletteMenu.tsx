@@ -71,6 +71,7 @@ export default function ColorPaletteMenu({ setPalette, hasThirdColor }: Props) {
   const getColors = (): JSX.Element[] => {
     let patterns: JSX.Element[] = [];
     for (let i = 0; i < colors.length; i++) {
+      //TODO colors are broken
       patterns.push(
         <ListItemButton
           key={nanoid()}

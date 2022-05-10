@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
-import Jungle from "../../../images/ptt.png";
+
 function Hero() {
   return (
     <section className="text-white bg-gradient-to-b from-gray-900 via-indigo-400 to-indigo-400">

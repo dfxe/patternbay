@@ -347,9 +347,10 @@ export default function GeometricPatterns() {
         >
           <ToggleButton
             sx={{
-              borderRadius: "30px 0 30px 0",
+              borderRadius: "30px 0  0 30px",
               width: "3em",
               height: "3em",
+              fontSize: "0.8em",
               color: nightMode.getter ? "#eae3f1" : "#231f22",
             }}
             value="0"
@@ -361,6 +362,7 @@ export default function GeometricPatterns() {
               color: nightMode.getter ? "#eae3f1" : "#231f22",
               width: "3em",
               height: "3em",
+              fontSize: "0.8em",
             }}
             value="45"
           >
@@ -371,6 +373,7 @@ export default function GeometricPatterns() {
               color: nightMode.getter ? "#eae3f1" : "#231f22",
               width: "3em",
               height: "3em",
+              fontSize: "0.8em",
             }}
             value="90"
           >
@@ -381,6 +384,7 @@ export default function GeometricPatterns() {
               color: nightMode.getter ? "#eae3f1" : "#231f22",
               width: "3em",
               height: "3em",
+              fontSize: "0.8em",
             }}
             value="135"
           >
@@ -391,6 +395,7 @@ export default function GeometricPatterns() {
               color: nightMode.getter ? "#eae3f1" : "#231f22",
               width: "3em",
               height: "3em",
+              fontSize: "0.8em",
             }}
             value="180"
           >
@@ -401,6 +406,7 @@ export default function GeometricPatterns() {
               color: nightMode.getter ? "#eae3f1" : "#231f22",
               width: "3em",
               height: "3em",
+              fontSize: "0.8em",
             }}
             value="225"
           >
@@ -411,6 +417,7 @@ export default function GeometricPatterns() {
               color: nightMode.getter ? "#eae3f1" : "#231f22",
               width: "3em",
               height: "3em",
+              fontSize: "0.8em",
             }}
             value="270"
           >
@@ -418,10 +425,11 @@ export default function GeometricPatterns() {
           </ToggleButton>
           <ToggleButton
             sx={{
-              borderRadius: "30px 30px 0 0",
+              borderRadius: "0 30px 30px 0",
               color: nightMode.getter ? "#eae3f1" : "#231f22",
               width: "3em",
               height: "3em",
+              fontSize: "0.8em",
             }}
             value="315"
           >

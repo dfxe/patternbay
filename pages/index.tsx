@@ -5,19 +5,17 @@ import "@fontsource/roboto/300.css";
 import "@fontsource/roboto/400.css";
 import "@fontsource/roboto/500.css";
 import "@fontsource/roboto/700.css";
-import useMediaQuery from "@mui/material/useMediaQuery";
-import Controller from "../components/ControlPanel/Controller";
-import Providers from "../components/ControlPanel/Providers/Providers";
-import NightMode from "../components/NightMode/NightMode";
+
 import SEO from "../components/SEO/Seo.js";
 
-import UnderConstruction from "../components/UnderConstruction/UnderConstruction";
 import Navbar from "../components/LandingPage/Navbar/Navbar";
 import Hero from "../components/LandingPage/Hero/Hero";
 import Footer from "../components/LandingPage/Footer/Footer";
 import SignUp from "../components/LandingPage/SignUp/SignUp";
 import Gallery from "../components/LandingPage/Gallery/Gallery";
 const Home: NextPage = () => {
+  //TODO get inspiration from other pages mentioned in the plan
+  //TODO use graphics from the bays, demo the bays
   return (
     <div>
       {" "}

@@ -1,7 +1,6 @@
 import React from "react";
 import Image from "next/image";
 import Underwork from "../../../images/underWork.png";
-import { ImageAspectRatioRounded } from "@mui/icons-material";
 const Gallery = (): JSX.Element => {
   return (
     <section className="text-gray-600 body-font  bg-gradient-to-t from-indigo-500 to-indigo-500">

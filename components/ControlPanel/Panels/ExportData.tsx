@@ -151,12 +151,12 @@ const ExportData = ({ canDisplay, open, setOpen }: Props) => {
             (items[0].parentElement as HTMLElement).style.transform
           }}\n`;
         let dataToExportHTML = "<div id='c-parent'>\n";
-        let dataToExportJSX = `<div style={{position:'absolute',transformOrigin: ${
+        let dataToExportJSX = `<div style={{position:'absolute',transformOrigin: '${
           (items[0].parentElement as HTMLElement).style.transformOrigin
-        },
-       transform: ${
+        }',
+       transform: '${
          (items[0].parentElement as HTMLElement).style.transform
-       }}}>\n`;
+       }'}}>\n`;
         const idsForCSS = new Array(items.length)
           .fill("")
           .map((item, i) => `c${i}-outof-${items.length - 1}`);
