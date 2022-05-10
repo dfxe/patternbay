@@ -2,7 +2,7 @@ import React from "react";
 import Link from "next/link";
 const Footer = () => {
   return (
-    <footer className="text-white bg-gradient-to-t from-indigo-600 via-purple-50 to-indigo-300">
+    <footer className="text-white bg-gradient-to-t from-indigo-600 via-indigo-700 to-indigo-800">
       <div className="max-w-screen-xl px-4 pt-32 pb-12 mx-auto sm:px-6 lg:px-8">
         <div className="max-w-3xl mx-auto text-center">
           <p className="text-4xl font-extrabold sm:text-6xl text-black">

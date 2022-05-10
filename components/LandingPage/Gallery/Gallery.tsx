@@ -4,7 +4,7 @@ import Underwork from "../../../images/underWork.png";
 import { ImageAspectRatioRounded } from "@mui/icons-material";
 const Gallery = (): JSX.Element => {
   return (
-    <section className="text-gray-600 body-font  bg-gradient-to-t from-purple-600 via-purple-50 to-sky-300">
+    <section className="text-gray-600 body-font  bg-gradient-to-t from-indigo-500 to-indigo-500">
       <div className="container px-5 py-24 mx-auto flex flex-wrap">
         <div className="flex w-full mb-20 flex-wrap">
           <h1 className="sm:text-3xl text-2xl font-medium title-font text-black lg:w-1/3 lg:mb-0 mb-4">

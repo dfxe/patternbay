@@ -6,6 +6,7 @@ import Switch from "@mui/material/Switch";
 import { useNightMode } from "../ControlPanel/Providers/NightModeProvider";
 import { styled } from "@mui/material/styles";
 import ContrastWarningSnackBar from "../ControlPanel/Panels/ContrastWarningSnackBar";
+import Button from "@mui/material/Button";
 
 const M3Switch = styled(Switch)(({ theme }) => ({
   padding: 8,
@@ -76,7 +77,8 @@ const NightMode = () => {
     <Box
       sx={{
         position: "absolute",
-        left: "92%",
+
+        left: "90%",
 
         p: 1,
         mr: 0,

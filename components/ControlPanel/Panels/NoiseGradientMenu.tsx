@@ -21,6 +21,11 @@ import Tooltip from "@mui/material/Tooltip";
 import LinearScaleRoundedIcon from "@mui/icons-material/LinearScaleRounded";
 import RadioButtonCheckedRoundedIcon from "@mui/icons-material/RadioButtonCheckedRounded";
 import RadarRoundedIcon from "@mui/icons-material/RadarRounded";
+import Checkbox from "@mui/material/Checkbox";
+import DeblurIcon from "@mui/icons-material/Deblur";
+import RoundedCornerIcon from "@mui/icons-material/RoundedCorner";
+import RoundedCornerSharpIcon from "@mui/icons-material/RoundedCornerSharp";
+
 const NoiseGradientMenu = () => {
   const sizeParams = {
     borderRadius: { min: 0, max: 10, step: 1, default: 3 },
@@ -36,7 +41,15 @@ const NoiseGradientMenu = () => {
   const [brightness, setBrightness] = useState(100);
   const [noiseGradientColor, setNoiseGradientColor] = useState("#6650a4");
   const [noiseGradientColor2, setNoiseGradientColor2] = useState("#6650a4");
-  const [alignment, setAlignment] = useState("deg90");
+  const [gradientType, setGradientType] = useState("linear");
+  type BlurType = {
+    hasBlur: boolean;
+    blurStdDev: number;
+  };
+  const [blur, setBlur] = useState<BlurType>({
+    hasBlur: false,
+    blurStdDev: 0.4,
+  });
   type Colors = {
     firstColor: string;
     secondColor: string;
@@ -49,12 +62,16 @@ const NoiseGradientMenu = () => {
   });
   const nightMode = useNightMode();
 
-  const handleChange = (
+  const handleGradientType = (
     //@ts-ignore
     event: React.MouseEvent<HTMLElement>,
-    newAlignment: string
+    nextGradientType: string
   ) => {
-    setAlignment(newAlignment);
+    setGradientType(nextGradientType);
+  };
+
+  const toggleFilterBlur = (value: boolean) => {
+    setBlur({ ...blur, hasBlur: value });
   };
 
   useEffect(() => {
@@ -119,24 +136,52 @@ const NoiseGradientMenu = () => {
         xmlns="http://www.w3.org/2000/svg"
       >
         <defs>
+          {blur.hasBlur && (
+            <filter id="a-noise-gradient-menu-canvas-filter">
+              <feGaussianBlur stdDeviation={blur.blurStdDev} />
+            </filter>
+          )}
           <rect
-            id="myCircle"
+            id="my-gradient-menu-canvas"
             rx={borderRadius}
             ry={borderRadius}
             width="80%"
             height="50%"
           />
           {/* TODO find gradient filter for dis */}
-          <linearGradient
-            id="myGradient"
-            gradientTransform={`rotate(${rotation})`}
-          >
-            <stop offset="20%" stopColor={noiseGradientColor} />
-            <stop offset="90%" stopColor={noiseGradientColor2} />
-          </linearGradient>
+
+          {gradientType === "linear" && (
+            <linearGradient
+              id="a-noise-gradient-menu-canvas"
+              gradientTransform={`rotate(${rotation})`}
+            >
+              <stop offset="20%" stopColor={noiseGradientColor} />
+              <stop offset="90%" stopColor={noiseGradientColor2} />
+            </linearGradient>
+          )}
+          {gradientType === "radial" && (
+            <radialGradient id="a-noise-gradient-menu-canvas">
+              <stop offset="10%" stopColor={noiseGradientColor} />
+              <stop offset="95%" stopColor={noiseGradientColor2} />
+            </radialGradient>
+          )}
+          {gradientType === "conic" && (
+            <radialGradient id="a-noise-gradient-menu-canvas">
+              <stop offset="10%" stopColor={noiseGradientColor} />
+              <stop offset="95%" stopColor={noiseGradientColor2} />
+            </radialGradient>
+          )}
         </defs>
 
-        <use x="5" y="5" href="#myCircle" fill="url('#myGradient')" />
+        <use
+          x="5"
+          y="5"
+          href="#my-gradient-menu-canvas"
+          fill="url('#a-noise-gradient-menu-canvas')"
+          filter={
+            blur.hasBlur ? "url('#a-noise-gradient-menu-canvas-filter')" : ""
+          }
+        />
       </svg>
 
       {/* <Stack
@@ -182,10 +227,10 @@ const NoiseGradientMenu = () => {
         justifyContent="center"
         gap={1}
       >
-        <Tooltip placement="top" title="Border Style">
-          <BorderStyleRoundedIcon
+        <Tooltip placement="top" title="Sharp Corners">
+          <RoundedCornerSharpIcon
             htmlColor={nightMode.getter ? "#eae3f1" : "#231f22"}
-          ></BorderStyleRoundedIcon>
+          ></RoundedCornerSharpIcon>
         </Tooltip>
         <DefaultMarkedMUISlider
           defaultValue={sizeParams.borderRadius.default}
@@ -197,6 +242,11 @@ const NoiseGradientMenu = () => {
             setBorderRadius(+(e.target as HTMLInputElement).value);
           }}
         />
+        <Tooltip placement="top" title="Round Corners">
+          <RoundedCornerIcon
+            htmlColor={nightMode.getter ? "#eae3f1" : "#231f22"}
+          ></RoundedCornerIcon>
+        </Tooltip>
       </Stack>
       <ColorPaletteMenu setPalette={setColorsUsed} hasThirdColor={false} />
       <Stack
@@ -274,7 +324,7 @@ const NoiseGradientMenu = () => {
           }}
         />
       </Stack>
-      <Stack
+      {/* <Stack
         spacing={1}
         direction="row"
         sx={{ mb: 1, position: "relative" }}
@@ -291,7 +341,7 @@ const NoiseGradientMenu = () => {
             setOctaves(+(e.target as HTMLInputElement).value);
           }}
         />
-      </Stack>
+      </Stack> */}
       <Stack
         spacing={1}
         direction="row"
@@ -317,6 +367,41 @@ const NoiseGradientMenu = () => {
           }}
         />
       </Stack>
+      <Stack
+        spacing={1}
+        direction="row"
+        sx={{ mb: 1, position: "relative" }}
+        alignItems="center"
+        justifyContent="center"
+        gap={1}
+      >
+        <Checkbox
+          aria-label="checkbox-has-filter"
+          defaultChecked={false}
+          onChange={(e) => toggleFilterBlur(e.target.checked)}
+        />
+
+        <Tooltip placement="top" title="Blur">
+          <DeblurIcon
+            htmlColor={nightMode.getter ? "#eae3f1" : "#231f22"}
+          ></DeblurIcon>
+        </Tooltip>
+        <DefaultMarkedMUISlider
+          disabled={!blur.hasBlur}
+          defaultValue={0.4}
+          step={0.1}
+          min={0.1}
+          max={2}
+          markPoints={null}
+          onChangeMod={(e) => {
+            setBlur({
+              ...blur,
+              blurStdDev: +(e.target as HTMLInputElement).value,
+            });
+          }}
+        />
+      </Stack>
+
       <ToggleButtonGroup
         sx={{
           display: "flex",
@@ -325,9 +410,9 @@ const NoiseGradientMenu = () => {
           justifyContent: "center",
         }}
         color="primary"
-        value={alignment}
+        value={gradientType}
         exclusive
-        onChange={handleChange}
+        onChange={handleGradientType}
       >
         <ToggleButton
           sx={{

@@ -22,6 +22,8 @@ import VectorFourVertex from "../../../images/SignifierIcons/VectorFourVertex";
 import AllOutRoundedIcon from "@mui/icons-material/AllOutRounded";
 import { useMouse } from "rooks";
 import { nanoid } from "nanoid";
+import NumbersRoundedIcon from "@mui/icons-material/NumbersRounded";
+
 const BlobMenu = () => {
   const [opacity, setOpacity] = useState(1);
 
@@ -52,7 +54,7 @@ const BlobMenu = () => {
   const [textColor, setTextColor] = useState<string>("#ffffff");
   const [textSize, setTextSize] = useState(4);
   const [textPosition, setTextPosition] = useState("center");
-  const [numberOfBlobs, setNumberOfBlobs] = useState(1);
+  const [blobNumber, setBlobNumber] = useState(1);
 
   const [borderz, setBorderz] = useState({
     leftTopX: Math.floor(Math.random() * 200) + 200,
@@ -67,12 +69,17 @@ const BlobMenu = () => {
   const [blobText, setBlobText] = useState("placeholder");
   const [color, setColor] = useState("#6550a3");
   type BlobShape = {
+    coords: {
+      x: number;
+      y: number;
+    };
     d: {
       size: number;
       grow: number;
       edges: number;
       seed: string;
     };
+    key: string;
     fill: string;
     stroke: string;
     strokeWidth: string;
@@ -82,10 +89,19 @@ const BlobMenu = () => {
 
   const [blobShapes, setBlobShapes] = useState<BlobShape[]>([
     {
-      size: 300,
-      grow: 6,
-      edges: 6,
-      seed: "44",
+      coords: { x: 0, y: 0 },
+      d: {
+        size: 300,
+        grow: 6,
+        edges: 6,
+        seed: "44",
+      },
+      key: nanoid(),
+      fill: "#6550a3",
+      stroke: "#6550a3",
+      strokeWidth: "2px",
+      strokeLinecap: "round",
+      strokeLinejoin: "round",
     },
   ]);
   const nightMode = useNightMode();
@@ -120,40 +136,83 @@ const BlobMenu = () => {
     setIsGrainy(event.target.checked);
   };
 
-  const handleGenerateBlob = (numberOfBlobs: number): JSX.Element[] => {
-    let paths: JSX.Element[] = [];
-    for (let i = 0; i < numberOfBlobs; i++) {
-      if (blobShapes.length > numberOfBlobs) {
-        //filter
-        setBlobShapes(blobShapes.filter((_, index) => index !== i));
-      } else {
-        setBlobShapes([
-          ...blobShapes,
-          {
+  const handleGenerateBlob = (numberOfBlobs: number) => {
+    //if numberOfBlobs is 0, then it will generate one blob
+    if (numberOfBlobs === 0) {
+      setBlobShapes([
+        {
+          coords: { x: 0, y: 0 },
+          d: {
             size: 40,
-            grow: blobShapes[i].grow,
-            edges: blobShapes[i].edges,
-            seed: Math.floor(Math.random() * 100).toString(),
+            grow: Math.floor(Math.random() * 12) + 1,
+            edges: Math.floor(Math.random() * 5) + 3,
+            seed: nanoid(),
           },
-        ]);
+          key: nanoid(),
+          fill: "#6550a3",
+          stroke: "#6550a3",
+          strokeWidth: "2px",
+          strokeLinecap: "round",
+          strokeLinejoin: "round",
+        },
+      ]);
+    } else if (numberOfBlobs > blobShapes.length) {
+      let newBlobShapes = [...blobShapes];
+      for (let i = 0; i < numberOfBlobs; i++) {
+        newBlobShapes.push({
+          coords: {
+            x: Math.floor(Math.random() * 20) + 20,
+            y: Math.floor(Math.random() * 20) + 20,
+          },
+          d: {
+            size: Math.floor(Math.random() * 40) + 10,
+            grow: Math.floor(Math.random() * 12) + 1,
+            edges: blobShapes[i]?.d.edges || 3,
+            seed: nanoid(),
+          },
+          key: nanoid(),
+          fill: "#6550a3",
+          stroke: "#6550a3",
+          strokeWidth: "2px",
+          strokeLinecap: "round",
+          strokeLinejoin: "round",
+        });
       }
-      paths.push(
-        <path
-          d={blobshape(blobShapes[i]).path}
-          /* stroke="black" */
-          fill={`url(#a-linear-gradient-blob)`}
-          opacity={opacity}
-        />
-      );
+      setBlobShapes(newBlobShapes);
+    } else {
+      let newBlobShapes = [];
+      for (let i = 0; i < numberOfBlobs; i++) {
+        newBlobShapes.push({
+          coords: {
+            x: Math.floor(Math.random() * 20) + 20,
+            y: Math.floor(Math.random() * 20) + 20,
+          },
+          d: {
+            size: Math.floor(Math.random() * 40) + 10,
+            grow: Math.floor(Math.random() * 12) + 1,
+            edges: blobShapes[i]?.d.edges || 3,
+            seed: nanoid(),
+          },
+          key: nanoid(),
+          fill: "#6550a3",
+          stroke: "#6550a3",
+          strokeWidth: "2px",
+          strokeLinecap: "round",
+          strokeLinejoin: "round",
+        });
+      }
+      setBlobShapes(newBlobShapes);
     }
-
-    return paths;
   };
 
   useEffect(() => {
     setColor(colorPalette.firstColor);
     setGradientColor(colorPalette.secondColor);
   }, [colorPalette]);
+
+  useEffect(() => {
+    handleGenerateBlob(blobNumber);
+  }, [blobNumber]);
 
   return (
     <MenuBackdrop>
@@ -223,10 +282,15 @@ const BlobMenu = () => {
           onChangeMod={(e) => {
             //change each edges in dPaths
             setBlobShapes(
-              blobShapes.map((dPath) => ({
-                ...dPath,
-                edges: +(e.target as HTMLInputElement).value,
-              }))
+              blobShapes.map((shape) => {
+                return {
+                  ...shape,
+                  d: {
+                    ...shape.d,
+                    edges: +(e.target as HTMLInputElement).value,
+                  },
+                };
+              })
             );
           }}
         />
@@ -251,10 +315,15 @@ const BlobMenu = () => {
           markPoints={null}
           onChangeMod={(e) => {
             setBlobShapes(
-              blobShapes.map((dPath) => ({
-                ...dPath,
-                grow: +(e.target as HTMLInputElement).value,
-              }))
+              blobShapes.map((shape) => {
+                return {
+                  ...shape,
+                  d: {
+                    ...shape.d,
+                    grow: +(e.target as HTMLInputElement).value,
+                  },
+                };
+              })
             );
           }}
         />
@@ -451,20 +520,20 @@ const BlobMenu = () => {
         justifyContent="center"
         gap={1}
       >
-        <Tooltip placement="top" title="Blur">
-          <DeblurRoundedIcon
+        <Tooltip placement="top" title="Blob Number">
+          <NumbersRoundedIcon
             htmlColor={nightMode.getter ? "#eae3f1" : "#231f22"}
-          ></DeblurRoundedIcon>
+          ></NumbersRoundedIcon>
         </Tooltip>
         <DefaultMarkedMUISlider
           sliderLabel=""
-          defaultValue={10}
-          step={10}
-          min={10}
-          max={50}
+          defaultValue={1}
+          step={1}
+          min={1}
+          max={5}
           markPoints={null}
           onChangeMod={(e) => {
-            setBlurPercent(+(e.target as HTMLInputElement).value);
+            setBlobNumber(+(e.target as HTMLInputElement).value);
           }}
         />
       </Stack>
@@ -473,12 +542,13 @@ const BlobMenu = () => {
           aria-label="blob-svg"
           style={{
             position: "absolute",
-            left: "50vw",
-            top: "10vh",
+            left: "40vw",
+            top: "0vh",
           }}
           viewBox="0 0 128 128"
         >
           <defs>
+            {}
             <linearGradient
               id="a-linear-gradient-blob"
               x1="0%"
@@ -502,21 +572,24 @@ const BlobMenu = () => {
               />
             </linearGradient>
           </defs>
-          {handleGenerateBlob(1).map((blob) => {
-            return (
-              <g key={nanoid()}>
+          <g aria-label="blob-paths">
+            {blobShapes.map((blob) => {
+              return (
                 <path
-                  fill={blob.color}
-                  d={blob.path}
-                  stroke={blob.color}
+                  style={{
+                    transform: `translate(${blob.coords.x}}px, ${blob.coords.y}px)`,
+                  }}
+                  key={nanoid()}
+                  fill={"url(#a-linear-gradient-blob)"}
+                  d={blobshape(blob.d).path}
+                  stroke={"url(#a-linear-gradient-blob)"}
                   strokeWidth={blob.strokeWidth}
                   strokeLinecap="round"
                   strokeLinejoin="round"
                 />
-              </g>
-            );
-          })}
-
+              );
+            })}
+          </g>
           <text
             x="5"
             y="15"
@@ -538,7 +611,10 @@ const BlobMenu = () => {
       <Box
         sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}
       >
-        <Button className="bg-ind-dark text-ind-light rounded-full p-6 hover:bg-ind-hover">
+        <Button
+          className="bg-ind-dark text-ind-light rounded-full p-6 hover:bg-ind-hover"
+          onClick={() => handleGenerateBlob(blobNumber)}
+        >
           Generate
         </Button>
       </Box>
