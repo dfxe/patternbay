@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 import { SVGProps } from "react";
 
 const Circle = (props: SVGProps<SVGSVGElement>) => {
@@ -14,10 +14,9 @@ const Circle = (props: SVGProps<SVGSVGElement>) => {
         clipRule: "evenodd",
         width: "100%",
         height: "100%",
-        transform: `rotate(${props.rotate}deg)`,
+        transform: `rotate(${props.rotate || 0}deg)`,
       }}
       viewBox="256 256 1536 1536"
-      {...props}
     >
       <defs>
         <style>{".fil1{fill:none}"}</style>

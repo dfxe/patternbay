@@ -1,8 +1,6 @@
-import React from "react";
 import { SVGProps } from "react";
 
 const CurveLine = (props: SVGProps<SVGSVGElement>) => {
-  const rotate = props.rotate || 0;
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -15,10 +13,9 @@ const CurveLine = (props: SVGProps<SVGSVGElement>) => {
         clipRule: "evenodd",
         width: "100%",
         height: "100%",
-        transform: `rotate(${rotate}deg)`,
+        transform: `rotate(${props.rotate || 0}deg)`,
       }}
       viewBox="256 256 1536.01 1536"
-      {...props}
     >
       <defs>
         <style>{".fil0{fill:none}"}</style>

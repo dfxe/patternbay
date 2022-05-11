@@ -1,8 +1,7 @@
-import * as React from "react";
+import React from "react";
 import { SVGProps } from "react";
 
 const Cloud = (props: SVGProps<SVGSVGElement>) => {
-  const rotate = props.rotate || 0;
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -15,10 +14,9 @@ const Cloud = (props: SVGProps<SVGSVGElement>) => {
         clipRule: "evenodd",
         width: "100%",
         height: "100%",
-        transform: `rotate(${rotate}deg)`,
+        transform: `rotate(${props.rotate || 0}deg)`,
       }}
       viewBox="256 640.67 1536 766.67"
-      {...props}
     >
       <defs>
         <style>{".fil0{fill:none}"}</style>

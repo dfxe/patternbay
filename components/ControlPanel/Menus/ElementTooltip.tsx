@@ -43,7 +43,7 @@ const ElementTooltip = () => {
   useEffect(() => {
     setMouseCoordinates({ x: x, y: y });
     setCanDisplay(tooltip.elementToShow.isShown);
-  }, [tooltip.elementToShow.isShown]);
+  }, [tooltip.elementToShow.elementId]);
   //TODO add hover animation on tooltip buttons
   return (
     <div

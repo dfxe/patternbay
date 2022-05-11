@@ -94,11 +94,6 @@ export default function ColorPaletteMenu({ setPalette, hasThirdColor }: Props) {
               secondColor: colors[i][1],
               thirdColor: hasThirdColor ? "gray" : "",
             });
-            setPalette({
-              firstColor: colors[i][0],
-              secondColor: colors[i][1],
-              thirdColor: hasThirdColor ? "gray" : "",
-            });
           }}
         >
           <Box

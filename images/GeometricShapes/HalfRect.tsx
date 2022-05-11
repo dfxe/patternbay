@@ -1,29 +1,6 @@
-import React, { useState, useEffect } from "react";
-import { SVGProps } from "react";
-import { useElementTooltip } from "../../components/ControlPanel/Providers/ElementTooltipProvider";
-import { nanoid } from "nanoid";
+import React, { SVGProps } from "react";
 
-type Props = {
-  props: SVGProps<SVGSVGElement>;
-  canClick: boolean;
-};
-const HalfRect = ({ props, canClick }: Props) => {
-  const elementTooltip = useElementTooltip();
-  const [clicked, setClicked] = useState(false);
-  const [fillColor, setFillColor] = useState(props.color || "#6068d2");
-  const [thisID, setThisID] = useState(nanoid());
-  const [isClickable, setIsClickable] = useState(canClick);
-  useEffect(() => {
-    if (elementTooltip.elementToShow.elementId === thisID) {
-      setFillColor(() =>
-        elementTooltip.selected
-          ? elementTooltip.colors[0]
-          : elementTooltip.colors[1]
-      );
-    } else {
-      setClicked(false);
-    }
-  }, [elementTooltip.selected, elementTooltip.elementToShow.elementId]);
+const HalfRect = (props: SVGProps<SVGSVGElement>) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -37,18 +14,6 @@ const HalfRect = ({ props, canClick }: Props) => {
         width: "100%",
         height: "100%",
         transformOrigin: "center",
-        transform: `rotate(${props.rotate || 0}deg)`,
-        border: `2px dashed ${clicked ? "#6068d2" : "#22220000"}`,
-        cursor: "pointer",
-      }}
-      onClick={() => {
-        if (isClickable) {
-          setClicked(!clicked);
-          elementTooltip.show({
-            elementId: thisID,
-            isShown: !elementTooltip.elementToShow.isShown,
-          });
-        }
       }}
       // min-x, min-y, width, height
       viewBox="256 256 1536 1536"
@@ -60,7 +25,7 @@ const HalfRect = ({ props, canClick }: Props) => {
         <path
           d="m256.132 1755.67.002-1466.27h-.13c0-18.442 14.95-33.391 33.391-33.391 9.326 0 17.757 3.824 23.815 9.987l1469.01 1469.01.002-.002c13.04 13.04 13.04 34.184 0 47.223-6.52 6.52-15.065 9.78-23.611 9.78H289.391c-18.442 0-33.392-14.95-33.392-33.392 0-.992.046-1.973.13-2.943z"
           style={{
-            fill: fillColor,
+            fill: props.color,
             fillRule: "nonzero",
           }}
         />

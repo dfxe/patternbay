@@ -43,11 +43,11 @@ import Tooltip from "@mui/material/Tooltip";
 import ExpandRoundedIcon from "@mui/icons-material/ExpandRounded";
 import BorderSlider from "../../ActionSliders/BorderSlider";
 import ExpandSlider from "../../ActionSliders/ExpandSlider";
+import ShapeAdapter from "../../../images/GeometricShapes/ShapeAdapter";
 
 type ConstructableData = {
   index: number;
-  props: { rotation: number; color: string };
-  canClick: boolean;
+  props: { rotation: number; color: string; canClick: boolean };
 };
 type Patternz = {
   patterns: JSX.Element[];
@@ -109,7 +109,7 @@ export default function AestheticsMenu() {
     thirdColor: "#a5a5a5",
   });
   const [selectedShapeIndex, setSelectedShapeIndex] = useState<number[]>([]);
-  const [alignment, setAlignment] = useState("deg90");
+  const [alignment, setAlignment] = useState("90");
 
   const handleRotation = (
     //@ts-ignore
@@ -121,44 +121,56 @@ export default function AestheticsMenu() {
 
   const nightMode = useNightMode();
 
-  const NUMBER_OF_SHAPES = 13;
+  const NUMBER_OF_SHAPES = 14;
 
   const getSelectedShape = (constructable: ConstructableData): JSX.Element => {
-    const stylez = {
-      props: constructable.props,
-      canClick: constructable.canClick,
-    };
     switch (constructable.index) {
       case 0:
-        return <HalfRect key={nanoid()} {...stylez} />;
+        return (
+          <ShapeAdapter key={nanoid()} {...constructable.props}>
+            <HalfRect />
+          </ShapeAdapter>
+        );
       case 1:
-        return <Cloud key={nanoid()} {...stylez} />;
+        return (
+          <ShapeAdapter key={nanoid()} {...constructable.props}>
+            <Cloud />
+          </ShapeAdapter>
+        );
       case 2:
-        return <Circle key={nanoid()} {...stylez} />;
+        return (
+          <ShapeAdapter key={nanoid()} {...constructable.props}>
+            <Circle />
+          </ShapeAdapter>
+        );
       case 3:
-        return <CurveLine key={nanoid()} {...stylez} />;
+        return (
+          <ShapeAdapter key={nanoid()} {...constructable.props}>
+            <CurveLine />
+          </ShapeAdapter>
+        );
       case 4:
-        return <Flower key={nanoid()} {...stylez} />;
+        return <Flower />;
       case 5:
-        return <SemiCircle key={nanoid()} {...stylez} />;
+        return <SemiCircle />;
       case 6:
-        return <Heart key={nanoid()} {...stylez} />;
+        return <Heart />;
       case 7:
-        return <Oval key={nanoid()} {...stylez} />;
+        return <Oval />;
       case 8:
-        return <PieChart key={nanoid()} {...stylez} />;
+        return <PieChart />;
       case 9:
-        return <RoundedSquare key={nanoid()} {...stylez} />;
+        return <RoundedSquare />;
       case 10:
-        return <SpeechBubbleOne key={nanoid()} {...stylez} />;
+        return <SpeechBubbleOne />;
       case 11:
-        return <Square key={nanoid()} {...stylez} />;
+        return <Square />;
       case 12:
-        return <Triangle key={nanoid()} {...stylez} />;
+        return <Triangle />;
       case 13:
-        return <Diamond key={nanoid()} {...stylez} />;
+        return <Diamond />;
       default:
-        return <Flower key={nanoid()} {...stylez} />;
+        return <Flower />;
     }
   };
   //TODO colors not accessing right pointer
@@ -185,10 +197,10 @@ export default function AestheticsMenu() {
             Math.random() > 0.5
               ? colorsUsed.firstColor
               : colorsUsed.secondColor,
+          canClick: true,
         },
-        canClick: true,
       });
-      console.log(constructables[i].props.color);
+
       patterns.push(getSelectedShape(constructables[i]));
     }
     return { patterns, constructables } as Patternz;
@@ -209,9 +221,9 @@ export default function AestheticsMenu() {
           index: indexes[i],
           props: {
             rotation: rotationDegs,
-            color: colors[i],
+            color: colors[Math.random() > 0.5 ? 0 : 1],
+            canClick: true,
           },
-          canClick: true,
         })
       );
     }
