@@ -117,6 +117,10 @@ const WhatIsThis = ({ open, setOpen }: Props) => {
           Have any ideas to improve this? Leave a GitHub issue or contact at:{" "}
           <Obfuscate email="29132359+uKruel@users.noreply.github.com" />
         </Typography>
+        <Typography gutterBottom>
+          {/* TODO add tips, such as click the icons parallel to the sliders to see what they do */}
+          Click the icons in the sidebar to get started.
+        </Typography>
       </DialogContent>
       <DialogActions>
         <Button

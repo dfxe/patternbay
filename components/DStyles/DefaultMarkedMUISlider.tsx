@@ -5,7 +5,7 @@ import Typography from "@mui/material/Typography";
 import { keyframes, styled } from "@mui/material/styles";
 import { useNightMode } from "../ControlPanel/Providers/NightModeProvider";
 import { Mark } from "@mui/base/SliderUnstyled/SliderUnstyledProps";
-import { formLabelClasses } from "@mui/material";
+
 function valuetext(value: number) {
   return `${value}°C`;
 }

@@ -2,6 +2,7 @@ import React from "react";
 import Stack from "@mui/material/Stack";
 import Tooltip from "@mui/material/Tooltip";
 import ExpandRoundedIcon from "@mui/icons-material/ExpandRounded";
+import ViewColumnRoundedIcon from "@mui/icons-material/ViewColumnRounded";
 import DefaultMarkedMUISlider from "../DStyles/DefaultMarkedMUISlider";
 type Props = {
   params: {
@@ -24,9 +25,15 @@ const ExpandSlider = ({ params, setExpand, nightModeSwitch }: Props) => {
       gap={1}
     >
       <Tooltip placement="top" title={params.label || "Option"}>
-        <ExpandRoundedIcon
-          htmlColor={nightModeSwitch ? "#eae3f1" : "#231f22"}
-        ></ExpandRoundedIcon>
+        {params.label === "Gap" ? (
+          <ExpandRoundedIcon
+            htmlColor={nightModeSwitch ? "#eae3f1" : "#231f22"}
+          ></ExpandRoundedIcon>
+        ) : (
+          <ViewColumnRoundedIcon
+            htmlColor={nightModeSwitch ? "#eae3f1" : "#231f22"}
+          ></ViewColumnRoundedIcon>
+        )}
       </Tooltip>
       <DefaultMarkedMUISlider
         defaultValue={params.default}

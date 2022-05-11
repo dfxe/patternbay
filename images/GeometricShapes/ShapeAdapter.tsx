@@ -13,6 +13,7 @@ const ShapeAdapter = ({ children, color, rotation, canClick }: Props) => {
   const [fillColor, setFillColor] = useState(color || "#6068d2");
   const [thisID, setThisID] = useState(nanoid());
   const [isClickable, setIsClickable] = useState(canClick);
+
   useEffect(() => {
     if (elementTooltip.elementToShow.elementId === thisID) {
       setFillColor(() =>
@@ -27,14 +28,15 @@ const ShapeAdapter = ({ children, color, rotation, canClick }: Props) => {
   return (
     <div
       style={{
-        border: `2px dashed ${clicked ? "#6068d2" : "#22220000"}`,
+        border: `2px dashed ${clicked ? "red" : "#22220000"}`,
         cursor: "pointer",
       }}
       onClick={() => {
         if (isClickable) {
           setClicked(!clicked);
+          const updateIsShown = true;
           elementTooltip.show({
-            isShown: true,
+            isShown: updateIsShown,
             elementId: thisID,
           });
         }

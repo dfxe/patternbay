@@ -24,9 +24,7 @@ import SemiCircle from "../../../images/GeometricShapes/SemiCircle";
 import SpeechBubbleOne from "../../../images/GeometricShapes/SpeechBubbleOne";
 import Square from "../../../images/GeometricShapes/Square";
 import Triangle from "../../../images/GeometricShapes/Triangle";
-import List from "@mui/material/List";
-import ListItemButton from "@mui/material/ListItemButton";
-import ListItemIcon from "@mui/material/ListItemIcon";
+
 import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
 import ToggleButton from "@mui/material/ToggleButton";
 import Divider from "@mui/material/Divider";
@@ -36,11 +34,10 @@ import Diamond from "../../../images/GeometricShapes/Diamond";
 import ElementTooltip from "./ElementTooltip";
 import { useElementTooltip } from "../Providers/ElementTooltipProvider";
 import { keyframes, styled } from "@mui/material/styles";
-import ViewColumnRoundedIcon from "@mui/icons-material/ViewColumnRounded";
+
 import PaddingRoundedIcon from "@mui/icons-material/PaddingRounded";
 import Tooltip from "@mui/material/Tooltip";
 
-import ExpandRoundedIcon from "@mui/icons-material/ExpandRounded";
 import BorderSlider from "../../ActionSliders/BorderSlider";
 import ExpandSlider from "../../ActionSliders/ExpandSlider";
 import ShapeAdapter from "../../../images/GeometricShapes/ShapeAdapter";
@@ -150,27 +147,71 @@ export default function AestheticsMenu() {
           </ShapeAdapter>
         );
       case 4:
-        return <Flower />;
+        return (
+          <ShapeAdapter key={nanoid()} {...constructable.props}>
+            <Flower />
+          </ShapeAdapter>
+        );
       case 5:
-        return <SemiCircle />;
+        return (
+          <ShapeAdapter key={nanoid()} {...constructable.props}>
+            <SemiCircle />
+          </ShapeAdapter>
+        );
       case 6:
-        return <Heart />;
+        return (
+          <ShapeAdapter key={nanoid()} {...constructable.props}>
+            <Heart />
+          </ShapeAdapter>
+        );
       case 7:
-        return <Oval />;
+        return (
+          <ShapeAdapter key={nanoid()} {...constructable.props}>
+            <Oval />
+          </ShapeAdapter>
+        );
       case 8:
-        return <PieChart />;
+        return (
+          <ShapeAdapter key={nanoid()} {...constructable.props}>
+            <PieChart />
+          </ShapeAdapter>
+        );
       case 9:
-        return <RoundedSquare />;
+        return (
+          <ShapeAdapter key={nanoid()} {...constructable.props}>
+            <RoundedSquare />
+          </ShapeAdapter>
+        );
       case 10:
-        return <SpeechBubbleOne />;
+        return (
+          <ShapeAdapter key={nanoid()} {...constructable.props}>
+            <SpeechBubbleOne />
+          </ShapeAdapter>
+        );
       case 11:
-        return <Square />;
+        return (
+          <ShapeAdapter key={nanoid()} {...constructable.props}>
+            <Square />
+          </ShapeAdapter>
+        );
       case 12:
-        return <Triangle />;
+        return (
+          <ShapeAdapter key={nanoid()} {...constructable.props}>
+            <Triangle />
+          </ShapeAdapter>
+        );
       case 13:
-        return <Diamond />;
+        return (
+          <ShapeAdapter key={nanoid()} {...constructable.props}>
+            <Diamond />
+          </ShapeAdapter>
+        );
       default:
-        return <Flower />;
+        return (
+          <ShapeAdapter key={nanoid()} {...constructable.props}>
+            <Flower />
+          </ShapeAdapter>
+        );
     }
   };
   //TODO colors not accessing right pointer

@@ -34,104 +34,20 @@ const ShapesPaletteMenu = ({
   const nightMode = useNightMode();
   //TODO change to some enum with the shape names, then call the shape name from the enum
   const allShapes = [
-    <HalfRect
-      key={nanoid()}
-      props={{
-        color: "#fff",
-      }}
-      canClick={false}
-    ></HalfRect>,
-    <Cloud
-      key={nanoid()}
-      props={{
-        color: "#fff",
-      }}
-      canClick={false}
-    ></Cloud>,
-    <Circle
-      key={nanoid()}
-      props={{
-        color: "#fff",
-      }}
-      canClick={false}
-    ></Circle>,
-    <CurveLine
-      key={nanoid()}
-      props={{
-        color: "#fff",
-      }}
-      canClick={false}
-    ></CurveLine>,
-    <Flower
-      key={nanoid()}
-      props={{
-        color: "#fff",
-      }}
-      canClick={false}
-    ></Flower>,
-    <SemiCircle
-      key={nanoid()}
-      props={{
-        color: "#fff",
-      }}
-      canClick={false}
-    ></SemiCircle>,
-    <Heart
-      key={nanoid()}
-      props={{
-        color: "#fff",
-      }}
-      canClick={false}
-    ></Heart>,
-    <Oval
-      key={nanoid()}
-      props={{
-        color: "#fff",
-      }}
-      canClick={false}
-    ></Oval>,
-    <PieChart
-      key={nanoid()}
-      props={{
-        color: "#fff",
-      }}
-      canClick={false}
-    ></PieChart>,
-    <RoundedSquare
-      key={nanoid()}
-      props={{
-        color: "#fff",
-      }}
-      canClick={false}
-    ></RoundedSquare>,
-    <SpeechBubbleOne
-      key={nanoid()}
-      props={{
-        color: "#fff",
-      }}
-      canClick={false}
-    ></SpeechBubbleOne>,
-    <Square
-      key={nanoid()}
-      props={{
-        color: "#fff",
-      }}
-      canClick={false}
-    ></Square>,
-    <Triangle
-      key={nanoid()}
-      props={{
-        color: "#fff",
-      }}
-      canClick={false}
-    ></Triangle>,
-    <Diamond
-      key={nanoid()}
-      props={{
-        color: "#fff",
-      }}
-      canClick={false}
-    ></Diamond>,
+    <HalfRect key={nanoid()} color={"#6068d2"}></HalfRect>,
+    <Cloud key={nanoid()} color={"#6068d2"}></Cloud>,
+    <Circle key={nanoid()} color={"#6068d2"}></Circle>,
+    <CurveLine key={nanoid()} color={"#6068d2"}></CurveLine>,
+    <Flower key={nanoid()} color={"#6068d2"}></Flower>,
+    <SemiCircle key={nanoid()} color={"#6068d2"}></SemiCircle>,
+    <Heart key={nanoid()} color={"#6068d2"}></Heart>,
+    <Oval key={nanoid()} color={"#6068d2"}></Oval>,
+    <PieChart key={nanoid()} color={"#6068d2"}></PieChart>,
+    <RoundedSquare key={nanoid()} color={"#6068d2"}></RoundedSquare>,
+    <SpeechBubbleOne key={nanoid()} color={"#6068d2"}></SpeechBubbleOne>,
+    <Square key={nanoid()} color={"#6068d2"}></Square>,
+    <Triangle key={nanoid()} color={"#6068d2"}></Triangle>,
+    <Diamond key={nanoid()} color={"#6068d2"}></Diamond>,
   ];
   //TODO padding left is ugly
   return (
@@ -167,6 +83,9 @@ const ShapesPaletteMenu = ({
             marginLeft: "0",
             marginRight: "0",
             borderRadius: "30px",
+            "&:hover": {
+              backgroundColor: "#b6b5ff",
+            },
           }}
         >
           <ListItemIcon

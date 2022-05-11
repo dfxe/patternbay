@@ -253,7 +253,6 @@ const BlobMenu = () => {
           step={0.1}
           min={0}
           max={1}
-          markPoints={null}
           onChangeMod={(e) => {
             setOpacity(+(e.target as HTMLInputElement).value);
           }}
@@ -279,7 +278,6 @@ const BlobMenu = () => {
           step={1}
           min={3}
           max={10}
-          markPoints={null}
           onChangeMod={(e) => {
             //change each edges in dPaths
             setBlobShapes(
@@ -313,7 +311,6 @@ const BlobMenu = () => {
           step={1}
           min={1}
           max={8}
-          markPoints={null}
           onChangeMod={(e) => {
             setBlobShapes(
               blobShapes.map((shape) => {
@@ -348,7 +345,6 @@ const BlobMenu = () => {
           step={1}
           min={4}
           max={20}
-          markPoints={null}
           onChangeMod={(e) => {
             setTextSize(+(e.target as HTMLInputElement).value);
           }}
@@ -387,12 +383,6 @@ const BlobMenu = () => {
 
         <GrainRoundedIcon></GrainRoundedIcon>
 
-        <Checkbox
-          checked={isGrainy}
-          onChange={handleIsGrainy}
-          sx={{ color: nightMode.getter ? "#eae3f1" : "#231f22" }}
-          inputProps={{ "aria-label": "controlled" }}
-        />
         <Typography
           sx={{
             display: "flex",
@@ -450,12 +440,6 @@ const BlobMenu = () => {
         justifyContent="center"
         gap={1}
       >
-        <Checkbox
-          checked={isBlurred}
-          onChange={handleIsBlurred}
-          sx={{ color: nightMode.getter ? "#eae3f1" : "#231f22" }}
-          inputProps={{ "aria-label": "controlled" }}
-        />
         <Tooltip placement="top" title="Blur">
           <DeblurRoundedIcon
             htmlColor={nightMode.getter ? "#eae3f1" : "#231f22"}
@@ -467,7 +451,6 @@ const BlobMenu = () => {
           step={10}
           min={10}
           max={50}
-          markPoints={null}
           onChangeMod={(e) => {
             setBlurPercent(+(e.target as HTMLInputElement).value);
           }}
@@ -497,7 +480,6 @@ const BlobMenu = () => {
           step={1}
           min={1}
           max={5}
-          markPoints={null}
           onChangeMod={(e) => {
             setBlobNumber(+(e.target as HTMLInputElement).value);
           }}

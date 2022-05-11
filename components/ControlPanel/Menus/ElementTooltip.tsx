@@ -17,7 +17,7 @@ const borderAnim = keyframes`
   }
 `;
 const BayButton = styled(Button)({
-  "&:hover": {
+  "&:hover, &:focus": {
     animation: `${borderAnim} 0.2s ease forwards`,
   },
   "&:blur": {
@@ -39,10 +39,22 @@ const ElementTooltip = () => {
   const { x, y } = useMouse();
   const [mouseCoordinates, setMouseCoordinates] = useState({ x: x, y: y });
   const [canDisplay, setCanDisplay] = useState(false);
+  const [whichColor, setWhichColor] = useState(0);
+  const colorButtonOneRef = React.useRef(null);
+  const colorButtonTwoRef = React.useRef(null);
 
   useEffect(() => {
     setMouseCoordinates({ x: x, y: y });
-    setCanDisplay(tooltip.elementToShow.isShown);
+    setCanDisplay(true);
+    if (colorButtonOneRef.current) {
+      if (whichColor === 0) {
+        //@ts-ignore
+        colorButtonOneRef?.current?.focus();
+      } else {
+        //@ts-ignore
+        colorButtonTwoRef?.current?.focus();
+      }
+    }
   }, [tooltip.elementToShow.elementId]);
   //TODO add hover animation on tooltip buttons
   return (
@@ -63,22 +75,30 @@ const ElementTooltip = () => {
     >
       <div style={{ display: "flex", flexDirection: "row" }}>
         <BayButton
+          ref={colorButtonOneRef}
           style={{
             width: "2em",
             height: "3em",
             backgroundColor: tooltip.colors[0],
             borderRadius: "64px 0 0 64px",
           }}
-          onClick={() => tooltip.setSelected(true)}
+          onClick={() => {
+            tooltip.setSelected(true);
+            setWhichColor(0);
+          }}
         ></BayButton>
         <BayButton
+          ref={colorButtonTwoRef}
           style={{
             width: "2em",
             height: "3em",
             backgroundColor: tooltip.colors[1],
             borderRadius: "0 64px 64px 0",
           }}
-          onClick={() => tooltip.setSelected(false)}
+          onClick={() => {
+            tooltip.setSelected(false);
+            setWhichColor(1);
+          }}
         ></BayButton>
         <CloseButton
           sx={{ borderRadius: "20px" }}

@@ -11,6 +11,7 @@ interface ElementTooltipShape {
   show: React.Dispatch<
     React.SetStateAction<{ elementId: string; isShown: boolean }>
   >;
+
   colors: string[];
   setColors: Dispatch<SetStateAction<string[]>>;
   selected: boolean;

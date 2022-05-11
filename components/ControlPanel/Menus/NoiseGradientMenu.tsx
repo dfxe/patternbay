@@ -28,10 +28,11 @@ import RoundedCornerSharpIcon from "@mui/icons-material/RoundedCornerSharp";
 
 import BorderSlider from "../../ActionSliders/BorderSlider";
 import RotationSlider from "../../ActionSliders/RotationSlider";
+import BlurOffRoundedIcon from "@mui/icons-material/BlurOffRounded";
 
 const NoiseGradientMenu = () => {
   const boundaryParams = {
-    borderRadius: { min: 0, max: 10, step: 1, default: 3 },
+    borderRadius: { min: 0, max: 20, step: 1, default: 3 },
     rotation: { min: 0, max: 360, step: 5, default: 0 },
   };
   const [dimensions, setDimensions] = useState({ width: 500, height: 300 });
@@ -51,7 +52,7 @@ const NoiseGradientMenu = () => {
     blurStdDev: number;
   };
   const [blur, setBlur] = useState<BlurType>({
-    hasBlur: false,
+    hasBlur: true,
     blurStdDev: 0.4,
   });
   type Colors = {
@@ -71,13 +72,14 @@ const NoiseGradientMenu = () => {
     event: React.MouseEvent<HTMLElement>,
     nextGradientType: string
   ) => {
+    if (nextGradientType === gradientType) return;
     setGradientType(nextGradientType);
   };
 
-  const toggleFilterBlur = (value: boolean) => {
+  /* const toggleFilterBlur = (value: boolean) => {
     setBlur({ ...blur, hasBlur: value });
   };
-
+ */
   useEffect(() => {
     setNoiseGradientColor(colorsUsed.firstColor);
     setNoiseGradientColor2(colorsUsed.secondColor);
@@ -248,12 +250,10 @@ const NoiseGradientMenu = () => {
           ></ContrastRoundedIcon>
         </Tooltip>
         <DefaultMarkedMUISlider
-          sliderLabel=""
           defaultValue={100}
           step={10}
           min={100}
           max={400}
-          
           onChangeMod={(e) => {
             setContrast(+(e.target as HTMLInputElement).value);
           }}
@@ -273,12 +273,10 @@ const NoiseGradientMenu = () => {
           ></Brightness6RoundedIcon>
         </Tooltip>
         <DefaultMarkedMUISlider
-          sliderLabel=""
           defaultValue={100}
           step={10}
           min={100}
           max={1000}
-        
           onChangeMod={(e) => {
             setBrightness(+(e.target as HTMLInputElement).value);
           }}
@@ -316,12 +314,10 @@ const NoiseGradientMenu = () => {
           ></ThirtyFpsSelectRoundedIcon>
         </Tooltip>
         <DefaultMarkedMUISlider
-          sliderLabel=""
           defaultValue={0.1}
           step={0.1}
           min={0.1}
           max={5}
-        
           onChangeMod={(e) => {
             setFrequency(+(e.target as HTMLInputElement).value);
           }}
@@ -335,24 +331,17 @@ const NoiseGradientMenu = () => {
         justifyContent="center"
         gap={1}
       >
-        <Checkbox
-          aria-label="checkbox-has-filter"
-          defaultChecked={false}
-          onChange={(e) => toggleFilterBlur(e.target.checked)}
-        />
-
-        <Tooltip placement="top" title="Blur">
-          <DeblurIcon
+        <Tooltip placement="top" title="No Blur">
+          <BlurOffRoundedIcon
             htmlColor={nightMode.getter ? "#eae3f1" : "#231f22"}
-          ></DeblurIcon>
+          />
         </Tooltip>
         <DefaultMarkedMUISlider
-          disabled={!blur.hasBlur}
+          disabled={false}
           defaultValue={0.4}
           step={0.1}
-          min={0.1}
+          min={0}
           max={2}
-        
           onChangeMod={(e) => {
             setBlur({
               ...blur,
@@ -360,8 +349,13 @@ const NoiseGradientMenu = () => {
             });
           }}
         />
+        <Tooltip placement="top" title="Blur">
+          <DeblurIcon
+            htmlColor={nightMode.getter ? "#eae3f1" : "#231f22"}
+          ></DeblurIcon>
+        </Tooltip>
       </Stack>
-
+      {/* TODO fix disable on double click */}
       <ToggleButtonGroup
         sx={{
           display: "flex",

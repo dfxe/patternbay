@@ -34,7 +34,6 @@ const SizeSlider = ({ params, setSize, nightModeSwitch }: Props) => {
         step={params.step}
         min={params.min}
         max={params.max}
-        markPoints={null}
         onChangeMod={(e) => {
           setSize(+(e.target as HTMLInputElement).value);
         }}
