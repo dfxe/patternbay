@@ -45,7 +45,7 @@ const ElementTooltip = () => {
 
   useEffect(() => {
     setMouseCoordinates({ x: x, y: y });
-    setCanDisplay(true);
+    setCanDisplay(tooltip.elementToShow.isShown);
     if (colorButtonOneRef.current) {
       if (whichColor === 0) {
         //@ts-ignore

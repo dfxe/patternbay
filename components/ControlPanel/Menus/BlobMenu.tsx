@@ -52,7 +52,7 @@ const BlobMenu = () => {
 
   const [textRotation, setTextRotation] = useState(0);
 
-  const [textColor, setTextColor] = useState<string>("#ffffff");
+  const [textColor, setTextColor] = useState<string>("purple");
   const [textSize, setTextSize] = useState(4);
   const [textPosition, setTextPosition] = useState("center");
   const [blobNumber, setBlobNumber] = useState(1);
@@ -92,7 +92,7 @@ const BlobMenu = () => {
     {
       coords: { x: 0, y: 0 },
       d: {
-        size: 300,
+        size: 40,
         grow: 6,
         edges: 6,
         seed: "44",
@@ -138,60 +138,22 @@ const BlobMenu = () => {
   };
 
   const handleGenerateBlob = (numberOfBlobs: number) => {
-    //if numberOfBlobs is 0, then it will generate one blob
-    if (numberOfBlobs === 0) {
-      setBlobShapes([
-        {
-          coords: { x: 0, y: 0 },
-          d: {
-            size: 40,
-            grow: Math.floor(Math.random() * 12) + 1,
-            edges: Math.floor(Math.random() * 5) + 3,
-            seed: nanoid(),
-          },
-          key: nanoid(),
-          fill: "#6550a3",
-          stroke: "#6550a3",
-          strokeWidth: "2px",
-          strokeLinecap: "round",
-          strokeLinejoin: "round",
-        },
-      ]);
-    } else if (numberOfBlobs > blobShapes.length) {
-      let newBlobShapes = [...blobShapes];
-      for (let i = 0; i < numberOfBlobs; i++) {
-        newBlobShapes.push({
-          coords: {
-            x: Math.floor(Math.random() * 20) + 20,
-            y: Math.floor(Math.random() * 20) + 20,
-          },
-          d: {
-            size: Math.floor(Math.random() * 40) + 10,
-            grow: Math.floor(Math.random() * 12) + 1,
-            edges: blobShapes[i]?.d.edges || 3,
-            seed: nanoid(),
-          },
-          key: nanoid(),
-          fill: "#6550a3",
-          stroke: "#6550a3",
-          strokeWidth: "2px",
-          strokeLinecap: "round",
-          strokeLinejoin: "round",
-        });
-      }
-      setBlobShapes(newBlobShapes);
+    //generate a new blobShape object and push it to the blobShapes array up to the number of blobs and set the state
+    //if numberOfBlobs is less than blobShapes.length, remove the last blobShapes
+    if (numberOfBlobs <= blobShapes.length) {
+      setBlobShapes(blobShapes.filter((_, index) => index < numberOfBlobs));
     } else {
-      let newBlobShapes = [];
-      for (let i = 0; i < numberOfBlobs; i++) {
+      let newBlobShapes = [...blobShapes];
+      for (let i = newBlobShapes.length; i < numberOfBlobs; i++) {
         newBlobShapes.push({
           coords: {
-            x: Math.floor(Math.random() * 20) + 20,
-            y: Math.floor(Math.random() * 20) + 20,
+            x: Math.floor(Math.random() * 20) + Math.random() * 20 + 20,
+            y: Math.floor(Math.random() * 20) + Math.random() * 20 + 20,
           },
           d: {
-            size: Math.floor(Math.random() * 40) + 10,
-            grow: Math.floor(Math.random() * 12) + 1,
-            edges: blobShapes[i]?.d.edges || 3,
+            size: Math.random() * 40 + Math.random() * 20,
+            grow: blobShapes[0].d.grow,
+            edges: blobShapes[0]?.d.edges || 3,
             seed: nanoid(),
           },
           key: nanoid(),
@@ -202,6 +164,7 @@ const BlobMenu = () => {
           strokeLinejoin: "round",
         });
       }
+
       setBlobShapes(newBlobShapes);
     }
   };
@@ -323,6 +286,7 @@ const BlobMenu = () => {
                 };
               })
             );
+            handleGenerateBlob(blobNumber);
           }}
         />
       </Stack>
@@ -458,7 +422,7 @@ const BlobMenu = () => {
         <InputColor
           colorValue={blurColor}
           setColorValue={setBlurColor}
-          inputLabel={"blur "}
+          inputLabel={"blur"}
         />
       </Stack>
       <Stack
@@ -545,8 +509,8 @@ const BlobMenu = () => {
             style={{
               fontSize: textSize,
               transformOrigin: "center",
-              color: textColor,
             }}
+            fill={textColor}
             transform={`rotate(${textRotation}deg)`}
           >
             {blobText}

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import { useColors } from "../ControlPanel/Providers/ColorProvider";
@@ -11,6 +11,9 @@ type Props = {
 };
 const InputColor = ({ colorValue, setColorValue, inputLabel }: Props) => {
   const nightMode = useNightMode();
+  useEffect(() => {
+    console.log(colorValue);
+  }, [colorValue]);
   return (
     <Box
       style={{ display: "flex", flexDirection: "row", alignItems: "center" }}

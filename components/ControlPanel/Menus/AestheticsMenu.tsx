@@ -106,7 +106,7 @@ export default function AestheticsMenu() {
     thirdColor: "#a5a5a5",
   });
   const [selectedShapeIndex, setSelectedShapeIndex] = useState<number[]>([]);
-  const [alignment, setAlignment] = useState("90");
+  const [alignment, setAlignment] = useState("0");
 
   const handleRotation = (
     //@ts-ignore
