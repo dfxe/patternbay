@@ -121,7 +121,7 @@ export default function AestheticsMenu() {
 
   const nightMode = useNightMode();
 
-  const NUMBER_OF_SHAPES = 14;
+  const NUMBER_OF_SHAPES = 13;
 
   const getSelectedShape = (constructable: ConstructableData): JSX.Element => {
     const stylez = {
@@ -188,10 +188,8 @@ export default function AestheticsMenu() {
         },
         canClick: true,
       });
-
-      patterns.push(
-        getSelectedShape(constructables[constructables.length - 1])
-      );
+      console.log(constructables[i].props.color);
+      patterns.push(getSelectedShape(constructables[i]));
     }
     return { patterns, constructables } as Patternz;
   };

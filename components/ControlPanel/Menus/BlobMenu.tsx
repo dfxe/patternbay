@@ -23,6 +23,7 @@ import AllOutRoundedIcon from "@mui/icons-material/AllOutRounded";
 import { useMouse } from "rooks";
 import { nanoid } from "nanoid";
 import NumbersRoundedIcon from "@mui/icons-material/NumbersRounded";
+import GrainRoundedIcon from "@mui/icons-material/GrainRounded";
 
 const BlobMenu = () => {
   const [opacity, setOpacity] = useState(1);
@@ -382,50 +383,9 @@ const BlobMenu = () => {
         />
       </Box>
       <Box sx={{ display: "flex", flexWrap: "wrap" }}>
-        <Typography
-          sx={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
+        <DeblurRoundedIcon></DeblurRoundedIcon>
 
-            fontSize: "1em",
-
-            color: nightMode.getter ? "#eae3f1" : "#231f22",
-            marginTop: "1em",
-            marginBottom: "1em",
-            transform: `rotate(${textRotation}deg)`,
-          }}
-          variant="h5"
-          gutterBottom
-          component="div"
-        >
-          Blur
-        </Typography>
-
-        <Checkbox
-          checked={isBlurred}
-          onChange={handleIsBlurred}
-          sx={{ color: nightMode.getter ? "#eae3f1" : "#231f22" }}
-          inputProps={{ "aria-label": "controlled" }}
-        />
-        <Typography
-          sx={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            fontSize: "1em",
-
-            color: nightMode.getter ? "#eae3f1" : "#231f22",
-            marginTop: "1em",
-            marginBottom: "1em",
-            transform: `rotate(${textRotation}deg)`,
-          }}
-          variant="h5"
-          gutterBottom
-          component="div"
-        >
-          Grain
-        </Typography>
+        <GrainRoundedIcon></GrainRoundedIcon>
 
         <Checkbox
           checked={isGrainy}
@@ -490,6 +450,12 @@ const BlobMenu = () => {
         justifyContent="center"
         gap={1}
       >
+        <Checkbox
+          checked={isBlurred}
+          onChange={handleIsBlurred}
+          sx={{ color: nightMode.getter ? "#eae3f1" : "#231f22" }}
+          inputProps={{ "aria-label": "controlled" }}
+        />
         <Tooltip placement="top" title="Blur">
           <DeblurRoundedIcon
             htmlColor={nightMode.getter ? "#eae3f1" : "#231f22"}

@@ -24,7 +24,9 @@ const hoverAnim = keyframes`
 `;
 const PrettoSlider = styled(Slider)({
   color: "#6068d2",
-  height: 8,
+  height: "10px",
+  width: "90%",
+  paddingInlineStart: 10,
 
   "& .MuiSlider-track": {
     border: "none",
@@ -52,6 +54,7 @@ const PrettoSlider = styled(Slider)({
       display: "none",
     },
   },
+
   "& .MuiSlider-markLabel": {
     //TODO: add night mode
     color: "#6068d2",
@@ -103,7 +106,7 @@ export default function DefaultMarkedMUISlider({
   return (
     <Box
       sx={{
-        width: "20vw",
+        width: "18vw",
         marginTop: 0,
         paddingTop: 0,
         marginBottom: 0,
