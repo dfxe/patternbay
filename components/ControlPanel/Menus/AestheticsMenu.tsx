@@ -8,7 +8,7 @@ import Stack from "@mui/material/Stack";
 import DefaultMarkedMUISlider from "../../DStyles/DefaultMarkedMUISlider";
 import { nanoid } from "nanoid";
 import ColorPaletteMenu from "../../ColorPalette/ColorPaletteMenu";
-import InputColor from "./InputColor";
+import InputColor from "../../InputColor/InputColor";
 import HalfRect from "../../../images/GeometricShapes/HalfRect";
 import InterestsRoundedIcon from "@mui/icons-material/InterestsRounded";
 import Cloud from "../../../images/GeometricShapes/Cloud";
@@ -41,6 +41,7 @@ import PaddingRoundedIcon from "@mui/icons-material/PaddingRounded";
 import Tooltip from "@mui/material/Tooltip";
 
 import ExpandRoundedIcon from "@mui/icons-material/ExpandRounded";
+import BorderSlider from "../../ActionSliders/BorderSlider";
 
 type ConstructableData = {
   index: number;
@@ -76,10 +77,14 @@ export default function GeometricPatterns() {
   const sizeParams = {
     width: { min: 30, max: 40, default: 30, step: 1 },
     height: { min: 30, max: 50, default: 30, step: 1 },
+    borderRadius: { min: 0, max: 10, default: 0, step: 1 },
     gap: { min: 0, max: 4, default: 0, step: 0.2 },
   };
   const [width, setWidth] = useState(sizeParams.width.default);
   const [height, setHeight] = useState(sizeParams.height.default);
+  const [borderRadius, setBorderRadius] = useState(
+    sizeParams.borderRadius.default
+  );
   const [gridGap, setGridGap] = useState(sizeParams.gap.default);
   const [padding, setPadding] = useState(20);
   const [gBackgroundColor, setGBackgroundColor] = useState("#180c23");
@@ -259,7 +264,11 @@ export default function GeometricPatterns() {
         &nbsp; Aesthetics Bay
       </Typography>
       <br></br>
-
+      <BorderSlider
+        params={sizeParams.borderRadius}
+        setBorderRadius={setBorderRadius}
+        nightModeSwitch={nightMode.getter}
+      />
       <Stack
         spacing={1}
         direction="row"
@@ -284,6 +293,7 @@ export default function GeometricPatterns() {
           }}
         />
       </Stack>
+
       <Stack
         spacing={1}
         direction="row"
@@ -493,7 +503,7 @@ export default function GeometricPatterns() {
           top: "2vh",
           left: "40vw",
           padding: `${padding}px`,
-          borderRadius: "30px",
+          borderRadius: `${borderRadius}%`,
           width: `30vw`,
           height: `auto`,
           backgroundColor: gBackgroundColor,

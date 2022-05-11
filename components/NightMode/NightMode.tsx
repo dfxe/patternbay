@@ -5,7 +5,7 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import Switch from "@mui/material/Switch";
 import { useNightMode } from "../ControlPanel/Providers/NightModeProvider";
 import { styled } from "@mui/material/styles";
-import ContrastWarningSnackBar from "../ControlPanel/Panels/ContrastWarningSnackBar";
+import ContrastWarningSnackBar from "../ControlPanel/Menus/ContrastWarningSnackBar";
 import Button from "@mui/material/Button";
 
 const M3Switch = styled(Switch)(({ theme }) => ({

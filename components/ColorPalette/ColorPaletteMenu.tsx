@@ -14,7 +14,7 @@ import ListItemButton from "@mui/material/ListItemButton";
 import { nanoid } from "nanoid";
 import { useNightMode } from "../ControlPanel/Providers/NightModeProvider";
 import useMediaQuery from "@mui/material/useMediaQuery";
-import InputColor from "../ControlPanel/Panels/InputColor";
+import InputColor from "../InputColor/InputColor";
 import { keyframes, styled } from "@mui/material/styles";
 import GradientRoundedIcon from "@mui/icons-material/GradientRounded";
 

@@ -1,8 +1,8 @@
 import React from "react";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
-import { useColors } from "../Providers/ColorProvider";
-import { useNightMode } from "../Providers/NightModeProvider";
+import { useColors } from "../ControlPanel/Providers/ColorProvider";
+import { useNightMode } from "../ControlPanel/Providers/NightModeProvider";
 
 type Props = {
   colorValue: string;

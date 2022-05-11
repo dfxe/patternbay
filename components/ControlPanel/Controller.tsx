@@ -8,12 +8,12 @@ import { useNightMode } from "./Providers/NightModeProvider";
 import { useTabSupervisor } from "./Providers/TabSupervisorProvider";
 import { useConcentrics } from "./Providers/ConcentricsProvider";
 
-import MenuSidebar from "./Panels/MenuSidebar";
-import BlobMenu from "../ControlPanel/Panels/BlobMenu";
-import NoiseGradientMenu from "../ControlPanel/Panels/NoiseGradientMenu";
-import GeometricShapes from "./Panels/AestheticsMenu";
-import CirclePatternsMenu from "./Panels/ConcentricsMenu";
-import TextInterfaceMenu from "./Panels/SocialsMenu";
+import MenuSidebar from "./Menus/MenuSidebar";
+import BlobMenu from "./Menus/BlobMenu";
+import NoiseGradientMenu from "./Menus/NoiseGradientMenu";
+import GeometricShapes from "./Menus/AestheticsMenu";
+import CirclePatternsMenu from "./Menus/ConcentricsMenu";
+import TextInterfaceMenu from "./Menus/SocialsMenu";
 import { nanoid } from "nanoid";
 export default function Controller() {
   const mqMin1024 = useMediaQuery("(min-width:1024px)");

@@ -5,7 +5,7 @@ import Stack from "@mui/material/Stack";
 import DefaultMarkedMUISlider from "../../DStyles/DefaultMarkedMUISlider";
 import Typography from "@mui/material/Typography";
 
-import InputColor from "./InputColor";
+import InputColor from "../../InputColor/InputColor";
 import TextField from "@mui/material/TextField";
 import GradientRounded from "@mui/icons-material/GradientRounded";
 import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
@@ -26,13 +26,17 @@ import DeblurIcon from "@mui/icons-material/Deblur";
 import RoundedCornerIcon from "@mui/icons-material/RoundedCorner";
 import RoundedCornerSharpIcon from "@mui/icons-material/RoundedCornerSharp";
 
+import BorderSlider from "../../ActionSliders/BorderSlider";
+import RotationSlider from "../../ActionSliders/RotationSlider";
+
 const NoiseGradientMenu = () => {
-  const sizeParams = {
+  const boundaryParams = {
     borderRadius: { min: 0, max: 10, step: 1, default: 3 },
+    rotation: { min: 0, max: 360, step: 5, default: 0 },
   };
   const [dimensions, setDimensions] = useState({ width: 500, height: 300 });
   const [borderRadius, setBorderRadius] = useState(
-    sizeParams.borderRadius.default
+    boundaryParams.borderRadius.default
   );
   const [rotation, setRotation] = useState(0);
   const [contrast, setContrast] = useState(100);
@@ -219,61 +223,17 @@ const NoiseGradientMenu = () => {
           }
         />
       </Stack> */}
-      <Stack
-        spacing={1}
-        direction="row"
-        sx={{ mb: 1, position: "relative" }}
-        alignItems="center"
-        justifyContent="center"
-        gap={1}
-      >
-        <Tooltip placement="top" title="Sharp Corners">
-          <RoundedCornerSharpIcon
-            htmlColor={nightMode.getter ? "#eae3f1" : "#231f22"}
-          ></RoundedCornerSharpIcon>
-        </Tooltip>
-        <DefaultMarkedMUISlider
-          defaultValue={sizeParams.borderRadius.default}
-          step={sizeParams.borderRadius.step}
-          min={sizeParams.borderRadius.min}
-          max={sizeParams.borderRadius.max}
-          markPoints={null}
-          onChangeMod={(e) => {
-            setBorderRadius(+(e.target as HTMLInputElement).value);
-          }}
-        />
-        <Tooltip placement="top" title="Round Corners">
-          <RoundedCornerIcon
-            htmlColor={nightMode.getter ? "#eae3f1" : "#231f22"}
-          ></RoundedCornerIcon>
-        </Tooltip>
-      </Stack>
+      <BorderSlider
+        params={boundaryParams.borderRadius}
+        setBorderRadius={setBorderRadius}
+        nightModeSwitch={nightMode.getter}
+      />
       <ColorPaletteMenu setPalette={setColorsUsed} hasThirdColor={false} />
-      <Stack
-        spacing={1}
-        direction="row"
-        sx={{ mb: 1, position: "relative" }}
-        alignItems="center"
-        justifyContent="center"
-        gap={1}
-      >
-        <Tooltip placement="top" title="Gradient Rotation">
-          <ScreenRotationAltRoundedIcon
-            htmlColor={nightMode.getter ? "#eae3f1" : "#231f22"}
-          ></ScreenRotationAltRoundedIcon>
-        </Tooltip>
-        <DefaultMarkedMUISlider
-          sliderLabel=""
-          defaultValue={0}
-          step={5}
-          min={0}
-          max={360}
-          markPoints={null}
-          onChangeMod={(e) => {
-            setRotation(+(e.target as HTMLInputElement).value);
-          }}
-        />
-      </Stack>
+      <RotationSlider
+        params={boundaryParams.rotation}
+        setRotation={setRotation}
+        nightModeSwitch={nightMode.getter}
+      />
       <Stack
         spacing={1}
         direction="row"

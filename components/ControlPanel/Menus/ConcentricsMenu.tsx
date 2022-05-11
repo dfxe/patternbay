@@ -11,7 +11,7 @@ import { useSize } from "../Providers/SizeProvider";
 import { useNightMode } from "../Providers/NightModeProvider";
 import { useConcentrics } from "../Providers/ConcentricsProvider";
 import { useShape } from "../Providers/ShapeProvider";
-import InputColor from "./InputColor";
+import InputColor from "../../InputColor/InputColor";
 import DefaultMarkedMUISlider from "../../DStyles/DefaultMarkedMUISlider";
 import WorkspacesRoundedIcon from "@mui/icons-material/WorkspacesRounded";
 import ActionsPanel from "./ActionsPanel";
@@ -25,6 +25,7 @@ import ExpandRoundedIcon from "@mui/icons-material/ExpandRounded";
 import RotateRightRoundedIcon from "@mui/icons-material/RotateRightRounded";
 import AdjustRoundedIcon from "@mui/icons-material/AdjustRounded";
 import Divider from "@mui/material/Divider";
+import SizeSlider from "../../ActionSliders/SizeSlider";
 
 function CirclePatternsMenu() {
   const mqMin1024 = useMediaQuery("(min-width:1024px)");
@@ -39,12 +40,10 @@ function CirclePatternsMenu() {
   const [opacity, setOpacity] = useState<number>(0);
   const [palette, setPaletteUsed] = useState<string[]>(["#6f5a5a", "#69a594"]);
 
-  //TODO change tailwind button class
-
   const sizeParams = {
     default: 1,
-    minSize: 1,
-    maxSize: 3,
+    min: 1,
+    max: 3,
     step: 0.5,
   };
 
@@ -134,31 +133,11 @@ function CirclePatternsMenu() {
       <br></br>
       {/* TODO fix undo redo */}
       {/* <UndoRedo></UndoRedo> */}
-
-      <Stack
-        spacing={1}
-        direction="row"
-        sx={{ mb: 1, position: "relative" }}
-        alignItems="center"
-        justifyContent="center"
-        gap={1}
-      >
-        <Tooltip placement="top" title="Size">
-          <PhotoSizeSelectLargeRoundedIcon
-            htmlColor={nightMode.getter ? "#eae3f1" : "#231f22"}
-          ></PhotoSizeSelectLargeRoundedIcon>
-        </Tooltip>
-        <DefaultMarkedMUISlider
-          defaultValue={sizeParams.default}
-          step={sizeParams.step}
-          min={sizeParams.minSize}
-          max={sizeParams.maxSize}
-          markPoints={null}
-          onChangeMod={(e) => {
-            entitySize.setter(+(e.target as HTMLInputElement).value);
-          }}
-        />
-      </Stack>
+      <SizeSlider
+        params={sizeParams}
+        setSize={entitySize.setter}
+        nightModeSwitch={nightMode.getter}
+      />
       <Stack
         spacing={1}
         direction="row"
@@ -183,34 +162,6 @@ function CirclePatternsMenu() {
         />
       </Stack>
 
-      <Stack
-        spacing={1}
-        direction="row"
-        sx={{ mb: 1, position: "relative" }}
-        alignItems="center"
-        gap={1}
-      >
-        <Tooltip placement="top" title="Sharp Corners">
-          <RoundedCornerSharpIcon
-            htmlColor={nightMode.getter ? "#eae3f1" : "#231f22"}
-          ></RoundedCornerSharpIcon>
-        </Tooltip>
-        <DefaultMarkedMUISlider
-          defaultValue={shapeParams.default}
-          step={shapeParams.step}
-          min={shapeParams.min}
-          max={shapeParams.max}
-          markPoints={null}
-          onChangeMod={(e) => {
-            entityShape.setter(+(e.target as HTMLInputElement).value);
-          }}
-        />
-        <Tooltip placement="top" title="Round Corners">
-          <RoundedCornerIcon
-            htmlColor={nightMode.getter ? "#eae3f1" : "#231f22"}
-          ></RoundedCornerIcon>
-        </Tooltip>
-      </Stack>
       <Stack
         spacing={1}
         direction="row"

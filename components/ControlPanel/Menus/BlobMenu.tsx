@@ -8,7 +8,7 @@ import BlobSVGMenuSidebar from "../../../images/MenuSidebarBlob";
 import Button from "@mui/material/Button";
 import Divider from "@mui/material/Divider";
 import Checkbox from "@mui/material/Checkbox";
-import InputColor from "./InputColor";
+import InputColor from "../../InputColor/InputColor";
 import TextField from "@mui/material/TextField";
 import ColorPaletteMenu from "../../ColorPalette/ColorPaletteMenu";
 import MenuBackdrop from "./MenuBackdrop";
