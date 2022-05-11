@@ -253,7 +253,7 @@ const NoiseGradientMenu = () => {
           step={10}
           min={100}
           max={400}
-          markPoints={null}
+          
           onChangeMod={(e) => {
             setContrast(+(e.target as HTMLInputElement).value);
           }}
@@ -278,7 +278,7 @@ const NoiseGradientMenu = () => {
           step={10}
           min={100}
           max={1000}
-          markPoints={null}
+        
           onChangeMod={(e) => {
             setBrightness(+(e.target as HTMLInputElement).value);
           }}
@@ -321,7 +321,7 @@ const NoiseGradientMenu = () => {
           step={0.1}
           min={0.1}
           max={5}
-          markPoints={null}
+        
           onChangeMod={(e) => {
             setFrequency(+(e.target as HTMLInputElement).value);
           }}
@@ -352,7 +352,7 @@ const NoiseGradientMenu = () => {
           step={0.1}
           min={0.1}
           max={2}
-          markPoints={null}
+        
           onChangeMod={(e) => {
             setBlur({
               ...blur,

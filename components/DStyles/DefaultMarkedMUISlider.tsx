@@ -4,7 +4,8 @@ import Slider from "@mui/material/Slider";
 import Typography from "@mui/material/Typography";
 import { keyframes, styled } from "@mui/material/styles";
 import { useNightMode } from "../ControlPanel/Providers/NightModeProvider";
-
+import { Mark } from "@mui/base/SliderUnstyled/SliderUnstyledProps";
+import { formLabelClasses } from "@mui/material";
 function valuetext(value: number) {
   return `${value}°C`;
 }
@@ -83,7 +84,7 @@ interface Props {
   defaultValue: number;
   min: number;
   max: number;
-  markPoints: { value: number; label: string }[] | null;
+  markPoints?: Mark[];
   step: number;
   onChangeMod: (e: React.ChangeEvent<{}>) => void;
 }
@@ -95,7 +96,7 @@ export default function DefaultMarkedMUISlider({
   step,
   min,
   max,
-  markPoints = null,
+  markPoints,
   onChangeMod,
 }: Props) {
   const nightMode = useNightMode();
@@ -124,33 +125,19 @@ export default function DefaultMarkedMUISlider({
       >
         {sliderLabel}
       </Typography>
-      {markPoints ? (
-        <PrettoSlider
-          disabled={disabled}
-          defaultValue={defaultValue}
-          getAriaValueText={valuetext}
-          step={step}
-          marks={markPoints}
-          min={min}
-          max={max}
-          valueLabelDisplay="auto"
-          //@ts-ignore
-          onChange={onChangeMod}
-        />
-      ) : (
-        <PrettoSlider
-          disabled={disabled}
-          defaultValue={defaultValue}
-          getAriaValueText={valuetext}
-          step={step}
-          marks
-          min={min}
-          max={max}
-          valueLabelDisplay="auto"
-          //@ts-ignore
-          onChange={onChangeMod}
-        />
-      )}
+
+      <PrettoSlider
+        disabled={disabled}
+        defaultValue={defaultValue}
+        getAriaValueText={valuetext}
+        step={step}
+        marks={markPoints ? markPoints : true}
+        min={min}
+        max={max}
+        valueLabelDisplay="auto"
+        //@ts-ignore
+        onChange={onChangeMod}
+      />
     </Box>
   );
 }

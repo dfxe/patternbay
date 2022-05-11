@@ -26,6 +26,8 @@ import RotateRightRoundedIcon from "@mui/icons-material/RotateRightRounded";
 import AdjustRoundedIcon from "@mui/icons-material/AdjustRounded";
 import Divider from "@mui/material/Divider";
 import SizeSlider from "../../ActionSliders/SizeSlider";
+import ExpandSlider from "../../ActionSliders/ExpandSlider";
+import RotationSlider from "../../ActionSliders/RotationSlider";
 
 function CirclePatternsMenu() {
   const mqMin1024 = useMediaQuery("(min-width:1024px)");
@@ -39,31 +41,31 @@ function CirclePatternsMenu() {
 
   const [opacity, setOpacity] = useState<number>(0);
   const [palette, setPaletteUsed] = useState<string[]>(["#6f5a5a", "#69a594"]);
-
-  const sizeParams = {
-    default: 1,
-    min: 1,
-    max: 3,
-    step: 0.5,
-  };
-
-  const radiusParams = {
-    default: 0.6,
-    minRadius: 0.2,
-    maxRadius: 1.4,
-    step: 0.1,
-  };
-  const rotationParams = {
-    default: 1,
-    minRotation: 0,
-    maxRotation: 260,
-    step: 5,
-  };
-  const shapeParams = {
-    default: 15,
-    min: 0,
-    max: 15,
-    step: 1,
+  const boundaryParams = {
+    sizeParams: {
+      default: 1,
+      min: 1,
+      max: 3,
+      step: 0.5,
+    },
+    radiusParams: {
+      default: 0.6,
+      min: 0.2,
+      max: 1.4,
+      step: 0.1,
+    },
+    rotationParams: {
+      default: 1,
+      min: 0,
+      max: 260,
+      step: 5,
+    },
+    shapeParams: {
+      default: 15,
+      min: 0,
+      max: 15,
+      step: 1,
+    },
   };
   type MyEventType = {
     target: {
@@ -134,83 +136,50 @@ function CirclePatternsMenu() {
       {/* TODO fix undo redo */}
       {/* <UndoRedo></UndoRedo> */}
       <SizeSlider
-        params={sizeParams}
+        params={boundaryParams.sizeParams}
         setSize={entitySize.setter}
         nightModeSwitch={nightMode.getter}
       />
-      <Stack
-        spacing={1}
-        direction="row"
-        sx={{ mb: 1, position: "relative" }}
-        alignItems="center"
-        gap={1}
-      >
-        <Tooltip placement="top" title="Expand">
-          <ExpandRoundedIcon
-            htmlColor={nightMode.getter ? "#eae3f1" : "#231f22"}
-          ></ExpandRoundedIcon>
-        </Tooltip>
-        <DefaultMarkedMUISlider
-          defaultValue={radiusParams.default}
-          step={radiusParams.step}
-          min={radiusParams.minRadius}
-          max={radiusParams.maxRadius}
-          markPoints={null}
-          onChangeMod={(e) => {
-            entityRadius.setter(+(e.target as HTMLInputElement).value);
-          }}
-        />
-      </Stack>
+      <ExpandSlider
+        params={boundaryParams.radiusParams}
+        setExpand={entityRadius.setter}
+        nightModeSwitch={nightMode.getter}
+      />
+      <RotationSlider
+        params={boundaryParams.rotationParams}
+        setRotation={(rotationNum) => {
+          entityRotation.setter({
+            ...entityRotation.getter,
+            x: rotationNum,
+          });
+        }}
+        markPoints={[
+          {
+            value: boundaryParams.rotationParams.min,
+            label: `${boundaryParams.rotationParams.min}°`,
+          },
 
-      <Stack
-        spacing={1}
-        direction="row"
-        sx={{ mb: 1 }}
-        alignItems="center"
-        gap={1}
-      >
-        <Tooltip placement="top" title="Rotate">
-          <RotateRightRoundedIcon
-            htmlColor={nightMode.getter ? "#eae3f1" : "#231f22"}
-          ></RotateRightRoundedIcon>
-        </Tooltip>
-        <DefaultMarkedMUISlider
-          defaultValue={rotationParams.default}
-          step={rotationParams.step}
-          min={rotationParams.minRotation}
-          max={rotationParams.maxRotation}
-          markPoints={[
-            {
-              value: rotationParams.minRotation,
-              label: `${rotationParams.minRotation}°`,
-            },
+          {
+            value: 45,
+            label: "45°",
+          },
 
-            {
-              value: 45,
-              label: "45°",
-            },
+          {
+            value: 90,
+            label: "90°",
+          },
+          {
+            value: 180,
+            label: "180°",
+          },
+          {
+            value: boundaryParams.rotationParams.max,
+            label: `${boundaryParams.rotationParams.max}°`,
+          },
+        ]}
+        nightModeSwitch={nightMode.getter}
+      />
 
-            {
-              value: 90,
-              label: "90°",
-            },
-            {
-              value: 180,
-              label: "180°",
-            },
-            {
-              value: rotationParams.maxRotation,
-              label: `${rotationParams.maxRotation}°`,
-            },
-          ]}
-          onChangeMod={(e) => {
-            entityRotation.setter({
-              ...entityRotation.getter,
-              x: +(e.target as HTMLInputElement).value,
-            });
-          }}
-        />
-      </Stack>
       <InputColor
         colorValue={colors.getter}
         setColorValue={colors.setter}

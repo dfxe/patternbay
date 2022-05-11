@@ -1,53 +1,44 @@
 import React from "react";
 import Stack from "@mui/material/Stack";
 import Tooltip from "@mui/material/Tooltip";
-import ScreenRotationAltRoundedIcon from "@mui/icons-material/ScreenRotationAltRounded";
+import ExpandRoundedIcon from "@mui/icons-material/ExpandRounded";
 import DefaultMarkedMUISlider from "../DStyles/DefaultMarkedMUISlider";
-import { Mark } from "@mui/base/SliderUnstyled/SliderUnstyledProps";
 type Props = {
   params: {
     default: number;
     min: number;
     max: number;
     step: number;
+    label?: string;
   };
-  setRotation: (rotation: number) => void;
-  markPoints?: Mark[];
+  setExpand: (expand: number) => void;
   nightModeSwitch: boolean;
 };
-const RotationSlider = ({
-  params,
-  setRotation,
-  markPoints,
-  nightModeSwitch,
-}: Props) => {
+const ExpandSlider = ({ params, setExpand, nightModeSwitch }: Props) => {
   return (
     <Stack
       spacing={1}
       direction="row"
       sx={{ mb: 1, position: "relative" }}
       alignItems="center"
-      justifyContent="center"
       gap={1}
     >
-      <Tooltip placement="top" title="Gradient Rotation">
-        <ScreenRotationAltRoundedIcon
+      <Tooltip placement="top" title={params.label || "Option"}>
+        <ExpandRoundedIcon
           htmlColor={nightModeSwitch ? "#eae3f1" : "#231f22"}
-        ></ScreenRotationAltRoundedIcon>
+        ></ExpandRoundedIcon>
       </Tooltip>
       <DefaultMarkedMUISlider
-        sliderLabel=""
         defaultValue={params.default}
         step={params.step}
         min={params.min}
         max={params.max}
-        markPoints={markPoints ? markPoints : undefined}
         onChangeMod={(e) => {
-          setRotation(+(e.target as HTMLInputElement).value);
+          setExpand(+(e.target as HTMLInputElement).value);
         }}
       />
     </Stack>
   );
 };
 
-export default RotationSlider;
+export default ExpandSlider;

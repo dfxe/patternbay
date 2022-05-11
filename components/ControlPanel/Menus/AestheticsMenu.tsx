@@ -42,6 +42,7 @@ import Tooltip from "@mui/material/Tooltip";
 
 import ExpandRoundedIcon from "@mui/icons-material/ExpandRounded";
 import BorderSlider from "../../ActionSliders/BorderSlider";
+import ExpandSlider from "../../ActionSliders/ExpandSlider";
 
 type ConstructableData = {
   index: number;
@@ -71,21 +72,29 @@ const AestheticsGrid = styled(Box)({
   },
 });
 
-export default function GeometricPatterns() {
-  const [cols, setCols] = useState(4);
-  const elementTooltip = useElementTooltip();
-  const sizeParams = {
+export default function AestheticsMenu() {
+  const boundaryParams = {
+    cols: {
+      default: 2,
+      min: 1,
+      max: 10,
+      step: 1,
+      label: "Columns",
+    },
     width: { min: 30, max: 40, default: 30, step: 1 },
     height: { min: 30, max: 50, default: 30, step: 1 },
     borderRadius: { min: 0, max: 10, default: 0, step: 1 },
-    gap: { min: 0, max: 4, default: 0, step: 0.2 },
+    gap: { min: 0, max: 4, default: 0, step: 0.2, label: "Gap" },
   };
-  const [width, setWidth] = useState(sizeParams.width.default);
-  const [height, setHeight] = useState(sizeParams.height.default);
+  const [cols, setCols] = useState(boundaryParams.cols.default);
+  const elementTooltip = useElementTooltip();
+
+  const [width, setWidth] = useState(boundaryParams.width.default);
+  const [height, setHeight] = useState(boundaryParams.height.default);
   const [borderRadius, setBorderRadius] = useState(
-    sizeParams.borderRadius.default
+    boundaryParams.borderRadius.default
   );
-  const [gridGap, setGridGap] = useState(sizeParams.gap.default);
+  const [gridGap, setGridGap] = useState(boundaryParams.gap.default);
   const [padding, setPadding] = useState(20);
   const [gBackgroundColor, setGBackgroundColor] = useState("#180c23");
 
@@ -265,59 +274,21 @@ export default function GeometricPatterns() {
       </Typography>
       <br></br>
       <BorderSlider
-        params={sizeParams.borderRadius}
+        params={boundaryParams.borderRadius}
         setBorderRadius={setBorderRadius}
         nightModeSwitch={nightMode.getter}
       />
-      <Stack
-        spacing={1}
-        direction="row"
-        sx={{ mb: 1, position: "relative" }}
-        alignItems="center"
-        justifyContent="center"
-        gap={1}
-      >
-        <Tooltip placement="top" title="Gap">
-          <ExpandRoundedIcon
-            htmlColor={nightMode.getter ? "#eae3f1" : "#231f22"}
-          ></ExpandRoundedIcon>
-        </Tooltip>
-        <DefaultMarkedMUISlider
-          defaultValue={sizeParams.gap.default}
-          step={sizeParams.gap.step}
-          min={sizeParams.gap.min}
-          max={sizeParams.gap.max}
-          markPoints={null}
-          onChangeMod={(e) => {
-            setGridGap(+(e.target as HTMLInputElement).value);
-          }}
-        />
-      </Stack>
+      <ExpandSlider
+        params={boundaryParams.gap}
+        setExpand={setGridGap}
+        nightModeSwitch={nightMode.getter}
+      />
 
-      <Stack
-        spacing={1}
-        direction="row"
-        sx={{ mb: 1, position: "relative" }}
-        alignItems="center"
-        justifyContent="center"
-        gap={1}
-      >
-        <Tooltip placement="top" title="Columns">
-          <ViewColumnRoundedIcon
-            htmlColor={nightMode.getter ? "#eae3f1" : "#231f22"}
-          ></ViewColumnRoundedIcon>
-        </Tooltip>
-        <DefaultMarkedMUISlider
-          defaultValue={4}
-          step={1}
-          min={1}
-          max={10}
-          markPoints={null}
-          onChangeMod={(e) => {
-            setCols(+(e.target as HTMLInputElement).value);
-          }}
-        />
-      </Stack>
+      <ExpandSlider
+        params={boundaryParams.cols}
+        setExpand={setCols}
+        nightModeSwitch={nightMode.getter}
+      />
       <Stack
         spacing={1}
         direction="row"
@@ -336,7 +307,6 @@ export default function GeometricPatterns() {
           step={1}
           min={2}
           max={10}
-          markPoints={null}
           onChangeMod={(e) => {
             setPadding(+(e.target as HTMLInputElement).value * 10);
           }}
