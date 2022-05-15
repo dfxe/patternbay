@@ -158,9 +158,16 @@ const MenuSidebar = () => {
               Pattern Bay
             </Typography>
           </Link>
-          <Box sx={{ display: "flex", flexDirection: "column" }}>
+
+          <Box
+            sx={{
+              ml: "1em",
+              display: "flex",
+              flexDirection: "column",
+            }}
+          >
             <Typography
-              variant={mqMin1024 ? "h6" : "h6"}
+              variant={mqMin1024 ? "body1" : "h6"}
               sx={{
                 textAlign: "center",
                 m: 0,
@@ -170,20 +177,7 @@ const MenuSidebar = () => {
               }}
               component="div"
             >
-              alpha
-            </Typography>
-            <Typography
-              variant={mqMin1024 ? "h6" : "h6"}
-              sx={{
-                textAlign: "center",
-                m: 0,
-                color: nightMode.getter ? "#f3edf7" : "#231f22",
-
-                cursor: "pointer",
-              }}
-              component="div"
-            >
-              {packageJson.version}
+              {packageJson.version}a
             </Typography>
           </Box>
         </Toolbar>

@@ -12,6 +12,7 @@ import { TransitionProps } from "@mui/material/transitions";
 import ExitToAppRoundedIcon from "@mui/icons-material/ExitToAppRounded";
 //@ts-ignore
 import Obfuscate from "react-obfuscate";
+import packageJson from "../../../package.json";
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   "& .MuiPaper-root": {
@@ -93,8 +94,10 @@ const WhatIsThis = ({ open, setOpen }: Props) => {
         //@ts-ignore
         variant="h3"
       >
-        Pattern generator
+        Pattern Bay
+        <Typography variant="body1">{packageJson.version}a</Typography>
       </BootstrapDialogTitle>
+
       <DialogContent>
         <Typography gutterBottom>
           This tool is meant for web devs looking to make their portfolios pop.
