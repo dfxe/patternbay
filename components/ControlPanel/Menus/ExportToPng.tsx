@@ -10,7 +10,7 @@ import Slide from "@mui/material/Slide";
 import { TransitionProps } from "@mui/material/transitions";
 import SVGtoPNG from "../../SVGtoPNG/SVGtoPNG";
 import { useTabSupervisor } from "../Providers/TabSupervisorProvider";
-
+import { Canvg } from "canvg";
 const Transition = React.forwardRef(function Transition(
   props: TransitionProps & {
     children: React.ReactElement<any, any>;
@@ -55,6 +55,50 @@ export default function ExportToPng({ canDisplay, open, setOpen }: Props) {
 
       setSvgStrings(svgStrings);
     }
+  };
+
+  //TODO refactor everything in canvas Path2D then export to png
+  const exportToPng = () => {
+    const canvg = new Canvg(document.createElement("canvas"));
+    canvg.setSize(500, 500);
+    canvg.setViewBox(0, 0, 500, 500);
+    canvg.setScale(1);
+    canvg.setOptions({
+      ignoreMouse: true,
+      ignoreAnimation: true,
+      ignoreDimensions: true,
+      ignoreClear: true,
+      offsetX: 0,
+      offsetY: 0,
+      scaleWidth: 500,
+      scaleHeight: 500,
+      renderCallback: function (canvas) {
+        const png = canvas.toDataURL("image/png");
+        const a = document.createElement("a");
+        a.href = png;
+        a.download = "image.png";
+        a.click();
+      },
+    });
+  };
+  const convgGetSvg = () => {
+    let v = null;
+    let getterId: string = "";
+    if (!tabSupervisor.tabs.blobMenu.isHidden) {
+      getterId = "the-blob-itself";
+    } else if (!tabSupervisor.tabs.geometricPatternsMenu.isHidden) {
+      getterId = "u-all-aesthetic-patterns-parent";
+    } else if (!tabSupervisor.tabs.noiseGradientMenu.isHidden) {
+      getterId = "the-noise-gradient-itself";
+    }
+    const canvas = document.querySelector(getterId);
+    const ctx = canvas!.getContext("2d");
+    //@ts-ignore
+    v = Canvg!.from(ctx, "./svgs/1.svg");
+
+    // Start SVG rendering with animations and mouse handling.
+    //@ts-ignore
+    v!.start();
   };
 
   useEffect(() => {

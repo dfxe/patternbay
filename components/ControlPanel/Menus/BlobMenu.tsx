@@ -25,9 +25,10 @@ import { nanoid } from "nanoid";
 import NumbersRoundedIcon from "@mui/icons-material/NumbersRounded";
 import GrainRoundedIcon from "@mui/icons-material/GrainRounded";
 import Draggable from "react-draggable";
+import { useMouse } from "rooks";
 const BlobMenu = () => {
   const [opacity, setOpacity] = useState(1);
-
+  const { x: mouseX, y: mouseY } = useMouse();
   const [rotation, setRotation] = useState(Math.floor(Math.random() * 3200));
   const [dimensions, setDimensions] = useState({ width: 100, height: 100 });
 
@@ -540,12 +541,12 @@ const BlobMenu = () => {
               );
             })}
           </g>
-          <Draggable bounds={{ top: -10, left: 0, right: 45, bottom: 30 }}>
+          <Draggable
+            grid={[5, 5]}
+            bounds={{ top: 10, left: 0, right: 45, bottom: 30 }}
+          >
             <text
               aria-label="blob-text"
-              x="5"
-              y="15"
-              /* TODO verify textColor */
               style={{
                 cursor: "move",
                 fontSize: textSize,

@@ -100,6 +100,18 @@ const WhatIsThis = ({ open, setOpen }: Props) => {
 
       <DialogContent>
         <Typography gutterBottom>
+          Disclaimer: This is a work in progress. It is not meant to be used for
+          anything other than learning.
+        </Typography>
+        <Typography gutterBottom>
+          This is a web application that allows you to create and share patterns
+          with others.
+        </Typography>
+        <Typography>
+          The key is stored in the browser&apos;s local storage and is never
+          sent to the server.
+        </Typography>
+        <Typography>
           This tool is meant for web devs looking to make their portfolios pop.
         </Typography>
         <Typography gutterBottom variant="h5">
@@ -133,6 +145,12 @@ const WhatIsThis = ({ open, setOpen }: Props) => {
             backgroundColor: "#6650a4",
             color: "white",
             borderRadius: "64px",
+            "&:hover": {
+              backgroundColor: "#6f5caa",
+            },
+            "&:not(:hover)": {
+              backgroundColor: "#6068df",
+            },
           }}
           onClick={handleClose}
         >

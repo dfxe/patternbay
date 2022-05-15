@@ -37,6 +37,7 @@ import BlobSVGMenuSidebar from "../../../images/MenuSidebarBlob";
 import Link from "next/link";
 import ExportToPng from "./ExportToPng";
 import packageJson from "../../../package.json";
+import Chip from "@mui/material/Chip";
 const drawerWidth = 73;
 
 const openedMixin = (theme: Theme): CSSObject => ({
@@ -159,27 +160,14 @@ const MenuSidebar = () => {
             </Typography>
           </Link>
 
-          <Box
+          <Chip
+            label={`${packageJson.version}a`}
+            variant="outlined"
             sx={{
-              ml: "1em",
-              display: "flex",
-              flexDirection: "column",
+              marginLeft: "1em",
+              color: "#ddd",
             }}
-          >
-            <Typography
-              variant={mqMin1024 ? "body1" : "h6"}
-              sx={{
-                textAlign: "center",
-                m: 0,
-                color: nightMode.getter ? "#f3edf7" : "#231f22",
-
-                cursor: "pointer",
-              }}
-              component="div"
-            >
-              {packageJson.version}a
-            </Typography>
-          </Box>
+          />
         </Toolbar>
       </AppBar>
       <Drawer

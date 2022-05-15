@@ -131,6 +131,7 @@ const NoiseGradientMenu = () => {
       /> */}
 
       <svg
+        aria-label="noise-gradient-svg"
         style={{
           position: "absolute",
           left: "10vw",
