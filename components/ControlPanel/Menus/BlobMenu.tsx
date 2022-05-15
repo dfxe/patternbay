@@ -540,7 +540,7 @@ const BlobMenu = () => {
               );
             })}
           </g>
-          <Draggable bounds={{ top: -10, left: -10, right: 10, bottom: 10 }}>
+          <Draggable bounds={{ top: -10, left: 0, right: 45, bottom: 30 }}>
             <text
               aria-label="blob-text"
               x="5"
