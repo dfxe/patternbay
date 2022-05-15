@@ -20,7 +20,7 @@ import InterestsRoundedIcon from "@mui/icons-material/InterestsRounded";
 import WorkspacesRoundedIcon from "@mui/icons-material/WorkspacesRounded";
 
 import HelpIcon from "@mui/icons-material/Help";
-import ExitToAppRoundedIcon from "@mui/icons-material/ExitToAppRounded";
+import SaveAltRoundedIcon from "@mui/icons-material/SaveAltRounded";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import ExportData from "./ExportData";
@@ -365,7 +365,7 @@ const MenuSidebar = () => {
             <ListItemIcon
               sx={{ color: nightMode.getter ? "#eae3f1" : "#231f22" }}
             >
-              <ExitToAppRoundedIcon />
+              <SaveAltRoundedIcon />
             </ListItemIcon>
           </ListItemButton>
           <ListItemButton

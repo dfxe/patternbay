@@ -194,29 +194,7 @@ function CirclePatternsMenu() {
             backgroundColor: "#6068d2",
             color: "#fff",
             borderRadius: "64px",
-            padding: "1em",
-            boxShadow:
-              "rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset",
-            "&:hover": {
-              backgroundColor: "#6f5caa",
-            },
-            "&:not(:hover)": {
-              backgroundColor: "#6068df",
-            },
-          }}
-          variant="contained"
-          onClick={() => {
-            handleBuildOne();
-          }}
-        >
-          + Add
-        </Button>
-        <Button
-          sx={{
-            backgroundColor: "#6068d2",
-            color: "#fff",
-            borderRadius: "64px",
-            padding: "1em",
+            padding: "2em",
             boxShadow:
               "rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset",
             "&:hover": {
@@ -240,6 +218,28 @@ function CirclePatternsMenu() {
           }}
         >
           - Remove
+        </Button>
+        <Button
+          sx={{
+            backgroundColor: "#6068d2",
+            color: "#fff",
+            borderRadius: "64px",
+            padding: "2em",
+            boxShadow:
+              "rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset",
+            "&:hover": {
+              backgroundColor: "#6f5caa",
+            },
+            "&:not(:hover)": {
+              backgroundColor: "#6068df",
+            },
+          }}
+          variant="contained"
+          onClick={() => {
+            handleBuildOne();
+          }}
+        >
+          + Add
         </Button>
       </Box>
       <br></br>

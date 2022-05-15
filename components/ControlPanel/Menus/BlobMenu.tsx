@@ -20,11 +20,11 @@ import DeblurRoundedIcon from "@mui/icons-material/DeblurRounded";
 import Tooltip from "@mui/material/Tooltip";
 import VectorFourVertex from "../../../images/SignifierIcons/VectorFourVertex";
 import AllOutRoundedIcon from "@mui/icons-material/AllOutRounded";
-import { useMouse } from "rooks";
+
 import { nanoid } from "nanoid";
 import NumbersRoundedIcon from "@mui/icons-material/NumbersRounded";
 import GrainRoundedIcon from "@mui/icons-material/GrainRounded";
-
+import Draggable from "react-draggable";
 const BlobMenu = () => {
   const [opacity, setOpacity] = useState(1);
 
@@ -147,11 +147,11 @@ const BlobMenu = () => {
       for (let i = newBlobShapes.length; i < numberOfBlobs; i++) {
         newBlobShapes.push({
           coords: {
-            x: Math.floor(Math.random() * 20) + Math.random() * 20 + 20,
-            y: Math.floor(Math.random() * 20) + Math.random() * 20 + 20,
+            x: Math.random() * 140 + 1400,
+            y: Math.random() * 140 + 1400,
           },
           d: {
-            size: Math.random() * 40 + Math.random() * 20,
+            size: Math.random() * 20,
             grow: blobShapes[0].d.grow,
             edges: blobShapes[0]?.d.edges || 3,
             seed: nanoid(),
@@ -159,7 +159,7 @@ const BlobMenu = () => {
           key: nanoid(),
           fill: "#6550a3",
           stroke: "#6550a3",
-          strokeWidth: "2px",
+          strokeWidth: "20px",
           strokeLinecap: "round",
           strokeLinejoin: "round",
         });
@@ -451,6 +451,43 @@ const BlobMenu = () => {
       </Stack>
       <div id="the-blob-itself">
         <svg
+          style={{
+            position: "absolute",
+            left: "30vw",
+            top: "0vh",
+            width: "50vw",
+            height: "60vh",
+          }}
+          viewBox="0 0 100 100"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <defs>
+            <rect
+              id="my-gradient-menu-canvas"
+              rx={6}
+              ry={6}
+              width="8vw"
+              height="80%"
+            />
+            {/* TODO find gradient filter for dis */}
+
+            <linearGradient
+              id="a-noise-gradient-menu-canvas"
+              gradientTransform={`rotate(${rotation})`}
+            >
+              <stop offset="20%" stopColor={"#222"} />
+              <stop offset="90%" stopColor={"#fff"} />
+            </linearGradient>
+          </defs>
+
+          <use
+            x="5"
+            y="5"
+            href="#my-gradient-menu-canvas"
+            fill="url('#a-noise-gradient-menu-canvas')"
+          />
+        </svg>
+        <svg
           aria-label="blob-svg"
           style={{
             position: "absolute",
@@ -487,44 +524,59 @@ const BlobMenu = () => {
           <g aria-label="blob-paths">
             {blobShapes.map((blob) => {
               return (
-                <path
-                  style={{
-                    transform: `translate(${blob.coords.x}}px, ${blob.coords.y}px)`,
-                  }}
-                  key={nanoid()}
-                  fill={"url(#a-linear-gradient-blob)"}
-                  d={blobshape(blob.d).path}
-                  stroke={"url(#a-linear-gradient-blob)"}
-                  strokeWidth={blob.strokeWidth}
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
+                <Draggable key={nanoid()}>
+                  <path
+                    style={{
+                      transform: `translate(${blob.coords.x}}px, ${blob.coords.y}px)`,
+                    }}
+                    fill={"url(#a-linear-gradient-blob)"}
+                    d={blobshape(blob.d).path}
+                    stroke={"url(#a-linear-gradient-blob)"}
+                    strokeWidth={blob.strokeWidth}
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </Draggable>
               );
             })}
           </g>
-          <text
-            x="5"
-            y="15"
-            /* TODO verify textColor */
-            style={{
-              fontSize: textSize,
-              transformOrigin: "center",
-            }}
-            fill={textColor}
-            transform={`rotate(${textRotation}deg)`}
-          >
-            {blobText}
-          </text>
+          <Draggable bounds={{ top: -10, left: -10, right: 10, bottom: 10 }}>
+            <text
+              aria-label="blob-text"
+              x="5"
+              y="15"
+              /* TODO verify textColor */
+              style={{
+                cursor: "move",
+                fontSize: textSize,
+              }}
+              fill={textColor}
+              transform={`rotate(${textRotation}deg)`}
+            >
+              {blobText}
+            </text>
+          </Draggable>
         </svg>
       </div>
 
       <ColorPaletteMenu setPalette={setColorPalette} hasThirdColor={false} />
-      <Divider sx={{ marginTop: "2em", marginBottom: "2em" }} />
+
       <Box
         sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}
       >
         <Button
-          className="bg-ind-dark text-ind-light rounded-full p-6 hover:bg-ind-hover"
+          sx={{
+            borderRadius: "64px",
+            padding: "1em 1em 1em 1em",
+            marginBlockStart: "1rem",
+            color: "#eae3f1",
+            "&:hover": {
+              backgroundColor: "#6f5caa",
+            },
+            "&:not(:hover)": {
+              backgroundColor: "#6068df",
+            },
+          }}
           onClick={() => handleGenerateBlob(blobNumber)}
         >
           Generate

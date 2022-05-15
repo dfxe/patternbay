@@ -3,12 +3,10 @@ import List from "@mui/material/List";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import HalfRect from "../../images/GeometricShapes/HalfRect";
-
 import Cloud from "../../images/GeometricShapes/Cloud";
 import Circle from "../../images/GeometricShapes/Circle";
 import CurveLine from "../../images/GeometricShapes/CurveLine";
 import Flower from "../../images/GeometricShapes/Flower";
-
 import Heart from "../../images/GeometricShapes/Heart";
 import Oval from "../../images/GeometricShapes/Oval";
 import PieChart from "../../images/GeometricShapes/PieChart";
@@ -59,7 +57,6 @@ const ShapesPaletteMenu = ({
         gridTemplateRows: "auto",
         gridGap: "4px",
         padding: "1em 1em 1em 1em",
-
         borderRadius: "20px",
         border: `1px solid ${nightMode.getter ? " #eae3f1" : "#383e4a"}`,
       }}

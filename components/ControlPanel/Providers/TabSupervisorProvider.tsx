@@ -61,15 +61,15 @@ export default function TabsSupervisorProvider({ children }: Props) {
   const [currentTabName, setCurrentTabName] = useState("");
   useEffect(() => {
     if (tabStatus.blobMenu.isHidden === false) {
-      setCurrentTabName("blob");
+      setCurrentTabName("Blobs Bay");
     } else if (tabStatus.circlePatternsMenu.isHidden === false) {
-      setCurrentTabName("circle");
+      setCurrentTabName("Concentrics Bay");
     } else if (tabStatus.geometricPatternsMenu.isHidden === false) {
-      setCurrentTabName("aes");
+      setCurrentTabName("Aesthetics Bay");
     } else if (tabStatus.noiseGradientMenu.isHidden === false) {
-      setCurrentTabName("noise");
+      setCurrentTabName("Noise Bay");
     } else if (tabStatus.socialsExpoMenu.isHidden === false) {
-      setCurrentTabName("social");
+      setCurrentTabName("Socials Bay");
     }
   }, [tabStatus]);
   return (

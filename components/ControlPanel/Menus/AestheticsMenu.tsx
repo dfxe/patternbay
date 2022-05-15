@@ -1,21 +1,17 @@
+import React, { useEffect, useState } from "react";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import { useNightMode } from "../Providers/NightModeProvider";
-import React, { useEffect, useState } from "react";
-import Button from "@mui/material/Button";
 
-import Stack from "@mui/material/Stack";
-import DefaultMarkedMUISlider from "../../DStyles/DefaultMarkedMUISlider";
+import Button from "@mui/material/Button";
 import { nanoid } from "nanoid";
 import ColorPaletteMenu from "../../ColorPalette/ColorPaletteMenu";
-import InputColor from "../../InputColor/InputColor";
 import HalfRect from "../../../images/GeometricShapes/HalfRect";
 import InterestsRoundedIcon from "@mui/icons-material/InterestsRounded";
 import Cloud from "../../../images/GeometricShapes/Cloud";
 import Circle from "../../../images/GeometricShapes/Circle";
 import CurveLine from "../../../images/GeometricShapes/CurveLine";
 import Flower from "../../../images/GeometricShapes/Flower";
-
 import Heart from "../../../images/GeometricShapes/Heart";
 import Oval from "../../../images/GeometricShapes/Oval";
 import PieChart from "../../../images/GeometricShapes/PieChart";
@@ -24,23 +20,17 @@ import SemiCircle from "../../../images/GeometricShapes/SemiCircle";
 import SpeechBubbleOne from "../../../images/GeometricShapes/SpeechBubbleOne";
 import Square from "../../../images/GeometricShapes/Square";
 import Triangle from "../../../images/GeometricShapes/Triangle";
-
-import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
-import ToggleButton from "@mui/material/ToggleButton";
-import Divider from "@mui/material/Divider";
 import ShapesPaletteMenu from "../../ShapesPalette/ShapesPaletteMenu";
 import MenuBackdrop from "./MenuBackdrop";
 import Diamond from "../../../images/GeometricShapes/Diamond";
 import ElementTooltip from "./ElementTooltip";
 import { useElementTooltip } from "../Providers/ElementTooltipProvider";
 import { keyframes, styled } from "@mui/material/styles";
-
-import PaddingRoundedIcon from "@mui/icons-material/PaddingRounded";
-import Tooltip from "@mui/material/Tooltip";
-
 import BorderSlider from "../../ActionSliders/BorderSlider";
 import ExpandSlider from "../../ActionSliders/ExpandSlider";
 import ShapeAdapter from "../../../images/GeometricShapes/ShapeAdapter";
+import RotationSlider from "../../ActionSliders/RotationSlider";
+import PaddingSlider from "../../ActionSliders/PaddingSlider";
 
 type ConstructableData = {
   index: number;
@@ -80,8 +70,10 @@ export default function AestheticsMenu() {
     },
     width: { min: 30, max: 40, default: 30, step: 1 },
     height: { min: 30, max: 50, default: 30, step: 1 },
-    borderRadius: { min: 0, max: 10, default: 0, step: 1 },
+    borderRadius: { min: 0, max: 10, default: 6, step: 1 },
     gap: { min: 0, max: 4, default: 0, step: 0.2, label: "Gap" },
+    rotation: { min: 0, max: 360, default: 0, step: 30 },
+    padding: { min: 2, max: 10, default: 2, step: 1 },
   };
   const [cols, setCols] = useState(boundaryParams.cols.default);
   const elementTooltip = useElementTooltip();
@@ -91,6 +83,7 @@ export default function AestheticsMenu() {
   const [borderRadius, setBorderRadius] = useState(
     boundaryParams.borderRadius.default
   );
+  //TODO grid gap with high column number creates a glitch
   const [gridGap, setGridGap] = useState(boundaryParams.gap.default);
   const [padding, setPadding] = useState(20);
   const [gBackgroundColor, setGBackgroundColor] = useState("#180c23");
@@ -105,16 +98,8 @@ export default function AestheticsMenu() {
     secondColor: "#69a594",
     thirdColor: "#a5a5a5",
   });
-  const [selectedShapeIndex, setSelectedShapeIndex] = useState<number[]>([]);
-  const [alignment, setAlignment] = useState("0");
-
-  const handleRotation = (
-    //@ts-ignore
-    event: React.MouseEvent<HTMLElement>,
-    newAlignment: string
-  ) => {
-    setAlignment(newAlignment);
-  };
+  const [selectedShapeIndex, setSelectedShapeIndex] = useState<number[]>([0]);
+  const [rotation, setRotation] = useState(0);
 
   const nightMode = useNightMode();
 
@@ -247,7 +232,7 @@ export default function AestheticsMenu() {
     return { patterns, constructables } as Patternz;
   };
   const [patterns, setPatterns] = useState<Patternz>(
-    generatePatternsRandomly(cols * cols, selectedShapeIndex, +alignment)
+    generatePatternsRandomly(cols * cols, selectedShapeIndex, +rotation)
   );
 
   const reconstructPatterns = (
@@ -273,13 +258,13 @@ export default function AestheticsMenu() {
 
   useEffect(() => {
     setPatterns(
-      generatePatternsRandomly(cols * cols, selectedShapeIndex, +alignment)
+      generatePatternsRandomly(cols * cols, selectedShapeIndex, +rotation)
     );
   }, []);
 
   useEffect(() => {
     setPatterns(
-      generatePatternsRandomly(cols * cols, selectedShapeIndex, +alignment)
+      generatePatternsRandomly(cols * cols, selectedShapeIndex, +rotation)
     );
   }, [cols, selectedShapeIndex]);
 
@@ -290,7 +275,7 @@ export default function AestheticsMenu() {
     }
     //TODO Need to keep same color shape, well good luck
     setPatterns({
-      patterns: reconstructPatterns(indexes, +alignment, [
+      patterns: reconstructPatterns(indexes, +rotation, [
         colorsUsed.firstColor,
         colorsUsed.secondColor,
       ]),
@@ -299,8 +284,9 @@ export default function AestheticsMenu() {
 
     elementTooltip.setColors([colorsUsed.firstColor, colorsUsed.secondColor]);
 
+    //TODO third color resetting on color pattern select
     setGBackgroundColor(colorsUsed.thirdColor);
-  }, [colorsUsed, alignment]);
+  }, [colorsUsed, rotation]);
 
   return (
     <MenuBackdrop>
@@ -340,134 +326,16 @@ export default function AestheticsMenu() {
         setExpand={setCols}
         nightModeSwitch={nightMode.getter}
       />
-      <Stack
-        spacing={1}
-        direction="row"
-        sx={{ mb: 1, position: "relative" }}
-        alignItems="center"
-        justifyContent="center"
-        gap={1}
-      >
-        <Tooltip placement="top" title="Padding">
-          <PaddingRoundedIcon
-            htmlColor={nightMode.getter ? "#eae3f1" : "#231f22"}
-          ></PaddingRoundedIcon>
-        </Tooltip>
-        <DefaultMarkedMUISlider
-          defaultValue={2}
-          step={1}
-          min={2}
-          max={10}
-          onChangeMod={(e) => {
-            setPadding(+(e.target as HTMLInputElement).value * 10);
-          }}
-        />
-      </Stack>
-      <Stack
-        spacing={1}
-        direction="row"
-        sx={{ mb: 1, position: "relative" }}
-        alignItems="center"
-        justifyContent="center"
-      >
-        <ToggleButtonGroup
-          color="primary"
-          value={alignment}
-          exclusive
-          onChange={handleRotation}
-        >
-          <ToggleButton
-            sx={{
-              borderRadius: "30px 0  0 30px",
-              width: "3em",
-              height: "3em",
-              fontSize: "0.8em",
-              color: nightMode.getter ? "#eae3f1" : "#231f22",
-            }}
-            value="0"
-          >
-            0°
-          </ToggleButton>
-          <ToggleButton
-            sx={{
-              color: nightMode.getter ? "#eae3f1" : "#231f22",
-              width: "3em",
-              height: "3em",
-              fontSize: "0.8em",
-            }}
-            value="45"
-          >
-            45°
-          </ToggleButton>
-          <ToggleButton
-            sx={{
-              color: nightMode.getter ? "#eae3f1" : "#231f22",
-              width: "3em",
-              height: "3em",
-              fontSize: "0.8em",
-            }}
-            value="90"
-          >
-            90°
-          </ToggleButton>
-          <ToggleButton
-            sx={{
-              color: nightMode.getter ? "#eae3f1" : "#231f22",
-              width: "3em",
-              height: "3em",
-              fontSize: "0.8em",
-            }}
-            value="135"
-          >
-            135°
-          </ToggleButton>
-          <ToggleButton
-            sx={{
-              color: nightMode.getter ? "#eae3f1" : "#231f22",
-              width: "3em",
-              height: "3em",
-              fontSize: "0.8em",
-            }}
-            value="180"
-          >
-            180°
-          </ToggleButton>
-          <ToggleButton
-            sx={{
-              color: nightMode.getter ? "#eae3f1" : "#231f22",
-              width: "3em",
-              height: "3em",
-              fontSize: "0.8em",
-            }}
-            value="225"
-          >
-            225°
-          </ToggleButton>
-          <ToggleButton
-            sx={{
-              color: nightMode.getter ? "#eae3f1" : "#231f22",
-              width: "3em",
-              height: "3em",
-              fontSize: "0.8em",
-            }}
-            value="270"
-          >
-            270°
-          </ToggleButton>
-          <ToggleButton
-            sx={{
-              borderRadius: "0 30px 30px 0",
-              color: nightMode.getter ? "#eae3f1" : "#231f22",
-              width: "3em",
-              height: "3em",
-              fontSize: "0.8em",
-            }}
-            value="315"
-          >
-            315°
-          </ToggleButton>
-        </ToggleButtonGroup>
-      </Stack>
+      <PaddingSlider
+        params={boundaryParams.padding}
+        setPadding={setPadding}
+        nightModeSwitch={nightMode.getter}
+      />
+      <RotationSlider
+        params={boundaryParams.rotation}
+        setRotation={setRotation}
+        nightModeSwitch={nightMode.getter}
+      />
 
       <ColorPaletteMenu setPalette={setColorsUsed} hasThirdColor={true} />
 
@@ -504,7 +372,7 @@ export default function AestheticsMenu() {
               generatePatternsRandomly(
                 cols * cols,
                 selectedShapeIndex,
-                +alignment
+                +rotation
               )
             );
           }}

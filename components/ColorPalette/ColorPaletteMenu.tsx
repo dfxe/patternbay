@@ -1,12 +1,4 @@
-import React, {
-  useState,
-  useEffect,
-  createContext,
-  Dispatch,
-  SetStateAction,
-  useContext,
-  ReactNode,
-} from "react";
+import React, { useState, useEffect, Dispatch, SetStateAction } from "react";
 import Box from "@mui/material/Box";
 
 import List from "@mui/material/List";
@@ -140,7 +132,7 @@ export default function ColorPaletteMenu({ setPalette, hasThirdColor }: Props) {
         flexWrap: "wrap",
         position: "absolute",
 
-        left: "30vw",
+        left: mqMin1256! ? "30vw" : "36vw",
         bottom: mqMin1256 ? "1vh" : "6vh",
 
         backgroundColor: nightMode.getter ? "#383e4a" : " #eae3f1",

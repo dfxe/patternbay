@@ -57,6 +57,7 @@ const ElementTooltip = () => {
     }
   }, [tooltip.elementToShow.elementId]);
   //TODO add hover animation on tooltip buttons
+  //TODO thing doesnt display the right border on focus
   return (
     <div
       style={{
@@ -101,7 +102,7 @@ const ElementTooltip = () => {
           }}
         ></BayButton>
         <CloseButton
-          sx={{ borderRadius: "20px" }}
+          sx={{ backgroundColor: "#222000", borderRadius: "20px" }}
           onClick={() => {
             tooltip.show({
               ...tooltip.elementToShow,

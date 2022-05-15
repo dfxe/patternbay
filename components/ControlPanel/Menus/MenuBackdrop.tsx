@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import Box from "@mui/material/Box";
+import useMediaQuery from "@mui/material/useMediaQuery";
 import { useNightMode } from "../Providers/NightModeProvider";
 
 type Props = {
@@ -7,6 +8,7 @@ type Props = {
 };
 const MenuBackdrop = ({ children }: Props) => {
   const nightMode = useNightMode();
+  const mqMin1256 = useMediaQuery("(min-width:1256px)");
   const menuBackdropRef = useRef<HTMLDivElement>(null);
   const [isUnder, setIsUnder] = useState<boolean>(false);
   useEffect(() => {
@@ -30,6 +32,7 @@ const MenuBackdrop = ({ children }: Props) => {
         borderRadius: "64px",
         padding: "2em 2em 2em 2em",
         paddingBlockEnd: "6em",
+        width: mqMin1256! ? "100%" : "120%",
         height: "89vh",
         overflowY: "auto",
         overflowX: "hidden",
