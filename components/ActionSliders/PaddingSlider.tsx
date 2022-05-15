@@ -33,7 +33,8 @@ const PaddingSlider = ({ params, setPadding, nightModeSwitch }: Props) => {
         step={params.step}
         min={params.min}
         max={params.max}
-        onChangeMod={(e: Event) => {
+        //@ts-ignore
+        onChangeMod={(e) => {
           setPadding(+(e.target as HTMLInputElement).value * 10);
         }}
       />

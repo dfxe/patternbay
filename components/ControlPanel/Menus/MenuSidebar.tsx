@@ -36,7 +36,7 @@ import ListItemButton from "@mui/material/ListItemButton";
 import BlobSVGMenuSidebar from "../../../images/MenuSidebarBlob";
 import Link from "next/link";
 import ExportToPng from "./ExportToPng";
-
+import packageJson from "../../../package.json";
 const drawerWidth = 73;
 
 const openedMixin = (theme: Theme): CSSObject => ({
@@ -158,6 +158,34 @@ const MenuSidebar = () => {
               Pattern Bay
             </Typography>
           </Link>
+          <Box sx={{ display: "flex", flexDirection: "column" }}>
+            <Typography
+              variant={mqMin1024 ? "h6" : "h6"}
+              sx={{
+                textAlign: "center",
+                m: 0,
+                color: nightMode.getter ? "#f3edf7" : "#231f22",
+
+                cursor: "pointer",
+              }}
+              component="div"
+            >
+              alpha
+            </Typography>
+            <Typography
+              variant={mqMin1024 ? "h6" : "h6"}
+              sx={{
+                textAlign: "center",
+                m: 0,
+                color: nightMode.getter ? "#f3edf7" : "#231f22",
+
+                cursor: "pointer",
+              }}
+              component="div"
+            >
+              {packageJson.version}
+            </Typography>
+          </Box>
         </Toolbar>
       </AppBar>
       <Drawer

@@ -28,21 +28,6 @@ export default function UnderWork() {
         Mobile version under work :) Until then you can use the desktop version.
       </Typography>
       <hr style={{ marginLeft: "10vw", marginRight: "10vw" }}></hr>
-      <Typography
-        variant={"h6"}
-        sx={{
-          backgroundColor: "#f3edf7",
-          position: "relative",
-          textAlign: "center",
-        }}
-      >
-        {" "}
-        Also check out the code on{" "}
-        <a href="https://github.com/uKruel/css-circle-pattern-generator">
-          {" "}
-          GitHub{" "}
-        </a>
-      </Typography>
     </div>
   );
 }
