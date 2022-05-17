@@ -16,7 +16,6 @@ const Flower = (props: SVGProps<SVGSVGElement>) => (
       transform: `rotate(${props.rotate || 0}deg)`,
     }}
     viewBox="252.56 260.87 1536 1532.32"
-    {...props}
   >
     <defs>
       <style>{".fil0{fill:none}"}</style>

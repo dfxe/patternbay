@@ -37,6 +37,9 @@ const MenuBackdrop = ({ children }: Props) => {
         overflowY: "auto",
         overflowX: "hidden",
         scrollbarWidth: "none",
+        MSOverflowStyle: "none",
+        MSScrollbarWidth: "none",
+
         //TODO the last four sizes are for the scrollbar visibility
         boxShadow: `rgba(50, 50, 93, 0.25) 0px 100px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px ${
           isUnder ? "-20px" : "-2px"

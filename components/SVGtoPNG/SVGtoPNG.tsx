@@ -2,50 +2,63 @@ import React from "react";
 import Button from "@mui/material/Button";
 
 type Props = {
-  svgStrings: string;
+  svgStrings: string[];
 };
 export default function SVGtoPNG({ svgStrings }: Props) {
-  const svg: string = svgStrings;
-  const canvas = document.createElement("canvas");
-  const svgUrlToPng = (svgUrl: string) => {
-    const svgImage = document.createElement("img");
+  const [open, setOpen] = React.useState(false);
+  const svgImageRef = React.useRef<HTMLImageElement>(null);
+  const canvasRef = React.useRef<HTMLCanvasElement>(null);
+  const outImageRef = React.useRef<HTMLImageElement>(null);
+  const [canvasDimensions, setCanvasDimensions] = React.useState({
+    width: 500,
+    height: 500,
+  });
+  const [canvasScale, setCanvasScale] = React.useState(1);
 
-    document
-      .getElementById("alert-dialog-slide-description-svgs-here")!
-      .appendChild(svgImage);
-    svgImage.onload = function () {
-      canvas.width = svgImage.clientWidth;
-      canvas.height = svgImage.clientHeight;
-      const canvasCtx = canvas.getContext("2d");
-      canvasCtx!.drawImage(svgImage, 0, 0);
-      const imgData = canvas.toDataURL("image/png");
-      const pngImage = document.createElement("img");
+  const svgs: string[] = svgStrings;
+
+  const svgUrlToPng = (svgUrl: string) => {
+    svgImageRef!.current!.onload = () => {
+      const canvasCtx = canvasRef!.current!.getContext("2d");
+      canvasCtx!.drawImage(svgImageRef!.current!, 0, 0);
+
       // This needs be nested in <a id="download_image" href="" download="image.png"></a>
-      document
-        .getElementById("alert-dialog-slide-description-svgs-here")!
-        .appendChild(pngImage);
-      pngImage.src = imgData;
+      outImageRef!.current!.src = canvasRef!.current!.toDataURL("image/png");
+      outImageRef!.current!.style.transform = `translate(${
+        (Math.random() * 500 + 200, Math.random() * 500 + 200)
+      },0) scale(${canvasScale / 2})`;
     };
-    svgImage.src = svgUrl;
+    svgImageRef!.current!.src = svgUrl;
   };
   const getSvgUrl = (svg: string) => {
     return URL.createObjectURL(new Blob([svg], { type: "image/svg+xml" }));
   };
 
   //FIXME: for this to work, need to add an id to the parent element and access it's child list.
-  const svgToPng = (svgStringToPng: string) => {
-    const url: string = getSvgUrl(svgStringToPng);
-
-    svgUrlToPng(url);
+  const svgToPng = (svgStringsToPng: string[]) => {
+    for (let i = 0; i < svgStringsToPng.length; i++) {
+      svgUrlToPng(getSvgUrl(svgStringsToPng[i]));
+    }
   };
 
   return (
-    <Button
-      onClick={() => {
-        svgToPng(svg);
-      }}
-    >
-      Export PNG
-    </Button>
+    <>
+      <img hidden={false} ref={svgImageRef} />
+      <a download="image">
+        <img ref={outImageRef} />
+      </a>
+      <canvas
+        ref={canvasRef}
+        width={canvasDimensions.width}
+        height={canvasDimensions.height}
+      ></canvas>
+      <Button
+        onClick={() => {
+          svgToPng(svgs);
+        }}
+      >
+        Export PNG
+      </Button>
+    </>
   );
 }

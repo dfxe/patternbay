@@ -464,16 +464,15 @@ const BlobMenu = () => {
         >
           <defs>
             <rect
-              id="my-gradient-menu-canvas"
+              id="my-blob-gradient-menu-canvas"
               rx={6}
               ry={6}
               width="8vw"
               height="80%"
             />
-            {/* TODO find gradient filter for dis */}
 
             <linearGradient
-              id="a-noise-gradient-menu-canvas"
+              id="a-blob-menu-canvas"
               gradientTransform={`rotate(${rotation})`}
             >
               <stop offset="20%" stopColor={"#222"} />
@@ -484,8 +483,8 @@ const BlobMenu = () => {
           <use
             x="5"
             y="5"
-            href="#my-gradient-menu-canvas"
-            fill="url('#a-noise-gradient-menu-canvas')"
+            href="#my-blob-gradient-menu-canvas"
+            fill="url('#a-blob-menu-canvas')"
           />
         </svg>
         <svg

@@ -47,8 +47,8 @@ export default function ExportToPng({ canDisplay, open, setOpen }: Props) {
       .getElementById(getterId)
       ?.querySelectorAll("svg");
 
+    let svgStrings: string[] = [];
     if (svgElements) {
-      const svgStrings: string[] = [];
       svgElements.forEach((svg) => {
         svgStrings.push(svg.outerHTML);
       });
@@ -58,7 +58,7 @@ export default function ExportToPng({ canDisplay, open, setOpen }: Props) {
   };
 
   //TODO refactor everything in canvas Path2D then export to png
-  const exportToPng = () => {
+  /* const exportToPng = () => {
     const canvg = new Canvg(document.createElement("canvas"));
     canvg.setSize(500, 500);
     canvg.setViewBox(0, 0, 500, 500);
@@ -99,7 +99,7 @@ export default function ExportToPng({ canDisplay, open, setOpen }: Props) {
     // Start SVG rendering with animations and mouse handling.
     //@ts-ignore
     v!.start();
-  };
+  }; */
 
   useEffect(() => {
     getSvgs();
@@ -116,7 +116,7 @@ export default function ExportToPng({ canDisplay, open, setOpen }: Props) {
       <DialogTitle>{"Use Google's location service?"}</DialogTitle>
       <DialogContent>
         <DialogContentText id="alert-dialog-slide-description-svgs-here">
-          <SVGtoPNG svgStrings={svgStrings[0]}></SVGtoPNG>
+          <SVGtoPNG svgStrings={svgStrings}></SVGtoPNG>
         </DialogContentText>
       </DialogContent>
       <DialogActions>

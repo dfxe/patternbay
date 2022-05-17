@@ -129,68 +129,68 @@ const NoiseGradientMenu = () => {
                   url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='${frequency}' numOctaves='${octaves}' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
         }}
       /> */}
+      {/* <div id="the-noise-gradient-itself">
+        <svg
+          aria-label="noise-gradient-svg"
+          style={{
+            position: "absolute",
+            left: "10vw",
+            top: "0vh",
+            width: "100%",
+            height: "100%",
+          }}
+          viewBox="0 0 100 100"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <defs>
+            {blur.hasBlur && (
+              <filter id="a-noise-gradient-menu-canvas-filter">
+                <feGaussianBlur stdDeviation={blur.blurStdDev} />
+              </filter>
+            )}
+            <rect
+              id="my-gradient-menu-canvas"
+              rx={borderRadius}
+              ry={borderRadius}
+              width="80%"
+              height="50%"
+            />
+          
 
-      <svg
-        aria-label="noise-gradient-svg"
-        style={{
-          position: "absolute",
-          left: "10vw",
-          top: "0vh",
-          width: "100%",
-          height: "100%",
-        }}
-        viewBox="0 0 100 100"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <defs>
-          {blur.hasBlur && (
-            <filter id="a-noise-gradient-menu-canvas-filter">
-              <feGaussianBlur stdDeviation={blur.blurStdDev} />
-            </filter>
-          )}
-          <rect
-            id="my-gradient-menu-canvas"
-            rx={borderRadius}
-            ry={borderRadius}
-            width="80%"
-            height="50%"
+            {gradientType === "linear" && (
+              <linearGradient
+                id="a-noise-gradient-menu-canvas"
+                gradientTransform={`rotate(${rotation})`}
+              >
+                <stop offset="20%" stopColor={noiseGradientColor} />
+                <stop offset="90%" stopColor={noiseGradientColor2} />
+              </linearGradient>
+            )}
+            {gradientType === "radial" && (
+              <radialGradient id="a-noise-gradient-menu-canvas">
+                <stop offset="10%" stopColor={noiseGradientColor} />
+                <stop offset="95%" stopColor={noiseGradientColor2} />
+              </radialGradient>
+            )}
+            {gradientType === "conic" && (
+              <radialGradient id="a-noise-gradient-menu-canvas">
+                <stop offset="10%" stopColor={noiseGradientColor} />
+                <stop offset="95%" stopColor={noiseGradientColor2} />
+              </radialGradient>
+            )}
+          </defs>
+
+          <use
+            x="5"
+            y="5"
+            href="#my-gradient-menu-canvas"
+            fill="url('#a-noise-gradient-menu-canvas')"
+            filter={
+              blur.hasBlur ? "url('#a-noise-gradient-menu-canvas-filter')" : ""
+            }
           />
-          {/* TODO find gradient filter for dis */}
-
-          {gradientType === "linear" && (
-            <linearGradient
-              id="a-noise-gradient-menu-canvas"
-              gradientTransform={`rotate(${rotation})`}
-            >
-              <stop offset="20%" stopColor={noiseGradientColor} />
-              <stop offset="90%" stopColor={noiseGradientColor2} />
-            </linearGradient>
-          )}
-          {gradientType === "radial" && (
-            <radialGradient id="a-noise-gradient-menu-canvas">
-              <stop offset="10%" stopColor={noiseGradientColor} />
-              <stop offset="95%" stopColor={noiseGradientColor2} />
-            </radialGradient>
-          )}
-          {gradientType === "conic" && (
-            <radialGradient id="a-noise-gradient-menu-canvas">
-              <stop offset="10%" stopColor={noiseGradientColor} />
-              <stop offset="95%" stopColor={noiseGradientColor2} />
-            </radialGradient>
-          )}
-        </defs>
-
-        <use
-          x="5"
-          y="5"
-          href="#my-gradient-menu-canvas"
-          fill="url('#a-noise-gradient-menu-canvas')"
-          filter={
-            blur.hasBlur ? "url('#a-noise-gradient-menu-canvas-filter')" : ""
-          }
-        />
-      </svg>
-
+        </svg>
+      </div> */}
       {/* <Stack
         spacing={1}
         direction="row"
@@ -226,6 +226,7 @@ const NoiseGradientMenu = () => {
           }
         />
       </Stack> */}
+
       <BorderSlider
         params={boundaryParams.borderRadius}
         setBorderRadius={setBorderRadius}
