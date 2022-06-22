@@ -18,7 +18,17 @@ const Home: NextPage = () => {
   //TODO get inspiration from other pages mentioned in the plan
   //TODO use graphics from the bays, demo the bays
   return (
-    <div>
+    <div
+      style={{
+        /* background:
+          "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' height='100%25' width='100%25'%3E%3Cdefs%3E%3Cpattern id='doodad' width='34.64' height='40' viewBox='0 0 69.2820323027551 80' patternUnits='userSpaceOnUse' patternTransform='rotate(135)'%3E%3Crect width='100%25' height='100%25' fill='rgba(247, 250, 252,1)'/%3E%3Cpath d='M52.83 50.5L51.96 51L51.09 50.5L51.09 49.5L51.96 49L52.83 49.5z' stroke-linejoin='miter' fill='%231a202c'/%3E%3Cpath d='M35.51 60.5L34.64 61L33.77 60.5L33.77 59.5L34.64 59L35.51 59.5z' stroke-linejoin='miter' fill='%231a202c'/%3E%3Cpath d='M18.19 50.5L17.32 51L16.45 50.5L16.45 49.5L17.32 49L18.19 49.5z' stroke-linejoin='miter' fill='%231a202c'/%3E%3Cpath d='M18.19 30.5L17.32 31L16.45 30.5L16.45 29.5L17.32 29L18.19 29.5z' stroke-linejoin='miter' fill='%231a202c'/%3E%3Cpath d='M35.51 20.5L34.64 21L33.77 20.5L33.77 19.5L34.64 19L35.51 19.5z' stroke-linejoin='miter' fill='%231a202c'/%3E%3Cpath d='M52.83 30.5L51.96 31L51.09 30.5L51.09 29.5L51.96 29L52.83 29.5z' stroke-linejoin='miter' fill='%231a202c'/%3E%3Cpath d='M36.37 41L34.64 42L32.91 41L32.91 39L34.64 38L36.37 39z' stroke-linejoin='miter' fill='rgba(159, 122, 234,1)'/%3E%3C/pattern%3E%3C/defs%3E%3Crect fill='url(%23doodad)' height='200%25' width='200%25'/%3E%3C/svg%3E \")", */
+        /* background:
+          "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' height='100%25' width='100%25'%3E%3Cdefs%3E%3Cpattern id='doodad' width='34.64' height='40' viewBox='0 0 69.2820323027551 80' patternUnits='userSpaceOnUse' patternTransform='rotate(90)'%3E%3Crect width='100%25' height='100%25' fill='rgba(247, 250, 252,1)'/%3E%3Cpath d='M52.83 50.5L51.96 51L51.09 50.5L51.09 49.5L51.96 49L52.83 49.5z' stroke-linejoin='miter' fill='%231a202c'/%3E%3Cpath d='M35.51 60.5L34.64 61L33.77 60.5L33.77 59.5L34.64 59L35.51 59.5z' stroke-linejoin='miter' fill='%231a202c'/%3E%3Cpath d='M18.19 50.5L17.32 51L16.45 50.5L16.45 49.5L17.32 49L18.19 49.5z' stroke-linejoin='miter' fill='%231a202c'/%3E%3Cpath d='M18.19 30.5L17.32 31L16.45 30.5L16.45 29.5L17.32 29L18.19 29.5z' stroke-linejoin='miter' fill='%231a202c'/%3E%3Cpath d='M35.51 20.5L34.64 21L33.77 20.5L33.77 19.5L34.64 19L35.51 19.5z' stroke-linejoin='miter' fill='%231a202c'/%3E%3Cpath d='M52.83 30.5L51.96 31L51.09 30.5L51.09 29.5L51.96 29L52.83 29.5z' stroke-linejoin='miter' fill='%231a202c'/%3E%3Cpath d='M36.37 41L34.64 42L32.91 41L32.91 39L34.64 38L36.37 39z' stroke-linejoin='miter' fill='rgba(159, 122, 234,1)'/%3E%3C/pattern%3E%3C/defs%3E%3Crect fill='url(%23doodad)' height='200%25' width='200%25'/%3E%3C/svg%3E \")", */
+
+        background:
+          "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' height='100%25' width='100%25'%3E%3Cdefs%3E%3Cpattern id='doodad' width='40' height='40' viewBox='0 0 40 40' patternUnits='userSpaceOnUse' patternTransform='rotate(90)'%3E%3Crect width='100%25' height='100%25' fill='rgba(247, 250, 252,1)'/%3E%3Ccircle cx='0' cy='20' r='1' fill='rgba(160, 174, 192,1)'/%3E%3Ccircle cx='40' cy='20' r='1' fill='rgba(160, 174, 192,1)'/%3E%3Cpath d='m 19.5 19.5 h1 v1 h-1z' fill='rgba(159, 122, 234,1)'/%3E%3C/pattern%3E%3C/defs%3E%3Crect fill='url(%23doodad)' height='200%25' width='200%25'/%3E%3C/svg%3E \")",
+      }}
+    >
       {" "}
       <Head>
         <title>Pattern Bay</title>

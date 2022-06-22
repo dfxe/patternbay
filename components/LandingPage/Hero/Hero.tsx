@@ -4,30 +4,33 @@ import Image from "next/image";
 
 function Hero() {
   return (
-    <section className="text-white">
-      <div className="max-w-screen-xl px-4 py-32 mx-auto lg:h-screen lg:items-center lg:flex">
-        <div className="max-w-3xl mx-auto text-center">
-          <h1 className="text-3xl font-extrabold text-transparent sm:text-5xl bg-clip-text bg-gradient-to-r from-gray-700 via-blue-500 to-purple-600">
-            Understand User Flow.
-            <span className="sm:block">Increase Conversion.</span>
-          </h1>
+    <aside className="p-12  sm:p-16 lg:p-24">
+      <div className="max-w-xl mx-auto text-center">
+        <p className="text-sm font-medium text-gray-500">
+          Lorem ipsum dolor sit amet.
+        </p>
 
-          <p className="max-w-xl mx-auto mt-4 sm:leading-relaxed sm:text-xl text-black">
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nesciunt
-            illo tenetur fuga ducimus numquam ea!
-          </p>
-          <div className="flex flex-wrap justify-center gap-4 mt-8">
-            <Link passHref href="/bay">
-              <button className="inline-block p-[2px] text-black rounded-full bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 hover:text-white active:text-opacity-75 focus:outline-none focus:ring">
-                <span className="block text-black px-8 py-3 text-2xl font-bold from-pink-400 to-yellow-500 bg-gradient-to-t  rounded-full hover:text-white hover:bg-transparent hover:bg-gradient-to-tr">
-                  Go to Bay
-                </span>
-              </button>
-            </Link>
-          </div>
+        <p className="mt-2 text-3xl font-bold sm:text-5xl">
+          Pattern Bay. <br /> Make your portfolio pop.
+        </p>
+
+        <div className="mt-8 sm:items-center sm:justify-center sm:flex">
+          <a
+            href=""
+            className="block px-5 py-3 font-medium text-white bg-indigo-500 rounded-lg shadow-xl hover:bg-indigo-700"
+          >
+            Start free trial
+          </a>
+
+          <a
+            href=""
+            className="block px-5 py-3 mt-4 font-medium text-blue-500 rounded-lg hover:text-blue-600 sm:mt-0"
+          >
+            Schedule a demo
+          </a>
         </div>
       </div>
-    </section>
+    </aside>
   );
 }
 
