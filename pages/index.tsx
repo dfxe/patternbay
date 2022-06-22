@@ -13,6 +13,7 @@ import Hero from "../components/LandingPage/Hero/Hero";
 import Footer from "../components/LandingPage/Footer/Footer";
 import SignUp from "../components/LandingPage/SignUp/SignUp";
 import Gallery from "../components/LandingPage/Gallery/Gallery";
+
 const Home: NextPage = () => {
   //TODO get inspiration from other pages mentioned in the plan
   //TODO use graphics from the bays, demo the bays

@@ -1,11 +1,11 @@
 import React from "react";
 import Link from "next/link";
 import BrandLogo from "../../../images/BrandLogo";
-function Navbar() {
+const Navbar = () => {
   return (
     <header
       aria-label="landing-navbar-header"
-      className="text-gray-600 bg-gradient-to-b from-gray-700 to-gray-900 body-font"
+      className="text-gray-600  body-font"
     >
       <div className="container mx-auto flex row p-5 justify-between items-center">
         <Link passHref href="/">
@@ -57,6 +57,6 @@ function Navbar() {
       </div>
     </header>
   );
-}
+};
 
 export default Navbar;

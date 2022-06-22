@@ -3,7 +3,7 @@ import Image from "next/image";
 import Underwork from "../../../images/underWork.png";
 const SignUp = () => {
   return (
-    <aside className="bg-gradient-to-t from-indigo-400 via-indigo-500 to-indigo-500">
+    <aside className="">
       <div className="px-4 py-16 mx-auto max-w-screen-2xl sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
           <div className="p-8 text-center text-white bg-indigo-600 sm:col-span-2 sm:p-16 lg:py-24 rounded-2xl">
