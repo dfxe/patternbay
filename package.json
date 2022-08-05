@@ -24,7 +24,7 @@
     "cypress-axe": "^1.0.0",
     "nanoid": "^4.0.0",
     "next": "12.1.6",
-    "npm-check-updates": "^14.0.1",
+    "npm-check-updates": "^14.0.2",
     "pretty-format": "^28.1.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",

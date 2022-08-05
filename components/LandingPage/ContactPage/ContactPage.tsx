@@ -2,7 +2,7 @@ import React from "react";
 import Navbar from "../Navbar/Navbar";
 import Image from "next/image";
 import Underwork from "../../../images/underWork.png";
-function Contact() {
+const Contact = () => {
   return (
     <>
       <Navbar />
@@ -127,6 +127,6 @@ function Contact() {
       </section>
     </>
   );
-}
+};
 
 export default Contact;

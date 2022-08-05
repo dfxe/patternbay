@@ -38,7 +38,7 @@ const Footer = () => {
 
         <div className="max-w-sm mx-auto lg:max-w-none flex flex-col items-center">
           <div className="flex flex-col items-center">
-            <p className="mt-4 text-center text-white  lg:text-lg px-10 lg:px-56">
+            <p className="mt-4 text-center text-black  lg:text-lg px-10 lg:px-56">
               Lorem ipsum, dolor sit amet consectetur adipisicing elit.
               Praesentium natus quod eveniet aut perferendis distinctio iusto
               repudiandae, provident velit earum?

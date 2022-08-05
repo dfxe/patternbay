@@ -7,12 +7,13 @@ function Hero() {
     <aside className="p-12  sm:p-16 lg:p-24">
       <div className="max-w-xl mx-auto text-center">
         <p className="text-sm font-medium text-gray-500">
-          Lorem ipsum dolor sit amet.
+          Stand out among peers.
         </p>
 
-        <p className="mt-2 text-3xl font-bold sm:text-5xl">
-          Pattern Bay. <br /> Make your portfolio pop.
-        </p>
+        <div className="mt-2 text-3xl font-bold sm:text-5xl">
+          <p>Pattern Bay. </p>
+          <p className="text-indigo-500">Make your portfolio pop.</p>
+        </div>
 
         <div className="mt-8 sm:items-center sm:justify-center sm:flex">
           <a

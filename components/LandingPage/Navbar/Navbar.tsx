@@ -20,7 +20,7 @@ const Navbar = () => {
             />
             <h1
               aria-label="landing-brand-name"
-              className="hidden md:block ml-3 text-base whitespace-nowrap lg:text-2xl font-extrabold text-transparent text-teal-500"
+              className="hidden md:block ml-3 text-base whitespace-nowrap lg:text-2xl font-extrabold text-transparent text-black"
             >
               Pattern Bay
             </h1>
@@ -37,7 +37,7 @@ const Navbar = () => {
           <Link passHref href="/contact">
             <h2
               aria-label="landing-contact-page-link"
-              className="text-base lg:text-2xl font-extrabold text-transparent text-teal-500  cursor-pointer"
+              className="text-base lg:text-2xl font-extrabold text-transparent text-black cursor-pointer"
             >
               Contact
             </h2>
