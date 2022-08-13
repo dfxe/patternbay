@@ -3,6 +3,7 @@ import Stack from "@mui/material/Stack";
 import Tooltip from "@mui/material/Tooltip";
 import ScreenRotationAltRoundedIcon from "@mui/icons-material/ScreenRotationAltRounded";
 import DefaultMarkedMUISlider from "../DStyles/DefaultMarkedMUISlider";
+//@ts-ignore
 import { Mark } from "@mui/base/SliderUnstyled/SliderUnstyledProps";
 type Props = {
   params: {

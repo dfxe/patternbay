@@ -4,6 +4,7 @@ import Slider from "@mui/material/Slider";
 import Typography from "@mui/material/Typography";
 import { keyframes, styled } from "@mui/material/styles";
 import { useNightMode } from "../ControlPanel/Providers/NightModeProvider";
+//@ts-ignore
 import { Mark } from "@mui/base/SliderUnstyled/SliderUnstyledProps";
 
 function valuetext(value: number) {
@@ -11,7 +12,7 @@ function valuetext(value: number) {
 }
 const hoverAnim = keyframes`
   0% {
-    
+
     transform: scale(1) translate(-11px,-10px);
 
   }
