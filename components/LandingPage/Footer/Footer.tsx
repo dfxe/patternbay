@@ -110,7 +110,7 @@ const Footer = () => {
 
             <a
               className="transition hover:opacity-75"
-              href=""
+              href="https://www.github.com/dfxe"
               target="_blank"
               rel="noreferrer"
             >
@@ -180,7 +180,7 @@ const Footer = () => {
 
       <div className="pt-8 mt-16 border-t border-white/10 pb-10">
         <p className="text-xs leading-relaxed text-center text-black">
-          © uKruel {new Date(Date.now()).getFullYear()}
+          © dfxe {new Date(Date.now()).getFullYear()}
           <br />
           Created with{" "}
           <a
