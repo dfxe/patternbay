@@ -129,8 +129,7 @@ const WhatIsThis = ({ open, setOpen }: Props) => {
         </Typography>
         <br />
         <Typography gutterBottom>
-          Have any ideas to improve this? Leave a GitHub issue or contact at:{" "}
-          <Obfuscate email="29132359+uKruel@users.noreply.github.com" />
+          Have any ideas to improve this? Leave a GitHub issue.
         </Typography>
         <Typography gutterBottom>
           {/* TODO add tips, such as click the icons parallel to the sliders to see what they do */}
